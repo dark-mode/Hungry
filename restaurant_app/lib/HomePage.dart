@@ -51,6 +51,7 @@ class _HomePageState extends State<HomePage> {
 
       location = null;
     }
+    
 
     setState(() {
         _startLocation = location;
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('First Screen'),
       ),
       body: Center(
-        child: RaisedButton(
+        child: FlatButton(
           child: Text('$_lon $_lat'),
           onPressed: () {
 
