@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/HomePage.dart';
 
 class ResultsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Screen"),
+        title: Text('First Screen'),
       ),
       body: Center(
         child: RaisedButton(
+          child: Text('Launch screen'),
           onPressed: () {
-            // Navigate back to first screen when tapped!
-          onPressed: () {
-              Navigator.pop(context);
-            }
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
           },
-          child: Text('Go back!'),
         ),
       ),
     );
