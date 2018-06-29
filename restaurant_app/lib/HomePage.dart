@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
-
+double _lon, _lat;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
   Map<String, double> _startLocation;
 
   Location _location = new Location();
-  double _lon, _lat;
   String value, error;
   var restaurants = new Set();
 
