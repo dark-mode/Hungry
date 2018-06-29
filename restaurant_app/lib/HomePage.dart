@@ -5,27 +5,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
-
+  _HomePageState hP = new _HomePageState();
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('First Screen'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Launch screen'),
-          onPressed: () {
-
-            // Navigate to second screen when tapped!
-            Navigator.pushReplacementNamed(
-              context,
-              "/results");
-          },
-        ),
-      ),
-    );
-  }
+  _HomePageState createState() => hP;
 }
 
 class _HomePageState extends State<HomePage> {
@@ -41,6 +23,9 @@ class _HomePageState extends State<HomePage> {
   bool currentWidget = true;
 
   Image image1;
+
+  double get lon => _lon;
+  double get lat => _lat;
 
   @override
   void initState() {
@@ -73,5 +58,26 @@ class _HomePageState extends State<HomePage> {
         _lat = location['latitude'];
     });
 
+  }
+
+    @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Screen'),
+      ),
+      body: Center(
+        child: RaisedButton(
+          child: Text('$_lon $_lat'),
+          onPressed: () {
+
+            // Navigate to second screen when tapped!
+            Navigator.pushReplacementNamed(
+              context,
+              "/results");
+          },
+        ),
+      ),
+    );
   }
 }
