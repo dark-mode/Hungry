@@ -56,62 +56,41 @@ class _ResultsPageState extends State<ResultsPage> {
 
   @override
   Widget build(BuildContext context) {
-      if (restaurants.first.name == null) {
-        return Scaffold(
-        appBar: AppBar(
-        title: Text('Location'),
-        ),
-        body: //Center(
-          new Container (
-            child: new Row (
-              children: [
-                new Text('$_lat $_lon'),
-                new Text("Loading, Please Wait")
-            ]
-          )
-        )
-    );
+      String firstRest = "Fetching Data...";
+      if (restaurants != null) {
+        firstRest = restaurants.first.name;
       }
       return Scaffold(
       appBar: AppBar(
         title: Text('Location'),
       ),
-      body: //Center(
-        new Container (
-          child: new Row (
-            children: [
-              new Text('$_lat $_lon'),
-              new Text(restaurants.first.name)
-            ]
-          )
-        ),
-        
-  new Card(
-  child: new Column(
-    mainAxisSize: MainAxisSize.min,
-    children: <Widget>[
-      ListTile(
-        leading: const Icon(Icons.album),
-        title:  Text(restaurants.first.name),
-        subtitle: Text('WE DID IT BOI'),
-      ),
-      new ButtonTheme.bar( // make buttons use the appropriate styles for cards
-        child: new ButtonBar(
+      body: 
+        new Card(
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            new FlatButton(
-              child: const Text('BUY TICKETS'),
-              onPressed: () { /* ... */ },
+            ListTile(
+              leading: const Icon(Icons.album),
+              title:  Text(firstRest),
+              subtitle: Text('WE DID IT BOI'),
             ),
-            new FlatButton(
-              child: const Text('LISTEN'),
-              onPressed: () { /* ... */ },
+            new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+              child: new ButtonBar(
+                children: <Widget>[
+                  new FlatButton(
+                    child: const Text('BUY TICKETS'),
+                    onPressed: () { /* ... */ },
+                  ),
+                  new FlatButton(
+                    child: const Text('LISTEN'),
+                    onPressed: () { /* ... */ },
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-      ),
-    ],
-  ),
-)
+      )
       //),
     );
   }
