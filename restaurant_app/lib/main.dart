@@ -7,11 +7,12 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    HomePage homeP = new HomePage();
     return new MaterialApp(
       title: "Restaurant",
-      home: new HomePage(),
+      home: homeP,
       routes: {
-        "/results": (_) => new ResultsPage(),
+        "/results": (_) => new ResultsPage(homeP.lon, homeP.lat),
       }
     );
   }
