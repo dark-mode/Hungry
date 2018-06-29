@@ -16,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   Map<String, double> _startLocation;
 
   Location _location = new Location();
-  double _lon, _lat;
   String value, error;
   var restaurants = new Set();
 
