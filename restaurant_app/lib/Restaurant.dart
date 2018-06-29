@@ -13,7 +13,7 @@ class Restaurant {
     this.id = json['id'];
     this.icon = json['icon'];
 
-    this.open_now = json['opening_hours']['open_now'];
-    this.price_level = json['price_level'];
+    //this.open_now = json['opening_hours']['open_now'];
+    //this.price_level = json['price_level'];
   }
 }
