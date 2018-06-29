@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SecondScreen extends StatelessWidget {
+class ResultsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,6 +11,9 @@ class SecondScreen extends StatelessWidget {
         child: RaisedButton(
           onPressed: () {
             // Navigate back to first screen when tapped!
+          onPressed: () {
+              Navigator.pop(context);
+            }
           },
           child: Text('Go back!'),
         ),
