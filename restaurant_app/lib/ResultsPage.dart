@@ -56,6 +56,22 @@ class _ResultsPageState extends State<ResultsPage> {
 
   @override
   Widget build(BuildContext context) {
+      if (restaurants.first.name == null) {
+        return Scaffold(
+        appBar: AppBar(
+        title: Text('Location'),
+        ),
+        body: //Center(
+          new Container (
+            child: new Row (
+              children: [
+                new Text('$_lat $_lon'),
+                new Text("Loading, Please Wait")
+            ]
+          )
+        )
+    );
+      }
       return Scaffold(
       appBar: AppBar(
         title: Text('Location'),
