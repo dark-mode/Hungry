@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/ResultsPage.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,10 +12,9 @@ class HomePage extends StatelessWidget {
           child: Text('Launch screen'),
           onPressed: () {
             // Navigate to second screen when tapped!
-            Navigator.push(
+            Navigator.pushReplacementNamed(
               context,
-              MaterialPageRoute(builder: (context) => ResultsPage()),
-            );
+              "/results");
           },
         ),
       ),
