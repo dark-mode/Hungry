@@ -84,7 +84,34 @@ class _ResultsPageState extends State<ResultsPage> {
               new Text(restaurants.first.name)
             ]
           )
-        )
+        ),
+        
+  new Card(
+  child: new Column(
+    mainAxisSize: MainAxisSize.min,
+    children: <Widget>[
+      ListTile(
+        leading: const Icon(Icons.album),
+        title:  Text(restaurants.first.name),
+        subtitle: Text('WE DID IT BOI'),
+      ),
+      new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+        child: new ButtonBar(
+          children: <Widget>[
+            new FlatButton(
+              child: const Text('BUY TICKETS'),
+              onPressed: () { /* ... */ },
+            ),
+            new FlatButton(
+              child: const Text('LISTEN'),
+              onPressed: () { /* ... */ },
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
+)
       //),
     );
   }
