@@ -57,7 +57,7 @@ class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
       String firstRest = "Fetching Data...";
-      if (restaurants != null) {
+      if (restaurants != null && restaurants.length != 0) {
         firstRest = restaurants.first.name;
       }
       return Scaffold(
@@ -98,7 +98,7 @@ class _ResultsPageState extends State<ResultsPage> {
 
   Future<Set<Restaurant>> fetchRestaurants(double _lat, double _lon) async {
     Set<Restaurant> restaurants = new Set<Restaurant>();
-    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
+    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=1500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
     print(url);
     final response = await http.get(url);
     //print(response.body);

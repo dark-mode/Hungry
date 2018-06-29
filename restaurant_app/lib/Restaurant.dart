@@ -1,5 +1,6 @@
 class Restaurant {
-  double lat, lon, rating;
+  double lat, lon;
+  num rating;
   String address, id, icon, name, maps_photo_link;
   bool open_now;
   int price_level;
