@@ -13,7 +13,7 @@ class ResultsPage extends StatelessWidget {
             // Navigate back to first screen when tapped!
           onPressed: () {
               Navigator.pop(context);
-            }
+            };
           },
           child: Text('Go back!'),
         ),
