@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Map<String, double> _startLocation;
 
   Location _location = new Location();
-  double _lon, _lat;
+  double _lat, _lon;
   String value, error;
   var restaurants = new Set();
 
@@ -24,8 +24,8 @@ class _HomePageState extends State<HomePage> {
 
   Image image1;
 
-  double get lon => _lon;
   double get lat => _lat;
+  double get lon => _lon;
 
   @override
   void initState() {
@@ -55,8 +55,8 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
         _startLocation = location;
+        _lat = location['latitude'];        
         _lon = location['longitude'];
-        _lat = location['latitude'];
     });
 
   }
@@ -68,8 +68,8 @@ class _HomePageState extends State<HomePage> {
         title: Text('First Screen'),
       ),
       body: Center(
-        child: FlatButton(
-          child: Text('$_lon $_lat'),
+        child: RaisedButton(
+          child: Text("enter"),
           onPressed: () {
 
             // Navigate to second screen when tapped!
