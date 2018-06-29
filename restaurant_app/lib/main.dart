@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       title: "Restaurant",
       home: homeP,
       routes: {
-        "/results": (_) => new ResultsPage(homeP.lon, homeP.lat),
+        "/results": (_) => new ResultsPage(homeP.hP.lon, homeP.hP.lat),
       }
     );
   }
