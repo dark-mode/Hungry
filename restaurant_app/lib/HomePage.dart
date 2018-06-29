@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:location/location.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,6 +16,7 @@ class HomePage extends StatelessWidget {
         child: RaisedButton(
           child: Text('Launch screen'),
           onPressed: () {
+
             // Navigate to second screen when tapped!
             Navigator.pushReplacementNamed(
               context,
@@ -19,5 +25,53 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _HomePageState extends State<HomePage> {
+  noSuchMethod(Invocation i) => super.noSuchMethod(i);
+
+  Map<String, double> _startLocation;
+
+  Location _location = new Location();
+  double _lon, _lat;
+  String value, error;
+  var restaurants = new Set();
+
+  bool currentWidget = true;
+
+  Image image1;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initPlatformState();
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  initPlatformState() async {
+    Map<String, double> location;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+
+    try {
+      location = await _location.getLocation;
+      error = null;
+    } on PlatformException catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {
+        error = 'Permission denied';
+      } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
+        error = 'Permission denied - please ask the user to enable it from the app settings';
+      }
+
+      location = null;
+    }
+
+    setState(() {
+        _startLocation = location;
+        _lon = location['longitude'];
+        _lat = location['latitude'];
+    });
+
   }
 }
