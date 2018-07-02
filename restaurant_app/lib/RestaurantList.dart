@@ -27,11 +27,11 @@ class RestaurantListItem extends Card {
 
   RestaurantListItem(Restaurant restaurant) :
     super(
+        margin: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 10.0, right: 10.0),
         child: new Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              
               contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               leading: const Icon(Icons.album),
               title:  new Text(
