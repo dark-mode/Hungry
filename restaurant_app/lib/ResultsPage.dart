@@ -67,8 +67,10 @@ class _ResultsPageState extends State<ResultsPage> {
       appBar: AppBar(
         title: Text('Location'),
       ),
-      body: new RestaurantList(restaurants.toList())
-
+      body: new Container (
+       // padding: EdgeInsets.all(20.0),
+        child: new RestaurantList(restaurants.toList())
+      ),
     );
   }
 

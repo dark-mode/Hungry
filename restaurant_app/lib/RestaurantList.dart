@@ -23,15 +23,21 @@ class RestaurantList extends StatelessWidget {
 
 }
 
-class RestaurantListItem extends ListTile {
+class RestaurantListItem extends Card {
 
   RestaurantListItem(Restaurant restaurant) :
     super(
-      title : new Text(restaurant.name),
-      subtitle: new Text(restaurant.address),
-      leading: new CircleAvatar(
-        child: new Text(restaurant.name.substring(0, 1))
-      )
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+              leading: const Icon(Icons.album),
+              title:  Text(restaurant.name),
+              subtitle: Text(restaurant.address),
+            ),
+          ],
+        ),
     );
 
 }
