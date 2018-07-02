@@ -12,11 +12,11 @@ class RestaurantList extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListView(
           padding: new EdgeInsets.symmetric(vertical: 8.0),
-          children: _buildContactList()
+          children: _buildRestaurantList()
         );
   }
 
-  List<RestaurantListItem> _buildContactList() {
+  List<RestaurantListItem> _buildRestaurantList() {
     return _restaurants.map((restaurant) => new RestaurantListItem(restaurant))
                     .toList();
   }
@@ -30,7 +30,7 @@ class RestaurantListItem extends ListTile {
       title : new Text(restaurant.name),
       subtitle: new Text(restaurant.address),
       leading: new CircleAvatar(
-        child: new Text(restaurant.id)
+        child: new Text(restaurant.name.substring(0, 1))
       )
     );
 
