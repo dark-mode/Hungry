@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:restaurant_app/Restaurant.dart';
+import 'package:restaurant_app/RestaurantList.dart';
 
 class ResultsPage extends StatefulWidget {
   _ResultsPageState hP;
@@ -56,105 +57,18 @@ class _ResultsPageState extends State<ResultsPage> {
 
   @override
   Widget build(BuildContext context) {
+      //RestaurantList rl = new RestaurantList(restaurants.toList());
       String firstRest = "Fetching Data...";
-      List<Card> cards = new List(restaurants.length);
-      cards.add(
-              new Card(
-        child: new Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.album),
-              title:  Text(firstRest),
-              subtitle: Text('WE DID IT BOI'),
-            ),
-            new ButtonTheme.bar( // make buttons use the appropriate styles for cards
-              child: new ButtonBar(
-                children: <Widget>[
-                  new FlatButton(
-                    child: const Text('BUY TICKETS'),
-                    onPressed: () { /* ... */ },
-                  ),
-                  new FlatButton(
-                    child: const Text('LISTEN'),
-                    onPressed: () { /* ... */ },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      )
-      );
+      
       if (restaurants != null && restaurants.length != 0) {
         firstRest = restaurants.first.name;
-        restaurants.forEach((restaurant) {
-            cards.add(
-        new Card(
-        child: new Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: const Icon(Icons.album),
-              title:  Text(restaurant.name),
-              subtitle: Text('WE DID IT BOI'),
-            ),
-            new ButtonTheme.bar( // make buttons use the appropriate styles for cards
-              child: new ButtonBar(
-                children: <Widget>[
-                  new FlatButton(
-                    child: const Text('BUY TICKETS'),
-                    onPressed: () { /* ... */ },
-                  ),
-                  new FlatButton(
-                    child: const Text('LISTEN'),
-                    onPressed: () { /* ... */ },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      )
-            );
-        });
       }
       return Scaffold(
       appBar: AppBar(
         title: Text('Location'),
       ),
-      body: new Container(
-              child: new ListView(
-                children: cards,
-              )
+      body: new RestaurantList(restaurants.toList())
 
-      //   new Card(
-      //   child: new Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     children: <Widget>[
-      //       ListTile(
-      //         leading: const Icon(Icons.album),
-      //         title:  Text(firstRest),
-      //         subtitle: Text('WE DID IT BOI'),
-      //       ),
-      //       new ButtonTheme.bar( // make buttons use the appropriate styles for cards
-      //         child: new ButtonBar(
-      //           children: <Widget>[
-      //             new FlatButton(
-      //               child: const Text('BUY TICKETS'),
-      //               onPressed: () { /* ... */ },
-      //             ),
-      //             new FlatButton(
-      //               child: const Text('LISTEN'),
-      //               onPressed: () { /* ... */ },
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // )
-      ),
     );
   }
 
