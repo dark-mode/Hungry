@@ -12,20 +12,20 @@ class RestaurantList extends StatelessWidget {
   Widget build(BuildContext context) {
     return new ListView(
           padding: new EdgeInsets.symmetric(vertical: 8.0),
-          children: _buildRestaurantList()
+          children: _buildRestaurantList(context)
         );
   }
 
-  List<RestaurantListItem> _buildRestaurantList() {
-    return _restaurants.map((restaurant) => new RestaurantListItem(restaurant))
+  List<RestaurantListItem> _buildRestaurantList(BuildContext context) {
+  double scaleFactor =  MediaQuery.of(context).devicePixelRatio;
+    return _restaurants.map((restaurant) => new RestaurantListItem(restaurant, scaleFactor))
                     .toList();
   }
 
 }
 
 class RestaurantListItem extends Card {
-
-  RestaurantListItem(Restaurant restaurant) :
+  RestaurantListItem(Restaurant restaurant, double scaleFactor) :
     super(
         margin: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 10.0, right: 10.0),
         child: new Column(
@@ -36,12 +36,16 @@ class RestaurantListItem extends Card {
               leading: const Icon(Icons.album),
               title:  new Text(
                   restaurant.name,
+                  textAlign: TextAlign.left,
                   style: new TextStyle(
                     color: Colors.white,
-                    fontSize: 30.0,
+                    fontSize: 12.0*scaleFactor,
                   )
                 ),
-              subtitle: Text(restaurant.address),
+              subtitle: new Text(
+                restaurant.address,
+                textAlign: TextAlign.left,
+                ),
             ),
           ],
         ),
