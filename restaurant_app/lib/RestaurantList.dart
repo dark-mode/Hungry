@@ -10,14 +10,14 @@ class RestaurantList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  double scaleFactor =  1/MediaQuery.of(context).devicePixelRatio;
     return new ListView(
-          padding: new EdgeInsets.symmetric(vertical: 8.0),
-          children: _buildRestaurantList(context)
+          padding: new EdgeInsets.symmetric(vertical: 20.0*scaleFactor),
+          children: _buildRestaurantList(scaleFactor)
         );
   }
 
-  List<RestaurantListItem> _buildRestaurantList(BuildContext context) {
-  double scaleFactor =  1/MediaQuery.of(context).devicePixelRatio;
+  List<RestaurantListItem> _buildRestaurantList(double scaleFactor) {
     return _restaurants.map((restaurant) => new RestaurantListItem(restaurant, scaleFactor))
                     .toList();
   }
@@ -27,12 +27,12 @@ class RestaurantList extends StatelessWidget {
 class RestaurantListItem extends Card {
   RestaurantListItem(Restaurant restaurant, double scaleFactor) :
     super(
-        margin: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 10.0, right: 10.0),
+        margin: EdgeInsets.only(top: 20.0*scaleFactor, bottom: 20.0*scaleFactor, left: 25.0*scaleFactor, right: 25.0*scaleFactor),
         child: new Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+              contentPadding: EdgeInsets.symmetric(vertical: 55.0*scaleFactor, horizontal: 60.0*scaleFactor),
               leading: const Icon(Icons.album),
               title:  new Text(
                   restaurant.name,

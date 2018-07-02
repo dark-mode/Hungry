@@ -65,7 +65,7 @@ class _ResultsPageState extends State<ResultsPage> {
       }
       return Scaffold(
       appBar: AppBar(
-        title: Text('Location'),
+        title: Text('Restaurants'),
       ),
       body: new Container (
        // padding: EdgeInsets.all(20.0),
