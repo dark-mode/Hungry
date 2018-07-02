@@ -31,9 +31,16 @@ class RestaurantListItem extends Card {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
+              
               contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               leading: const Icon(Icons.album),
-              title:  Text(restaurant.name),
+              title:  new Text(
+                  restaurant.name,
+                  style: new TextStyle(
+                    color: Colors.white,
+                    fontSize: 30.0,
+                  )
+                ),
               subtitle: Text(restaurant.address),
             ),
           ],

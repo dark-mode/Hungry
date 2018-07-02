@@ -10,6 +10,11 @@ class MyApp extends StatelessWidget {
     HomePage homeP = new HomePage();
     return new MaterialApp(
       title: "Restaurant",
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.lightBlue[800],
+        accentColor: Colors.cyan[600],
+      ),
       home: homeP,
       routes: {
         "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
