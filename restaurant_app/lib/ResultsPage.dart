@@ -57,15 +57,9 @@ class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
       String firstRest = "Fetching Data...";
-      if (restaurants != null && restaurants.length != 0) {
-        firstRest = restaurants.first.name;
-      }
-      return Scaffold(
-      appBar: AppBar(
-        title: Text('Location'),
-      ),
-      body: 
-        new Card(
+      List<Card> cards = new List(restaurants.length);
+      cards.add(
+              new Card(
         child: new Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -91,7 +85,76 @@ class _ResultsPageState extends State<ResultsPage> {
           ],
         ),
       )
-      //),
+      );
+      if (restaurants != null && restaurants.length != 0) {
+        firstRest = restaurants.first.name;
+        restaurants.forEach((restaurant) {
+            cards.add(
+        new Card(
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: const Icon(Icons.album),
+              title:  Text(restaurant.name),
+              subtitle: Text('WE DID IT BOI'),
+            ),
+            new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+              child: new ButtonBar(
+                children: <Widget>[
+                  new FlatButton(
+                    child: const Text('BUY TICKETS'),
+                    onPressed: () { /* ... */ },
+                  ),
+                  new FlatButton(
+                    child: const Text('LISTEN'),
+                    onPressed: () { /* ... */ },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      )
+            );
+        });
+      }
+      return Scaffold(
+      appBar: AppBar(
+        title: Text('Location'),
+      ),
+      body: new Container(
+              child: new ListView(
+                children: cards,
+              )
+
+      //   new Card(
+      //   child: new Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     children: <Widget>[
+      //       ListTile(
+      //         leading: const Icon(Icons.album),
+      //         title:  Text(firstRest),
+      //         subtitle: Text('WE DID IT BOI'),
+      //       ),
+      //       new ButtonTheme.bar( // make buttons use the appropriate styles for cards
+      //         child: new ButtonBar(
+      //           children: <Widget>[
+      //             new FlatButton(
+      //               child: const Text('BUY TICKETS'),
+      //               onPressed: () { /* ... */ },
+      //             ),
+      //             new FlatButton(
+      //               child: const Text('LISTEN'),
+      //               onPressed: () { /* ... */ },
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // )
+      ),
     );
   }
 
