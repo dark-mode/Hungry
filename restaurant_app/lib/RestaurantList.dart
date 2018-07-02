@@ -45,6 +45,10 @@ class RestaurantListItem extends Card {
               subtitle: new Text(
                 restaurant.address,
                 textAlign: TextAlign.left,
+                style: new TextStyle(
+                    color: Colors.white,
+                    fontSize: 40.0*scaleFactor,
+                  )
                 ),
             ),
           ],
