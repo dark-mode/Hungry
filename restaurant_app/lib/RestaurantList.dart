@@ -27,6 +27,7 @@ class RestaurantList extends StatelessWidget {
 class RestaurantListItem extends Card {
   RestaurantListItem(Restaurant restaurant, double scaleFactor) :
     super(
+        margin: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 10.0, right: 10.0),
         child: new Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
