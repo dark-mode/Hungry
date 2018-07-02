@@ -74,7 +74,6 @@ class _ResultsPageState extends State<ResultsPage> {
     );
   }
 
-
   Future<Set<Restaurant>> fetchRestaurants(double _lat, double _lon) async {
     Set<Restaurant> restaurants = new Set<Restaurant>();
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=1500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
