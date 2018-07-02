@@ -17,7 +17,7 @@ class RestaurantList extends StatelessWidget {
   }
 
   List<RestaurantListItem> _buildRestaurantList(BuildContext context) {
-  double scaleFactor =  MediaQuery.of(context).devicePixelRatio;
+  double scaleFactor =  1/MediaQuery.of(context).devicePixelRatio;
     return _restaurants.map((restaurant) => new RestaurantListItem(restaurant, scaleFactor))
                     .toList();
   }
@@ -39,7 +39,7 @@ class RestaurantListItem extends Card {
                   textAlign: TextAlign.left,
                   style: new TextStyle(
                     color: Colors.white,
-                    fontSize: 12.0*scaleFactor,
+                    fontSize: 65.0*scaleFactor,
                   )
                 ),
               subtitle: new Text(
