@@ -58,10 +58,20 @@ class _ResultsPageState extends State<ResultsPage> {
   @override
   Widget build(BuildContext context) {
       //RestaurantList rl = new RestaurantList(restaurants.toList());
-      String firstRest = "Fetching Data...";
+      var child;
+      double scaleFactor =  1/MediaQuery.of(context).devicePixelRatio; //change later
       
       if (restaurants != null && restaurants.length != 0) {
-        firstRest = restaurants.first.name;
+        child = new RestaurantList(restaurants.toList());
+      } else {
+        child = new Center(
+          child: new Text("Fetching data...", 
+            style: new TextStyle(
+              fontSize: 70.0 * scaleFactor
+            )
+          )
+        );
+          
       }
       return Scaffold(
       appBar: AppBar(
@@ -69,7 +79,7 @@ class _ResultsPageState extends State<ResultsPage> {
       ),
       body: new Container (
        // padding: EdgeInsets.all(20.0),
-        child: new RestaurantList(restaurants.toList())
+        child: child
       ),
     );
   }
