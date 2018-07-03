@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/Restaurant.dart';
+
+Restaurant restaurant;
 
 class RestaurantPage extends StatefulWidget {
-  _RestaurantPageState hP = new _RestaurantPageState();
+  _RestaurantPageState rP = new _RestaurantPageState();
   @override
-  _RestaurantPageState createState() => hP;
+  _RestaurantPageState createState() => rP;
+
+  RestaurantPage(Restaurant r) {
+    restaurant = r;
+  }
 }
 
 class _RestaurantPageState extends State<RestaurantPage> {
@@ -24,7 +31,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Restaurant Page'),
+        title: Text(restaurant.name),
       ),
       body: Center(
         child: Text("This is the Restaurant Page."),

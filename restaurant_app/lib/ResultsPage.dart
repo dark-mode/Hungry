@@ -55,7 +55,6 @@ class _ResultsPageState extends State<ResultsPage> {
 
   @override
   Widget build(BuildContext context) {
-      //RestaurantList rl = new RestaurantList(restaurants.toList());
       var child;
       double scaleFactor =  1/MediaQuery.of(context).devicePixelRatio; //change later
       
@@ -69,14 +68,12 @@ class _ResultsPageState extends State<ResultsPage> {
             )
           )
         );
-          
       }
       return Scaffold(
       appBar: AppBar(
         title: Text('Restaurants'),
       ),
       body: new Container (
-       // padding: EdgeInsets.all(20.0),
         child: child
       ),
     );
@@ -87,7 +84,6 @@ class _ResultsPageState extends State<ResultsPage> {
     url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=1500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
     print(url);
     final response = await http.get(url);
-    //print(response.body);
     Map<String, dynamic> result = json.decode(response.body.toString());
     result['results'].forEach((rest) => restaurants.add(new Restaurant.fromJson(rest)));
      if (restaurants.isNotEmpty) {

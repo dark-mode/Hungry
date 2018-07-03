@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: RaisedButton(
-          child: Text("Enter"), 
+          child: Text("enter"), 
           onPressed: () {
             if (_lat == null || _lon == null) {
               showDialog(context: context, 
@@ -92,9 +92,7 @@ class _HomePageState extends State<HomePage> {
             }
             else {
             // Navigate to second screen when tapped!
-              Navigator.pushReplacementNamed(
-              context,
-              "/results");
+              Navigator.pushReplacementNamed(context, "/results");
             }
           },
         ),
