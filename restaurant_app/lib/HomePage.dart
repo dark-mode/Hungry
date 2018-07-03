@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
 
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -67,13 +67,35 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: RaisedButton(
-          child: Text("enter"),
+          child: Text("Enter"), 
           onPressed: () {
-
+            if (_lat == null || _lon == null) {
+              showDialog(context: context, 
+              child:
+                new AlertDialog(
+                  title: new Text("Location Needed"),
+                  content: new Text("Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                  actions: [
+                    new FlatButton(
+                      child: new Text(
+                        "Ok",
+                        style: new TextStyle(
+                          color: Colors.white,
+                        )
+                      ),
+                      onPressed: () => Navigator.pop(context)
+                    ),
+                  ],
+                ),
+              );
+              initPlatformState();
+            }
+            else {
             // Navigate to second screen when tapped!
-            Navigator.pushReplacementNamed(
+              Navigator.pushReplacementNamed(
               context,
               "/results");
+            }
           },
         ),
       ),

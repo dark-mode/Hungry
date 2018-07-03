@@ -18,8 +18,6 @@ class ResultsPage extends StatefulWidget {
   }
   double get lat => _lat;
   double get lon => _lon;
-
-
 }
 
 class _ResultsPageState extends State<ResultsPage> {
