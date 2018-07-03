@@ -69,11 +69,7 @@ class _HomePageState extends State<HomePage> {
         child: RaisedButton(
           child: Text("enter"),
           onPressed: () {
-
-            // Navigate to second screen when tapped!
-            Navigator.pushReplacementNamed(
-              context,
-              "/results");
+            Navigator.pushReplacementNamed(context, "/results");
           },
         ),
       ),
