@@ -43,6 +43,24 @@ class _HomePageState extends State<HomePage> {
     } on PlatformException catch (e) {
       if (e.code == 'PERMISSION_DENIED') {
         error = 'Permission denied';
+          showDialog(context: context, 
+            child:
+              new AlertDialog(
+                title: new Text("Location Needed"),
+                content: new Text("Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                actions: [
+                  new FlatButton(
+                    child: new Text(
+                      "Ok",
+                      style: new TextStyle(
+                        color: Colors.white,
+                      )
+                    ),
+                    onPressed: () => Navigator.pop(context)
+                  ),
+                ],
+              ),
+          );
       } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
         error = 'Permission denied - please ask the user to enable it from the app settings';
       }

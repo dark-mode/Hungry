@@ -44,10 +44,7 @@ class _ResultsPageState extends State<ResultsPage> {
     initPlatformState() async {
       Set<Restaurant> rest = await fetchRestaurants(_lat, _lon);
       
-    setState(() {
-      //rFuture.then((r) => restaurants = r);
-      restaurants = rest;
-      }
+    setState(() => restaurants = rest
     );
     print("we did it!");
 
