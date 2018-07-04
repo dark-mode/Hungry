@@ -47,6 +47,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
       return GestureDetector(
           onTap: () {
             _launchURL('https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
+            
           }, child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
