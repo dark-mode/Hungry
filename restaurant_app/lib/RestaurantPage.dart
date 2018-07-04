@@ -28,6 +28,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
     // Platform messages may fail, so we use a try/catch PlatformException.
   }
 
+  //@src https://pub.dartlang.org/packages/url_launcher#-readme-tab-
   _launchURL(link) async {
   String url = link;
   if (await canLaunch(url)) {
@@ -37,6 +38,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
   }
 }
 
+  //@src https://flutter.io/tutorials/layout/
   @override
   Widget build(BuildContext context) {
     Column buildButtonColumn(IconData icon, String label) {
