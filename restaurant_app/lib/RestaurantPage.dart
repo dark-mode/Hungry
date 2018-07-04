@@ -29,16 +29,32 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width =  MediaQuery.of(context).size.width;
+    double height =  (MediaQuery.of(context).size.height/4);
     return Scaffold(
       appBar: AppBar(
         title: Text(restaurant.name),
       ),
-      body: Center(
-        child: Image.network(
-          restaurant.photoLink,
-        )
-        ,
+      body:
+      new Container(
+    width: width,
+    height: height,
+    padding: EdgeInsets.symmetric(vertical: 50.0),
+    decoration: new BoxDecoration(
+      borderRadius: new BorderRadius.circular(30.0),
+      color: const Color(0xff7c94b6),
+      image: new DecorationImage(
+        image: new NetworkImage(
+            "https://maps.googleapis.com/maps/api/place/photo?maxwidth=${width.round()}&photoreference=${restaurant.photoReference}&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c"),
+        fit: BoxFit.cover,
       ),
+    ),
+  ),
+        // Image.network(
+        //   'https://maps.googleapis.com/maps/api/place/photo?maxwidth=${width.round()}&photoreference=${restaurant.photoReference}&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c',
+        //   width: width,
+        //   height: height,
+        // ),
     );
   }
 }
