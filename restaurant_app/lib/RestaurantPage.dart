@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/Restaurant.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:convert';
+import 'dart:async';
+import 'package:http/http.dart' as http;
 
 Restaurant restaurant;
+String key = 'AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c';
 
 class RestaurantPage extends StatefulWidget {
   _RestaurantPageState rP = new _RestaurantPageState();
@@ -26,6 +30,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
   // Platform messages are asynchronous, so we initialize in an async method.
   initPlatformState() async {
     // Platform messages may fail, so we use a try/catch PlatformException.
+    Restaurant rest = await fetchPlaceDetails();
   }
 
   //@src https://pub.dartlang.org/packages/url_launcher#-readme-tab-
@@ -38,6 +43,13 @@ class _RestaurantPageState extends State<RestaurantPage> {
   }
 }
 
+  fetchPlaceDetails() async {
+    String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=${restaurant.placeID}&fields=opening_hours,website,formatted_phone_number&key=${key}";
+    final response = await http.get(url);
+    Map<String, dynamic> result = json.decode(response.body.toString());
+    restaurant.setPlaceDetails(result['result']['opening_hours']['weekday_text'], result['result']['formatted_phone_number'], result['result']['website']);
+  }
+
   //@src https://flutter.io/tutorials/layout/
   @override
   Widget build(BuildContext context) {
@@ -46,7 +58,11 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
       return GestureDetector(
           onTap: () {
+            if (label == 'CALL') {
+              launch("tel://${restaurant.phoneNumber}");
+            } else if (label == 'ROUTE') {
             _launchURL('https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
+          }
           }, child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +116,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 color: const Color(0xff7c94b6),
                 image: new DecorationImage(
                   image: new NetworkImage(
-                      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=${width.round()}&photoreference=${restaurant.photoReference}&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c"),
+                      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=${width.round()}&photoreference=${restaurant.photoReference}&key=${key}"),
                   fit: BoxFit.cover,
                   ),
                 ),
