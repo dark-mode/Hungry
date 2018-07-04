@@ -59,10 +59,52 @@ class _RestaurantPageState extends State<RestaurantPage> {
       return GestureDetector(
           onTap: () {
             if (label == 'CALL') {
-              launch("tel://${restaurant.phoneNumber}");
+              if (restaurant.phoneNumber == null) {
+                showDialog(context: context, 
+                  child:
+                    new AlertDialog(
+                      title: new Text("No Phone Number"),
+                      content: new Text("This restaurant has no phone number."),
+                      actions: [
+                        new FlatButton(
+                          child: new Text(
+                            "Ok",
+                            style: new TextStyle(
+                              color: Colors.white,
+                            )
+                          ),
+                          onPressed: () => Navigator.pop(context)
+                        ),
+                      ],
+                    ),
+                );
+              } else launch("tel://${restaurant.phoneNumber}");
+
             } else if (label == 'ROUTE') {
             _launchURL('https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
-          }
+            } else if (label == 'WEBSITE') {
+              if (restaurant.website == null) {
+                showDialog(context: context, 
+                  child:
+                    new AlertDialog(
+                      title: new Text("No Website"),
+                      content: new Text("This restaurant has no website."),
+                      actions: [
+                        new FlatButton(
+                          child: new Text(
+                            "Ok",
+                            style: new TextStyle(
+                              color: Colors.white,
+                            )
+                          ),
+                          onPressed: () => Navigator.pop(context)
+                        ),
+                      ],
+                    ),
+                );
+              }
+              else _launchURL(restaurant.website);
+            }
           }, child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -90,7 +132,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
         children: [
           buildButtonColumn(Icons.call, 'CALL'),
           buildButtonColumn(Icons.near_me, 'ROUTE'),
-          buildButtonColumn(Icons.share, 'SHARE'),
+          buildButtonColumn(Icons.language, 'WEBSITE'),
         ],
       ),
     );
