@@ -85,22 +85,32 @@ class _RestaurantPageState extends State<RestaurantPage> {
     child: Text(restaurant.id),
       );
 
+    double width =  MediaQuery.of(context).size.width;
+    double height =  (MediaQuery.of(context).size.height/4);
     return Scaffold(
       appBar: AppBar(
         title: Text(restaurant.name),
       ),
       body: ListView(
           children: [
-            Image.network(
-              restaurant.photoLink,
-              width: 600.0,
-              height: 240.0,
-              fit: BoxFit.cover,
-            ),
-            buttonSection,
-            textSection,
-          ],
-      )
+            new Container(
+              width: width,
+              height: height,
+              padding: EdgeInsets.symmetric(vertical: 50.0),
+              decoration: new BoxDecoration(
+                borderRadius: new BorderRadius.circular(30.0),
+                color: const Color(0xff7c94b6),
+                image: new DecorationImage(
+                  image: new NetworkImage(
+                      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=${width.round()}&photoreference=${restaurant.photoReference}&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c"),
+                  fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              buttonSection,
+              textSection,
+            ],
+       )
     );
   }
 }
