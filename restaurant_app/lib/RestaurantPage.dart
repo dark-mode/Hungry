@@ -41,21 +41,19 @@ class _RestaurantPageState extends State<RestaurantPage> {
   //@src https://flutter.io/tutorials/layout/
   @override
   Widget build(BuildContext context) {
-    Column buildButtonColumn(IconData icon, String label) {
+    GestureDetector buildButtonColumn(IconData icon, String label) {
       Color color = Colors.white;
 
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [          
-          GestureDetector(
+      return GestureDetector(
           onTap: () {
             _launchURL('https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
-          }, child: Container(
+          }, child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Container(
               margin: const EdgeInsets.only(bottom: 10.0),
               child: Icon(icon, color: color),
             ),
-          ),
           Text(
                 label,
                 style: TextStyle(
@@ -65,6 +63,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
               ),
             ),
         ],
+      )
       );
     }
 

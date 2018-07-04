@@ -1,7 +1,7 @@
 class Restaurant {
   double lat, lon;
   num rating;
-  String address, id, icon, name, googleMapsLink, photoReference;
+  String address, id, placeid, icon, name, googleMapsLink, photoReference;
   bool open_now;
   int price_level;
 
@@ -16,6 +16,7 @@ class Restaurant {
     this.googleMapsLink = json['photos'][0]['html_attributions'][0].substring(json['photos'][0]['html_attributions'][0].indexOf("\"") + 1, json['photos'][0]['html_attributions'][0].lastIndexOf("\""));
     this.photoReference = json['photos'][0]['photo_reference'];
     this.open_now = json['opening_hours']['open_now'];
+    this.placeid = json['place_id'];
     //this.price_level = json['price_level'];
   }
 }
