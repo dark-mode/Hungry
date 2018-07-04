@@ -34,7 +34,10 @@ class _RestaurantPageState extends State<RestaurantPage> {
         title: Text(restaurant.name),
       ),
       body: Center(
-        child: Text("This is the Restaurant Page."),
+        child: Image.network(
+          restaurant.photoLink,
+        )
+        ,
       ),
     );
   }
