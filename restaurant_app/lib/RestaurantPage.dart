@@ -47,23 +47,23 @@ class _RestaurantPageState extends State<RestaurantPage> {
       return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: color),
-          new GestureDetector(
-          onTap: (){
-            _launchURL(restaurant.googleMapsLink);
+        children: [          
+          GestureDetector(
+          onTap: () {
+            _launchURL('https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
           }, child: Container(
-              margin: const EdgeInsets.only(top: 8.0),
-              child: Text(
+              margin: const EdgeInsets.only(bottom: 10.0),
+              child: Icon(icon, color: color),
+            ),
+          ),
+          Text(
                 label,
                 style: TextStyle(
-                 fontSize: 12.0,
+                fontSize: 12.0,
                 fontWeight: FontWeight.w400,
                 color: color,
               ),
             ),
-          ),
-        ),
         ],
       );
     }
@@ -96,9 +96,8 @@ class _RestaurantPageState extends State<RestaurantPage> {
             new Container(
               width: width,
               height: height,
-              padding: EdgeInsets.symmetric(vertical: 50.0),
               decoration: new BoxDecoration(
-                borderRadius: new BorderRadius.circular(30.0),
+                borderRadius: new BorderRadius.circular(20.0),
                 color: const Color(0xff7c94b6),
                 image: new DecorationImage(
                   image: new NetworkImage(
