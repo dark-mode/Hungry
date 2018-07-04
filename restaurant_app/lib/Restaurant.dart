@@ -14,9 +14,14 @@ class Restaurant {
     this.address = json['vicinity'];
     this.id = json['id'];
     this.icon = json['icon'];
-    this.googleMapsLink = json['photos'][0]['html_attributions'][0].substring(json['photos'][0]['html_attributions'][0].indexOf("\"") + 1, json['photos'][0]['html_attributions'][0].lastIndexOf("\""));
-    this.photoReference = json['photos'][0]['photo_reference'];
-    this.open_now = json['opening_hours']['open_now'];
+    try {
+      this.googleMapsLink = json['photos'][0]['html_attributions'][0].substring(json['photos'][0]['html_attributions'][0].indexOf("\"") + 1, json['photos'][0]['html_attributions'][0].lastIndexOf("\""));
+      this.photoReference = json['photos'][0]['photo_reference'];
+      this.open_now = json['opening_hours']['open_now'];
+    }
+    catch (e) {
+      print(e);
+    }
     this.placeID = json['place_id'];
     //this.price_level = json['price_level'];
   }
