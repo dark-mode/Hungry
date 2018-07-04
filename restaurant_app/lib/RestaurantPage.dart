@@ -63,7 +63,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
             } else if (label == 'ROUTE') {
             _launchURL('https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
           }
-      }, child: Column(
+          }, child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [Container(
