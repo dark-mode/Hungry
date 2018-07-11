@@ -100,40 +100,7 @@ void handleSignIn() async {
       appBar: AppBar(
         title: Text('First Screen'),
       ),
-      body: Column(
-        children: <Widget>[
-           Center(
-            child: RaisedButton(
-              child: Text("enter"), 
-              onPressed: () {
-                if (_lat == null || _lon == null) {
-                  showDialog(context: context, 
-                  child:
-                    new AlertDialog(
-                      title: new Text("Location Needed"),
-                      content: new Text("Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                      actions: [
-                        new FlatButton(
-                          child: new Text(
-                            "Ok",
-                            style: new TextStyle(
-                              color: Colors.white,
-                            )
-                          ),
-                          onPressed: () => Navigator.pop(context)
-                        ),
-                      ],
-                    ),
-                  );
-                  initPlatformState();
-                }
-                else {
-                // Navigate to second screen when tapped!
-                  Navigator.pushReplacementNamed(context, "/results");
-                }
-              },
-            ),
-          ),
+      body:
           Center(
             child: RaisedButton(
               child: Text(
@@ -142,10 +109,52 @@ void handleSignIn() async {
                   color: Colors.white
                 ),
               ),              
-              onPressed: handleSignIn,
+              onPressed: () {
+                handleSignIn();
+                if (_lat == null || _lon == null) {
+                  showDialog(context: context,
+                    child:
+                    new AlertDialog(
+                      title: new Text("Location Needed"),
+                      content: new Text("Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                      actions: [
+                        new FlatButton(
+                            child: new Text(
+                                "Ok",
+                                style: new TextStyle(
+                                  color: Colors.white,
+                                )
+                            ),
+                            onPressed: () => Navigator.pop(context)
+                        ),
+                      ],
+                    ),
+                  );
+                  initPlatformState();
+                }
+                else {
+                  showDialog(context: context,
+                    child:
+                    new AlertDialog(
+                      title: new Text("Sign In Successful"),
+                      content: new Text("You have successfully signed in!"),
+                      actions: [
+                        new FlatButton(
+                            child: new Text(
+                                "Ok",
+                                style: new TextStyle(
+                                  color: Colors.white,
+                                )
+                            ),
+                            onPressed: () => Navigator.pushReplacementNamed(context, "/results")
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              }
             )
           )
-        ])
-    );
+      );
+    }
   }
-}
