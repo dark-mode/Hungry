@@ -4,7 +4,9 @@ class Restaurant {
   String address, id, placeID, icon, name, googleMapsLink, photoReference, website, phoneNumber;
   bool open_now;
   int price_level;
-  List<dynamic> openingHours;
+  List <dynamic> openingHours;
+  Map <String, double> preferences;
+  List <String> cuisine = [];
 
   Restaurant.fromJson(Map<String, dynamic> json) {
     this.name = json['name'];
