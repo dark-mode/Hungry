@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'dart:async';
 import 'package:restaurant_app/Restaurant.dart';
 import 'package:restaurant_app/RestaurantList.dart';
+import 'package:restaurant_app/RestaurantFetcher.dart';
 
 class ResultsPage extends StatefulWidget {
   _ResultsPageState hP;
@@ -42,7 +41,8 @@ class _ResultsPageState extends State<ResultsPage> {
   }
 
     initPlatformState() async {
-      Set<Restaurant> rest = await fetchRestaurants(_lat, _lon);
+      RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon);
+      Set<Restaurant> rest = await rF.fetchRestaurants();
       
     setState(() => restaurants = rest
     );
@@ -74,19 +74,5 @@ class _ResultsPageState extends State<ResultsPage> {
         child: child
       ),
     );
-  }
-
-  Future<Set<Restaurant>> fetchRestaurants(double _lat, double _lon) async {
-    Set<Restaurant> restaurants = new Set<Restaurant>();
-    url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=1500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
-    print(url);
-    final response = await http.get(url);
-    Map<String, dynamic> result = json.decode(response.body.toString());
-    result['results'].forEach((rest) => restaurants.add(new Restaurant.fromJson(rest)));
-     if (restaurants.isNotEmpty) {
-       print("ALL RECOVERED RESTAURANTS");
-       restaurants.forEach((restaurant) => print(restaurant.name));
-     }
-   return restaurants;
   }
 }

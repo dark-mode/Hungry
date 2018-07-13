@@ -3,10 +3,9 @@ import 'package:restaurant_app/User.dart';
 
 class Recommender {
   User user;
-  Restaurant restaurant;
-  Recommender(User user, Restaurant restaurant) {
+  Set<Restaurant> restaurants;
+  Recommender(User user, Set<Restaurant> restaurants) {
     this.user = user;
-    this.restaurant = restaurant;
+    this.restaurants = restaurants;
   }
-
 }
