@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:location/location.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:restaurant_app/DeviceLocation.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState hP = new _HomePageState();
@@ -12,7 +11,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
-  Map<String, double> _startLocation;
+  DeviceLocation _location = DeviceLocation();
+
+  double get lat => _location.lat;
+  double get lon => _location.lon;
 
   GoogleSignIn _googleSignIn = new GoogleSignIn(
         scopes: [
@@ -21,71 +23,14 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
-  Location _location = new Location();
-  double _lat, _lon;
-  String value, error;
-  var restaurants = new Set();
-
-  bool currentWidget = true;
-
-  Image image1;
-
-  double get lat => _lat;
-  double get lon => _lon;
-
   @override
   void initState() {
     super.initState();
 
-    initPlatformState();
+    _location.initPlatformState();
     _googleSignIn.signInSilently();
 
   }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  initPlatformState() async {
-    Map<String, double> location;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-
-    try {
-      location = await _location.getLocation;
-      error = null;
-    } on PlatformException catch (e) {
-      if (e.code == 'PERMISSION_DENIED') {
-        error = 'Permission denied';
-          showDialog(context: context, 
-            child:
-              new AlertDialog(
-                title: new Text("Location Needed"),
-                content: new Text("Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                actions: [
-                  new FlatButton(
-                    child: new Text(
-                      "Ok",
-                      style: new TextStyle(
-                        color: Colors.white,
-                      )
-                    ),
-                    onPressed: () => Navigator.pop(context)
-                  ),
-                ],
-              ),
-          );
-      } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
-        error = 'Permission denied - please ask the user to enable it from the app settings';
-      }
-
-      location = null;
-    }
-
-    setState(() {
-        _startLocation = location;
-        _lat = location['latitude'];        
-        _lon = location['longitude'];
-    });
-
-  }
-
 
 void handleSignIn() async {
   try {
@@ -104,14 +49,14 @@ void handleSignIn() async {
           Center(
             child: RaisedButton(
               child: Text(
-                "Sign In",
+                "Sign In with Google",
                 style: new TextStyle(
                   color: Colors.white
                 ),
               ),              
               onPressed: () {
                 handleSignIn();
-                if (_lat == null || _lon == null) {
+                if (_location.lat == null || _location.lon == null) {
                   showDialog(context: context,
                     child:
                     new AlertDialog(
@@ -130,7 +75,7 @@ void handleSignIn() async {
                       ],
                     ),
                   );
-                  initPlatformState();
+                  _location.initPlatformState();
                 }
                 else {
                   showDialog(context: context,

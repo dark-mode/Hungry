@@ -8,6 +8,4 @@ class Recommender {
     this.user = user;
     this.restaurants = restaurants;
   }
-
-
 }
