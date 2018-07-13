@@ -9,5 +9,4 @@ class Recommender {
     this.restaurant = restaurant;
   }
 
-  innerProduct()
 }
