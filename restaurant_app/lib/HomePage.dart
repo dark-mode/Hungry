@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:restaurant_app/DeviceLocation.dart';
+import 'package:restaurant_app/SignIn.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState hP = new _HomePageState();
@@ -12,16 +12,10 @@ class _HomePageState extends State<HomePage> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
   DeviceLocation _location = DeviceLocation();
+  SignIn _signIn = SignIn();
 
   double get lat => _location.lat;
   double get lon => _location.lon;
-
-  GoogleSignIn _googleSignIn = new GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
-  );
 
   @override
   void initState() {
@@ -30,15 +24,7 @@ class _HomePageState extends State<HomePage> {
     _location.initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
-    _googleSignIn.signInSilently();
-  }
-
-  void handleSignIn() async {
-    try {
-      await _googleSignIn.signIn();
-    } catch (error) {
-      print(error);
-    }
+    _signIn.googleSignIn.signInSilently();
   }
 
   @override
@@ -54,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                   style: new TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  handleSignIn();
+                  _signIn.handleSignIn();
                   if (_location.lat == null || _location.lon == null) {
                     showDialog(
                       context: context,
