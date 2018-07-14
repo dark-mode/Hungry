@@ -1,5 +1,5 @@
-import 'package:location/location.dart';
 import 'package:flutter/services.dart';
+import 'package:location/location.dart';
 
 class DeviceLocation {
   Location _location = Location();
@@ -26,7 +26,7 @@ class DeviceLocation {
         error = 'Permission denied';
       } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
         error =
-        'Permission denied - please ask the user to enable it from the app settings';
+            'Permission denied - please ask the user to enable it from the app settings';
       }
 
       location = null;

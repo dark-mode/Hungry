@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 import 'package:restaurant_app/Restaurant.dart';
-import 'package:restaurant_app/RestaurantList.dart';
 import 'package:restaurant_app/RestaurantFetcher.dart';
+import 'package:restaurant_app/RestaurantList.dart';
 
 class ResultsPage extends StatefulWidget {
   _ResultsPageState hP;
@@ -40,39 +41,32 @@ class _ResultsPageState extends State<ResultsPage> {
     initPlatformState();
   }
 
-    initPlatformState() async {
-      RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon);
-      Set<Restaurant> rest = await rF.fetchRestaurants();
-      
-    setState(() => restaurants = rest
-    );
-    print("we did it!");
+  initPlatformState() async {
+    RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon);
+    Set<Restaurant> rest = await rF.fetchRestaurants();
 
+    setState(() => restaurants = rest);
+    print("we did it!");
   }
 
   @override
   Widget build(BuildContext context) {
-      var child;
-      double scaleFactor =  1/MediaQuery.of(context).devicePixelRatio; //change later
-      
-      if (restaurants != null && restaurants.length != 0) {
-        child = new RestaurantList(restaurants.toList());
-      } else {
-        child = new Center(
-          child: new Text("Fetching data...", 
-            style: new TextStyle(
-              fontSize: 70.0 * scaleFactor
-            )
-          )
-        );
-      }
-      return Scaffold(
+    var child;
+    double scaleFactor =
+        1 / MediaQuery.of(context).devicePixelRatio; //change later
+
+    if (restaurants != null && restaurants.length != 0) {
+      child = new RestaurantList(restaurants.toList());
+    } else {
+      child = new Center(
+          child: new Text("Fetching data...",
+              style: new TextStyle(fontSize: 70.0 * scaleFactor)));
+    }
+    return Scaffold(
       appBar: AppBar(
         title: Text('Restaurants'),
       ),
-      body: new Container (
-        child: child
-      ),
+      body: new Container(child: child),
     );
   }
 }

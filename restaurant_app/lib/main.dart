@@ -9,16 +9,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     HomePage homeP = new HomePage();
     return new MaterialApp(
-      title: "Restaurant",
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.black,
-        accentColor: Colors.black
-      ),
-      home: homeP,
-      routes: {
-        "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
-      }
-    );
+        title: "Restaurant",
+        theme: ThemeData(
+            brightness: Brightness.dark,
+            primaryColor: Colors.black,
+            accentColor: Colors.black),
+        home: homeP,
+        routes: {
+          "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
+        });
   }
 }

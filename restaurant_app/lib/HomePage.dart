@@ -17,11 +17,11 @@ class _HomePageState extends State<HomePage> {
   double get lon => _location.lon;
 
   GoogleSignIn _googleSignIn = new GoogleSignIn(
-        scopes: [
-          'email',
-          'https://www.googleapis.com/auth/contacts.readonly',
-        ],
-      );
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   @override
   void initState() {
@@ -29,77 +29,66 @@ class _HomePageState extends State<HomePage> {
 
     _location.initPlatformState();
     _googleSignIn.signInSilently();
-
   }
 
-void handleSignIn() async {
-  try {
-    await _googleSignIn.signIn();
-  } catch (error) {
-    print(error);
+  void handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
   }
-}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Screen'),
-      ),
-      body:
-          Center(
+        appBar: AppBar(
+          title: Text('First Screen'),
+        ),
+        body: Center(
             child: RaisedButton(
-              child: Text(
-                "Sign In with Google",
-                style: new TextStyle(
-                  color: Colors.white
+                child: Text(
+                  "Sign In with Google",
+                  style: new TextStyle(color: Colors.white),
                 ),
-              ),              
-              onPressed: () {
-                handleSignIn();
-                if (_location.lat == null || _location.lon == null) {
-                  showDialog(context: context,
-                    child:
-                    new AlertDialog(
-                      title: new Text("Location Needed"),
-                      content: new Text("Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                      actions: [
-                        new FlatButton(
-                            child: new Text(
-                                "Ok",
-                                style: new TextStyle(
-                                  color: Colors.white,
-                                )
-                            ),
-                            onPressed: () => Navigator.pop(context)
-                        ),
-                      ],
-                    ),
-                  );
-                  _location.initPlatformState();
-                }
-                else {
-                  showDialog(context: context,
-                    child:
-                    new AlertDialog(
-                      title: new Text("Sign In Successful"),
-                      content: new Text("You have successfully signed in!"),
-                      actions: [
-                        new FlatButton(
-                            child: new Text(
-                                "Ok",
-                                style: new TextStyle(
-                                  color: Colors.white,
-                                )
-                            ),
-                            onPressed: () => Navigator.pushReplacementNamed(context, "/results")
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              }
-            )
-          )
-      );
-    }
+                onPressed: () {
+                  handleSignIn();
+                  if (_location.lat == null || _location.lon == null) {
+                    showDialog(
+                      context: context,
+                      child: new AlertDialog(
+                        title: new Text("Location Needed"),
+                        content: new Text(
+                            "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                        actions: [
+                          new FlatButton(
+                              child: new Text("Ok",
+                                  style: new TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onPressed: () => Navigator.pop(context)),
+                        ],
+                      ),
+                    );
+                    _location.initPlatformState();
+                  } else {
+                    showDialog(
+                      context: context,
+                      child: new AlertDialog(
+                        title: new Text("Sign In Successful"),
+                        content: new Text("You have successfully signed in!"),
+                        actions: [
+                          new FlatButton(
+                              child: new Text("Ok",
+                                  style: new TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onPressed: () => Navigator.pushReplacementNamed(
+                                  context, "/results")),
+                        ],
+                      ),
+                    );
+                  }
+                })));
   }
+}
