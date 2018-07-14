@@ -8,7 +8,6 @@ class DeviceLocation {
   var restaurants = Set();
 
   double get lat => _lat;
-
   double get lon => _lon;
 
   // Platform messages are asynchronous, so we initialize in an async method.
