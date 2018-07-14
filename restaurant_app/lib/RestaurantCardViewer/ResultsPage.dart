@@ -5,16 +5,17 @@ import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:restaurant_app/RestaurantCardViewer//RestaurantFetcher.dart';
 import 'package:restaurant_app/RestaurantCardInfo/RestaurantList.dart';
 
+//Holds all of the Restaurant Card Info in a page.
 class ResultsPage extends StatefulWidget {
-  _ResultsPageState hP;
+  _ResultsPageState _hP;
   @override
-  _ResultsPageState createState() => hP;
+  _ResultsPageState createState() => _hP;
 
   double _lat, _lon;
   ResultsPage(double lat, double lon) {
     _lat = lat;
     _lon = lon;
-    hP = new _ResultsPageState(lat, lon);
+    _hP = new _ResultsPageState(lat, lon);
   }
   double get lat => _lat;
   double get lon => _lon;
@@ -23,8 +24,8 @@ class ResultsPage extends StatefulWidget {
 class _ResultsPageState extends State<ResultsPage> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
-  var url, request, response;
-  String value, error;
+  //var url, request, response;
+  //String value, error;
   double _lat, _lon;
   Set<Restaurant> restaurants;
   Future<Set<Restaurant>> rFuture;
@@ -37,16 +38,13 @@ class _ResultsPageState extends State<ResultsPage> {
   @override
   void initState() {
     super.initState();
-
     initPlatformState();
   }
 
   initPlatformState() async {
     RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon);
     Set<Restaurant> rest = await rF.fetchRestaurants();
-
     setState(() => restaurants = rest);
-    print("we did it!");
   }
 
   @override
