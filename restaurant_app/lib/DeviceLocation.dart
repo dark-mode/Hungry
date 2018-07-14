@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 
-class DeviceLocation extends StatelessWidget{
+class DeviceLocation {
   Location _location = Location();
   double _lat, _lon;
   String value, error;
@@ -25,13 +24,12 @@ class DeviceLocation extends StatelessWidget{
       if (e.code == 'PERMISSION_DENIED') {
         error = 'Permission denied';
       } else if (e.code == 'PERMISSION_DENIED_NEVER_ASK') {
-        error = 'Permission denied - please ask the user to enable it from the app settings';
+        error =
+        'Permission denied - please ask the user to enable it from the app settings';
       }
 
       location = null;
     }
   }
-
-  @override
-  Widget build(BuildContext context) {}
 }
+
