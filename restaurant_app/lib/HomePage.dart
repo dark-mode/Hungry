@@ -66,16 +66,15 @@ class _HomePageState extends State<HomePage> {
                         title: new Text("Sign In Successful"),
                         content: new Text("You have successfully signed in!"),
                         actions: [
-                          new Row(
-                            children: <Widget>[
-                              new Expanded(
-                                child: new Text("ok")
-                              ),
-                              new Expanded(
-                                child: new Text("p")
-                              )
-                            ],
-                          )
+                              new FlatButton(
+                                  child: new Text(
+                                          "Ok",
+                                          style: new TextStyle(
+                                            color: Colors.white,
+                                          )
+                                    ),
+                              onPressed: () => Navigator.pushReplacementNamed(context, "/results")
+                          ),
                         ],
                       ),
                     );
