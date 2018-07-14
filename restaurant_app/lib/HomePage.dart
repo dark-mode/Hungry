@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
                   "Sign In with Google",
                   style: new TextStyle(color: Colors.white),
                 ),
+                color: Theme.of(context).primaryColor,
                 onPressed: () {
                   _signIn.handleSignIn();
                   if (_location.lat == null || _location.lon == null) {

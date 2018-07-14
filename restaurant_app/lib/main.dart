@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         title: "Restaurant",
         theme: ThemeData(
             brightness: Brightness.dark,
-            primaryColor: Colors.black,
+            primaryColor: Colors.pink,
             accentColor: Colors.black),
         home: homeP,
         routes: {
