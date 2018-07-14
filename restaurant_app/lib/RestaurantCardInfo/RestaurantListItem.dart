@@ -3,6 +3,7 @@ import 'package:restaurant_app/MyCustomRoute.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:restaurant_app/RestaurantCardInfo/RestaurantPage.dart';
 
+/// Creates one restaurant card
 class RestaurantListItem extends Card {
   RestaurantListItem(
       Restaurant restaurant, double scaleFactor, BuildContext context)

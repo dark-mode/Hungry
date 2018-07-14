@@ -8,6 +8,7 @@ class RestaurantList extends StatelessWidget {
 
   RestaurantList(this._restaurants);
 
+  /// Displays list of restaurant cards
   @override
   Widget build(BuildContext context) {
     double scaleFactor = 1 / MediaQuery.of(context).devicePixelRatio;
@@ -16,6 +17,7 @@ class RestaurantList extends StatelessWidget {
         children: _buildRestaurantList(scaleFactor, context));
   }
 
+  /// Creates a list of cards to be viewed on the Results Page
   List<RestaurantListItem> _buildRestaurantList(
       double scaleFactor, BuildContext context) {
     return _restaurants

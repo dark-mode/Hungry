@@ -6,6 +6,8 @@ import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Restaurant restaurant;
+
+/// GOOGLE API KEY
 String key = 'AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c';
 
 class RestaurantPage extends StatefulWidget {
@@ -43,6 +45,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
     }
   }
 
+  /// Gets individual restaurant data
   fetchPlaceDetails() async {
     String url =
         "https://maps.googleapis.com/maps/api/place/details/json?placeid=${restaurant.placeID}&fields=opening_hours,website,formatted_phone_number&key=${key}";

@@ -28,6 +28,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     _location.initPlatformState();
+
+    /// Tries to sign in before even clicking the Sign in button
     _googleSignIn.signInSilently();
   }
 
