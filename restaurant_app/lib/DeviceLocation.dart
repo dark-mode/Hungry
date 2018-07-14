@@ -32,6 +32,7 @@ class DeviceLocation extends StatelessWidget{
     }
   }
 
+
   @override
   Widget build(BuildContext context) {}
 }
