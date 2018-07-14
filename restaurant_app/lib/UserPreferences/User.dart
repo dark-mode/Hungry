@@ -1,3 +1,4 @@
+/// Holds user information.
 class User {
   Map<String, double> preferences;
   List<String> cuisine = [];

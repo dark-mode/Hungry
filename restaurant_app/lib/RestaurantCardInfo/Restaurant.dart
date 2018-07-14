@@ -1,3 +1,4 @@
+/// Holds each restaurant and stores its information.
 class Restaurant {
   double lat, lon;
   num rating;

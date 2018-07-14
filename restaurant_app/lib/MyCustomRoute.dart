@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A fading route animation.
 class MyCustomRoute<T> extends MaterialPageRoute<T> {
   //@src https://stackoverflow.com/questions/43680902/replace-initial-route-in-materialapp-without-animation/43685697#43685697
   MyCustomRoute({WidgetBuilder builder, RouteSettings settings})
