@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:restaurant_app/Restaurant.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Restaurant restaurant;

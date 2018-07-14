@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Restaurant.dart';
-import 'package:restaurant_app/RestaurantListItem.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
+import 'package:restaurant_app/RestaurantCardInfo/RestaurantListItem.dart';
 //adapted from https://hackernoon.com/flutter-iii-lists-and-items-6bfa7348ab1b
 
 class RestaurantList extends StatelessWidget {

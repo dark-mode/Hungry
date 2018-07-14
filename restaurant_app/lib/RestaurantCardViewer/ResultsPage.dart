@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/Restaurant.dart';
-import 'package:restaurant_app/RestaurantFetcher.dart';
-import 'package:restaurant_app/RestaurantList.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
+import 'package:restaurant_app/RestaurantCardViewer//RestaurantFetcher.dart';
+import 'package:restaurant_app/RestaurantCardInfo/RestaurantList.dart';
 
 class ResultsPage extends StatefulWidget {
   _ResultsPageState hP;

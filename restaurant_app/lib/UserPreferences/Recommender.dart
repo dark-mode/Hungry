@@ -1,5 +1,5 @@
-import 'package:restaurant_app/Restaurant.dart';
-import 'package:restaurant_app/User.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
+import 'package:restaurant_app/UserPreferences/User.dart';
 
 class Recommender {
   User user;

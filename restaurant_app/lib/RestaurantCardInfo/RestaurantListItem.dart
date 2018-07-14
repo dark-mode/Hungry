@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/MyCustomRoute.dart';
-import 'package:restaurant_app/Restaurant.dart';
-import 'package:restaurant_app/RestaurantPage.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
+import 'package:restaurant_app/RestaurantCardInfo/RestaurantPage.dart';
 
 class RestaurantListItem extends Card {
   RestaurantListItem(

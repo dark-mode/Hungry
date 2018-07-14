@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:restaurant_app/Restaurant.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 
 class RestaurantFetcher {
   double _lat, _lon;

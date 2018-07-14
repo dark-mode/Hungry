@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/HomePage.dart';
-import 'package:restaurant_app/ResultsPage.dart';
+import 'package:restaurant_app/RestaurantCardViewer/ResultsPage.dart';
 
 void main() => runApp(new MyApp());
 
