@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 
@@ -20,8 +20,11 @@ class RestaurantFetcher {
     /// Gets each restaurant and places it into the Future<Set<Restaurant>>
     _restaurants = new Set<Restaurant>();
     var url =
-        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${_lat},${_lon}&radius=1500&type=restaurant&key=AIzaSyA7C9zgb1ORXIoFwMW8eDw0TIHjsKnyQ2c";
-    var response = await http.get(url);
+        "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lon}&longitude=${_lat}";
+    var response = await http.get(
+        url,
+        headers: {HttpHeaders.AUTHORIZATION: "Bearer c8eYj3EGPOlR3xcHsDrcdvSI17QkI4NXtUPLuux006pN-MLKggrzpFyG42T2Y40geFAJn8shKLtYEg5GcRmlO6nAHhZ-rLpV1UqQv87T53-NNDIerPM2bOPSiz9FW3Yx"}
+        );
     Map<String, dynamic> result = json.decode(response.body.toString());
     result['results']
         .forEach((rest) => _restaurants.add(new Restaurant.fromJson(rest)));
