@@ -20,13 +20,14 @@ class RestaurantFetcher {
     /// Gets each restaurant and places it into the Future<Set<Restaurant>>
     _restaurants = new Set<Restaurant>();
     var url =
-        "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lon}&longitude=${_lat}";
+        "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}";
     var response = await http.get(
         url,
-        headers: {HttpHeaders.AUTHORIZATION: "Bearer c8eYj3EGPOlR3xcHsDrcdvSI17QkI4NXtUPLuux006pN-MLKggrzpFyG42T2Y40geFAJn8shKLtYEg5GcRmlO6nAHhZ-rLpV1UqQv87T53-NNDIerPM2bOPSiz9FW3Yx"}
+        headers: {HttpHeaders.AUTHORIZATION: "Bearer c8eYj3EGPOlR3xcHsDrcdvSI17QkI4NXtUPLuux006pN-MLKggrzpFyG42T2Y40geFAJn8shKLtYEg5GcRmlO6nAHhZ-rLpV1UqQv87T53-NNDIerPM2bOPSiz9FW3Yx"},
         );
+    print(response.statusCode);
     Map<String, dynamic> result = json.decode(response.body.toString());
-    result['results']
+    result['businesses']
         .forEach((rest) => _restaurants.add(new Restaurant.fromJson(rest)));
     if (_restaurants.isNotEmpty) {
       _restaurants.forEach((restaurant) => print(restaurant.name));
