@@ -11,7 +11,6 @@ class RestaurantFetcher {
   RestaurantFetcher(double _lat, double _lon) {
     this._lat = _lat;
     this._lon = _lon;
-    fetchRestaurants();
   }
 
   Set<Restaurant> get restaurants => _restaurants;
@@ -21,6 +20,7 @@ class RestaurantFetcher {
     _restaurants = new Set<Restaurant>();
     var url =
         "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}";
+    print(url);
     var response = await http.get(
         url,
         headers: {HttpHeaders.AUTHORIZATION: "Bearer c8eYj3EGPOlR3xcHsDrcdvSI17QkI4NXtUPLuux006pN-MLKggrzpFyG42T2Y40geFAJn8shKLtYEg5GcRmlO6nAHhZ-rLpV1UqQv87T53-NNDIerPM2bOPSiz9FW3Yx"},
