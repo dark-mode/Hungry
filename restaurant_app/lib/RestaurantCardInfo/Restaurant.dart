@@ -1,47 +1,44 @@
 /// Holds each restaurant and stores its information.
 class Restaurant {
-  double lat, lon;
-  num rating;
-  String address,
-      id,
-      placeID,
-      icon,
+  double distance, rating;
+  String id,
       name,
-      googleMapsLink,
-      photoReference,
-      website,
-      phoneNumber;
-  bool open_now;
-  int price_level;
-  List<dynamic> openingHours;
+      imageUrl,
+      yelpUrl,
+      address,
+      phone,
+      displayPhone;
+  int reviewCount, price;
+  bool isOpen;
   Map<String, double> preferences;
-  List<String> cuisine = [];
+  List<dynamic> categories;
+  List<dynamic> transactions;
 
   Restaurant.fromJson(Map<String, dynamic> json) {
     this.name = json['name'];
-    this.lat = json['geometry']['location']['lat'];
-    this.lon = json['geometry']['location']['lng'];
-    this.rating = json['rating'];
-    this.address = json['vicinity'];
+    this.distance = json['distance'];
     this.id = json['id'];
-    this.icon = json['icon'];
-    try {
-      this.googleMapsLink = json['photos'][0]['html_attributions'][0].substring(
-          json['photos'][0]['html_attributions'][0].indexOf("\"") + 1,
-          json['photos'][0]['html_attributions'][0].lastIndexOf("\""));
-      this.photoReference = json['photos'][0]['photo_reference'];
-      this.open_now = json['opening_hours']['open_now'];
-    } catch (e) {
-      print(e);
+    this.imageUrl = json['image_url'];
+    this.isOpen = !json['is_closed'];
+    this.yelpUrl = json['url'];
+    this.reviewCount = json['review_count'];
+    this.categories = json['categories'];
+    this.rating = json['rating'];
+    this.transactions = json['transactions'];
+    this.address = '';
+    this.phone = json['phone'];
+    this.displayPhone = json['display_phone'];
+    if (json['price'] != null) {
+      this.price = json['price'].length;
     }
-    this.placeID = json['place_id'];
-    //this.price_level = json['price_level'];
+    if (json['location']['display_address'] != null) {
+      json['location']['display_address'].forEach((adr) =>
+      address += adr + ' ');
+    }
+
   }
 
   setPlaceDetails(
       List<dynamic> openingHours, String phoneNumber, String website) {
-    this.openingHours = openingHours;
-    this.website = website;
-    this.phoneNumber = phoneNumber;
   }
 }

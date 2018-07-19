@@ -47,14 +47,14 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
   /// Gets individual restaurant data
   fetchPlaceDetails() async {
-    String url =
-        "https://maps.googleapis.com/maps/api/place/details/json?placeid=${restaurant.placeID}&fields=opening_hours,website,formatted_phone_number&key=${key}";
-    final response = await http.get(url);
-    Map<String, dynamic> result = json.decode(response.body.toString());
-    restaurant.setPlaceDetails(
-        result['result']['opening_hours']['weekday_text'],
-        result['result']['formatted_phone_number'],
-        result['result']['website']);
+//    String url =
+//        "https://maps.googleapis.com/maps/api/place/details/json?placeid=${restaurant.placeID}&fields=opening_hours,website,formatted_phone_number&key=${key}";
+//    final response = await http.get(url);
+//    Map<String, dynamic> result = json.decode(response.body.toString());
+//    restaurant.setPlaceDetails(
+//        result['result']['opening_hours']['weekday_text'],
+//        result['result']['formatted_phone_number'],
+//        result['result']['website']);
   }
 
   //@src https://flutter.io/tutorials/layout/
@@ -66,7 +66,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
       return GestureDetector(
           onTap: () {
             if (label == 'CALL') {
-              if (restaurant.phoneNumber == null) {
+              if (restaurant.phone == null) {
                 showDialog(
                   context: context,
                   child: new AlertDialog(
@@ -83,12 +83,12 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   ),
                 );
               } else
-                launch("tel://${restaurant.phoneNumber}");
+                launch("tel://${restaurant.phone}");
             } else if (label == 'ROUTE') {
               _launchURL(
                   'https://www.google.com/maps/search/?api=1&query=${restaurant.address}');
-            } else if (label == 'WEBSITE') {
-              if (restaurant.website == null) {
+            } else if (label == 'YELP') {
+              if (restaurant.yelpUrl == null) {
                 showDialog(
                   context: context,
                   child: new AlertDialog(
@@ -105,7 +105,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                   ),
                 );
               } else
-                _launchURL(restaurant.website);
+                _launchURL(restaurant.yelpUrl);
             }
           },
           child: Column(
@@ -135,7 +135,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
         children: [
           buildButtonColumn(Icons.call, 'CALL'),
           buildButtonColumn(Icons.near_me, 'ROUTE'),
-          buildButtonColumn(Icons.language, 'WEBSITE'),
+          buildButtonColumn(Icons.language, 'YELP'),
         ],
       ),
     );
@@ -160,8 +160,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
                 borderRadius: new BorderRadius.circular(20.0),
                 color: const Color(0xff7c94b6),
                 image: new DecorationImage(
-                  image: new NetworkImage(
-                      "https://maps.googleapis.com/maps/api/place/photo?maxwidth=${width.round()}&photoreference=${restaurant.photoReference}&key=${key}"),
+                  image: new NetworkImage(restaurant.imageUrl),
                   fit: BoxFit.cover,
                 ),
               ),
