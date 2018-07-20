@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="556161bb-8b43-42f9-b94d-89a57846ca90" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/HomePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/HomePage.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
@@ -18,23 +20,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="HomePage.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HomePage.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/HomePage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-440">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="225">
+              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestaurantFetcher.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RestaurantFetcher.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state relative-caret-position="206">
+              <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -42,11 +41,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Notes" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/Notes">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="2" column="86" selection-start-line="2" selection-start-column="86" selection-end-line="2" selection-end-column="86" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="RestaurantListItem.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantListItem.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+            <state relative-caret-position="207">
+              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -57,7 +65,7 @@
       <file leaf-file-name="RestaurantPage.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantPage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
+            <state relative-caret-position="1449">
               <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
@@ -69,8 +77,8 @@
       <file leaf-file-name="ResultsPage.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/ResultsPage.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+            <state relative-caret-position="1196">
+              <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -81,8 +89,22 @@
       <file leaf-file-name="Restaurant.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="966">
+              <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="libgrowable_array.dart" pinned="false" current-in-tab="false">
+        <entry file="mock:///libgrowable_array.dart">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="message_codecs.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/packages/flutter/lib/src/services/message_codecs.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="61">
+              <caret line="546" column="6" selection-start-line="546" selection-start-column="6" selection-end-line="546" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -90,7 +112,7 @@
       <file leaf-file-name="RestaurantList.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantList.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
+            <state relative-caret-position="391">
               <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -153,15 +175,17 @@
         <option value="$PROJECT_DIR$/lib/BackupOldFiles/RestaurantFetcher.dart" />
         <option value="$PROJECT_DIR$/lib/Notes" />
         <option value="$PROJECT_DIR$/lib/main.dart" />
-        <option value="$PROJECT_DIR$/lib/HomePage.dart" />
         <option value="$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart" />
+        <option value="$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart" />
+        <option value="$PROJECT_DIR$/lib/HomePage.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="395" />
-    <option name="width" value="1610" />
-    <option name="height" value="1015" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1100" />
+    <option name="height" value="1890" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -169,9 +193,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,13 +233,16 @@
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
@@ -326,14 +350,14 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.4986979" visible="true" weight="0.45793104" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49674478" visible="true" weight="0.5408451" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49739584" weight="0.19448276" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49804688" weight="0.1462069" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.50130206" side_tool="true" visible="true" weight="0.45793104" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5032552" side_tool="true" visible="true" weight="0.5408451" />
       <window_info id="Captures" order="2" weight="0.32941943" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16015625" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -352,58 +376,40 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart</url>
-          <line>23</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart</url>
-          <line>21</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/ResultsPage.dart</url>
-          <line>45</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/ResultsPage.dart</url>
-          <line>44</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart</url>
-          <line>30</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart</url>
-          <line>33</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart</url>
-          <line>2</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart</url>
-          <line>16</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart</url>
-          <line>27</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="20" />
+      <option name="time" value="28" />
     </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>json['location']['display_address']['0'] + &quot;, &quot; + json['location']['display_address'][1]</expression-string>
+        <language-id>Dart</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json['location']['display_address']['0'] + &quot;, &quot; + json['location']['display_address']['1']</expression-string>
+        <language-id>Dart</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json['location']['display_address']['0'] + ', ' + json['location']['display_address']['1']</expression-string>
+        <language-id>Dart</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json['location']['display_address'][0]</expression-string>
+        <language-id>Dart</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>json['location']['display_address']</expression-string>
+        <language-id>Dart</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-3.0.4/lib/google_sign_in.dart">
@@ -443,13 +449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="775">
           <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/packages/flutter/lib/src/services/message_codecs.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="546" column="6" selection-start-line="546" selection-start-column="6" selection-end-line="546" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -545,16 +544,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="14" selection-start-column="14" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/Notes">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="45" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -576,9 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="13" column="15" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -640,28 +626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantList.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="391">
           <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantPage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/HomePage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-440">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -677,15 +643,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.11.3+16/lib/http.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="166" column="19" selection-start-line="166" selection-start-column="19" selection-end-line="166" selection-end-column="19" />
+        <state relative-caret-position="3381">
+          <caret line="170" selection-start-line="170" selection-end-line="170" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/ResultsPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1196">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/Notes">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="86" selection-start-line="2" selection-start-column="86" selection-end-line="2" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantPage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1449">
+          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/packages/flutter/lib/src/services/message_codecs.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="546" column="6" selection-start-line="546" selection-start-column="6" selection-end-line="546" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantListItem.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        <state relative-caret-position="207">
+          <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -694,28 +694,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/ResultsPage.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="966">
+          <caret line="42" column="3" selection-start-line="42" selection-start-column="3" selection-end-line="42" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        <state relative-caret-position="206">
+          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/HomePage.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
         </state>
       </provider>
     </entry>
