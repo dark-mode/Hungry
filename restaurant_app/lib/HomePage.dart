@@ -37,7 +37,9 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-              RaisedButton(
+                Container(
+            padding: const EdgeInsets.only(bottom: 8.0),
+              child: RaisedButton(
                 child: Text(
                   "Sign In with Google",
                   style: new TextStyle(color: Colors.white),
@@ -86,7 +88,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   }
-                }),
+                })
+                ),
               RaisedButton(
                 child: Text(
                   "GO",
@@ -94,18 +97,32 @@ class _HomePageState extends State<HomePage> {
                 ),
                 color: Theme.of(context).primaryColor,
                 onPressed: () {
-                  SimpleDialog(
-                      title: const Text('Select assignment'),
-                      children: <Widget>[
-                      new SimpleDialogOption(
-                      onPressed: () { Navigator.pop(context); },
-                      child: const Text('Treasury department'),
-                      ),
-                      new SimpleDialogOption(
-                      onPressed: () { Navigator.pop(context); },
-                      child: const Text('State department'),
-                      ),
-                      ],
+                  showDialog(
+                    context: context,
+                    child: new SimpleDialog(
+                        title: const Text('What is your transportation?'),
+                        children: <Widget>[
+                          new Row(
+                            children: <Widget>[
+                              new Expanded(
+                                  child:
+                                  new IconButton(
+                                    icon: new Icon(Icons.person),
+                                    tooltip: 'Walking',
+                                    onPressed: () { },
+                                  )
+                              ),
+                              new Expanded(
+                                  child:
+                                  new IconButton(
+                                    icon: new Icon(Icons.directions_bus),
+                                    tooltip: 'Driving',
+                                    onPressed: () { },
+                                  ))
+                            ],
+                          )
+                        ]
+                    ),
                   );
                 }
               ),
