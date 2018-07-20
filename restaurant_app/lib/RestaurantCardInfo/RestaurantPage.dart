@@ -142,7 +142,7 @@ class _RestaurantPageState extends State<RestaurantPage> {
 
     Widget textSection = Container(
       padding: const EdgeInsets.all(32.0),
-      child: Text(restaurant.id),
+      child: Text(restaurant.distance.toString()),
     );
 
     double width = MediaQuery.of(context).size.width;
