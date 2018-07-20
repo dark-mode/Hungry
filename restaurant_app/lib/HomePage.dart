@@ -34,7 +34,10 @@ class _HomePageState extends State<HomePage> {
           title: Text('First Screen'),
         ),
         body: Center(
-            child: RaisedButton(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+              RaisedButton(
                 child: Text(
                   "Sign In with Google",
                   style: new TextStyle(color: Colors.white),
@@ -63,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                   } else {
                     showDialog(
                       context: context,
-                      child: new AlertDialog(
+                      child: AlertDialog(
                         title: new Text("Sign In Successful"),
                         content: new Text("You have successfully signed in!"),
                         actions: [
@@ -80,6 +83,30 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   }
-                })));
+                }),
+              RaisedButton(
+                child: Text(
+                  "GO",
+                  style: new TextStyle(color: Colors.white),
+                ),
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  SimpleDialog(
+                      title: const Text('Select assignment'),
+                      children: <Widget>[
+                      new SimpleDialogOption(
+                      onPressed: () { Navigator.pop(context); },
+                      child: const Text('Treasury department'),
+                      ),
+                      new SimpleDialogOption(
+                      onPressed: () { Navigator.pop(context); },
+                      child: const Text('State department'),
+                      ),
+                      ],
+                  );
+                }
+              ),
+            ])
+    ));
   }
 }
