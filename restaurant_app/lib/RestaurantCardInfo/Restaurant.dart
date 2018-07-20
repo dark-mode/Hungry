@@ -32,8 +32,9 @@ class Restaurant {
       this.price = json['price'].length;
     }
     if (json['location']['display_address'] != null) {
-      json['location']['display_address'].forEach((adr) =>
-      address += adr + ' ');
+//      json['location']['display_address'].forEach((adr) =>
+//      address += adr + ' ');
+        json['location']['display_address']['0']
     }
 
   }
