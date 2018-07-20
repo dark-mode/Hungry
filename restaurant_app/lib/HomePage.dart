@@ -74,7 +74,10 @@ class _HomePageState extends State<HomePage> {
                                             color: Colors.white,
                                           )
                                     ),
-                              onPressed: () => Navigator.pushReplacementNamed(context, "/results")
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pushReplacementNamed(context, "/results");
+                                  }
                           ),
                         ],
                       ),
