@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="556161bb-8b43-42f9-b94d-89a57846ca90" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/RestaurantCardInfo/RestaurantPage.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restaurant_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/restaurant_app.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -29,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestaurantFetcher.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RestaurantFetcher.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="277">
-              <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+              <caret line="33" column="24" lean-forward="true" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -95,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Restaurant.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Restaurant.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="34" selection-start-line="34" selection-end-line="34" />
+            <state relative-caret-position="138">
+              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -345,14 +344,14 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49739584" visible="true" weight="0.19014084" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49739584" visible="true" weight="0.49718308" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49739584" weight="0.19448276" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5026042" side_tool="true" visible="true" weight="0.19014084" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.5026042" side_tool="true" visible="true" weight="0.49718308" />
       <window_info id="Captures" order="2" weight="0.32941943" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16015625" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -655,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Notes">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -682,10 +674,17 @@
     <entry file="file://$PROJECT_DIR$/lib/RestaurantCardViewer/RestaurantFetcher.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
-          <caret line="29" column="24" lean-forward="true" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <caret line="33" column="24" lean-forward="true" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/RestaurantCardInfo/Restaurant.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
         </state>
       </provider>
     </entry>

@@ -19,7 +19,11 @@ class RestaurantFetcher {
     /// Gets each restaurant and places it into the Future<Set<Restaurant>>
     _restaurants = new Set<Restaurant>();
     var url =
+<<<<<<< HEAD
         "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=$_lat&longitude=$_lon";
+=======
+        "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+>>>>>>> ba62cc86e4d21e61843b3037d129f86e9082dd36
     print(url);
     var response = await http.get(
         url,

@@ -34,7 +34,7 @@ class Restaurant {
     if (json['location']['display_address'] != null) {
 //      json['location']['display_address'].forEach((adr) =>
 //      address += adr + ' ');
-        json['location']['display_address']['0']
+        //json['location']['display_address']['0']
     }
 
   }
