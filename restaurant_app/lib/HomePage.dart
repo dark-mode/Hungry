@@ -100,34 +100,65 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   showDialog(
                     context: context,
-                    child: new SimpleDialog(
-                        title: const Text('What is your transportation?'),
-                        children: <Widget>[
-                          new Row(
-                            children: <Widget>[
-                              new Expanded(
-                                  child:
-                                  new IconButton(
-                                    icon: new Icon(Icons.person),
-                                    tooltip: 'Walking',
-                                    onPressed: () { },
-                                  )
-                              ),
-                              new Expanded(
-                                  child:
-                                  new IconButton(
-                                    icon: new Icon(Icons.directions_bus),
-                                    tooltip: 'Driving',
-                                    onPressed: () { },
-                                  ))
-                            ],
-                          )
-                        ]
-                    ),
+                    child: MyDialogContent(),
                   );
                 }
               ),
             ])
     ));
+  }
+
+}
+
+class MyDialogContent extends StatefulWidget {
+  noSuchMethod(Invocation i) => super.noSuchMethod(i);
+  @override
+  _MyDialogContentState createState() => new _MyDialogContentState();
+}
+
+class _MyDialogContentState extends State<MyDialogContent> {
+  noSuchMethod(Invocation i) => super.noSuchMethod(i);
+
+  Color _myColor = Colors.white;
+  void _toggleColor() {
+    setState(() {
+      _myColor = Colors.black;
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+  }
+  _getContent() {
+    return SimpleDialog(
+        title: const Text('What is your transportation?'),
+        children: <Widget>[
+          new Row(
+            children: <Widget>[
+              new Expanded(
+                  child:
+                  new IconButton(
+                    icon: new Icon(Icons.person),
+                    tooltip: 'Walking',
+                    onPressed: () { },
+                  )
+              ),
+              new Expanded(
+                  child:
+                  new IconButton(
+                      color: _myColor,
+                      icon: new Icon(Icons.directions_bus),
+                      tooltip: 'Driving',
+                      onPressed: _toggleColor
+                  ))
+            ],
+          )
+        ]
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return _getContent();
   }
 }
