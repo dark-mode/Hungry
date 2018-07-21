@@ -119,10 +119,17 @@ class MyDialogContent extends StatefulWidget {
 class _MyDialogContentState extends State<MyDialogContent> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
-  Color _myColor = Colors.white;
-  void _toggleColor() {
+  Color _walkColor = Colors.white;
+  Color _driveColor = Colors.white;
+  void _toggleColor(String indicator) {
     setState(() {
-      _myColor = Colors.black;
+      if (indicator == 'Walk') {
+        _walkColor = Colors.black;
+        _driveColor = Colors.white;
+      } else if (indicator == 'Drive') {
+        _walkColor = Colors.white;
+        _driveColor = Colors.black;
+      }
     });
   }
 
@@ -139,18 +146,23 @@ class _MyDialogContentState extends State<MyDialogContent> {
               new Expanded(
                   child:
                   new IconButton(
-                    icon: new Icon(Icons.person),
+                    color: _walkColor,
+                    icon: new Icon(Icons.directions_walk),
                     tooltip: 'Walking',
-                    onPressed: () { },
+                      onPressed: () {
+                        _toggleColor('Walk');
+                      }
                   )
               ),
               new Expanded(
                   child:
                   new IconButton(
-                      color: _myColor,
-                      icon: new Icon(Icons.directions_bus),
+                      color: _driveColor,
+                      icon: new Icon(Icons.directions_car),
                       tooltip: 'Driving',
-                      onPressed: _toggleColor
+                      onPressed: () {
+                        _toggleColor('Drive');
+                      }
                   ))
             ],
           )
