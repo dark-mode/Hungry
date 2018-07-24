@@ -121,6 +121,9 @@ class _MyDialogContentState extends State<MyDialogContent> {
 
   Color _walkColor = Colors.white;
   Color _driveColor = Colors.white;
+  double _priceLevel = 1.0;
+  var _prices = ['\$','\$\$','\$\$\$','\$\$\$\$'];
+
   void _toggleColor(String indicator) {
     setState(() {
       if (indicator == 'Walk') {
@@ -149,9 +152,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                     color: _walkColor,
                     icon: new Icon(Icons.directions_walk),
                     tooltip: 'Walking',
-                      onPressed: () {
-                        _toggleColor('Walk');
-                      }
+                      onPressed: () => _toggleColor('Walk')
                   )
               ),
               new Expanded(
@@ -160,13 +161,32 @@ class _MyDialogContentState extends State<MyDialogContent> {
                       color: _driveColor,
                       icon: new Icon(Icons.directions_car),
                       tooltip: 'Driving',
-                      onPressed: () {
-                        _toggleColor('Drive');
-                      }
+                      onPressed: () =>_toggleColor('Drive')
                   ))
             ],
-          )
-        ]
+          ),
+          new Padding(
+            padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+            child: new Text('Price Range',
+              textAlign: TextAlign.center,
+              style: new TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+              )),
+          ),
+              new Slider(
+                value:_priceLevel,
+                min: 1.0,
+                max: 4.0,
+                divisions: 3,
+                label: _prices[_priceLevel.round()-1],
+                onChanged: (double value) {
+                  setState(() {
+                    _priceLevel = value;
+                  });
+                },
+              ),
+        ],
     );
   }
   @override
