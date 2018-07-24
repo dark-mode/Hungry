@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/DeviceLocation.dart';
 import 'package:restaurant_app/SignIn.dart';
+import 'package:restaurant_app/CuisinePage.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState hP = new _HomePageState();
@@ -139,7 +140,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
   }
   _getContent() {
     return SimpleDialog(
-        title: const Text('What is your transportation?'),
+        title: const Text('What is your transportation?', textAlign: TextAlign.center,),
         children: <Widget>[
           new Row(
             children: <Widget>[
@@ -165,6 +166,34 @@ class _MyDialogContentState extends State<MyDialogContent> {
                       }
                   ))
             ],
+          ),
+          new Container(
+            child: new Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                new FlatButton(
+                    child: new Text("OPTIONS",
+                        style: new TextStyle(
+                          color: Colors.white,
+                        )),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CuisinePage()),
+                      );
+                    }
+                ),
+                new FlatButton(
+                    child: new Text("SEARCH",
+                        style: new TextStyle(
+                          color: Colors.white,
+                        )),
+                    onPressed: () => Navigator.pop(context)),
+              ],
+            )
+
+
           )
         ]
     );
