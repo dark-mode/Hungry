@@ -138,11 +138,27 @@ class _MyDialogContentState extends State<MyDialogContent> {
 
   _getContent() {
     return SimpleDialog(
-        title: const Text(
-          'What is your transportation?',
-          textAlign: TextAlign.center,
+        title: Padding(
+          padding: EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 0.0),
+          child: Text('Search Settings',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                  ),
+                ),
         ),
         children: <Widget>[
+          Padding(
+            padding: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 10.0),
+            child: Text('What is your transportation?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
+                  ),
+          ),
           new Row(
             children: <Widget>[
               new Expanded(
@@ -161,24 +177,27 @@ class _MyDialogContentState extends State<MyDialogContent> {
           ),
           new Padding(
             padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-            child: new Text('Price Range',
+            child: Text('Price Range',
                 textAlign: TextAlign.center,
-                style: new TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 )),
           ),
-          new Slider(
-            value: _priceLevel,
-            min: 1.0,
-            max: 4.0,
-            divisions: 3,
-            label: _prices[_priceLevel.round() - 1],
-            onChanged: (double value) {
-              setState(() {
-                _priceLevel = value;
-              });
-            },
+          Padding(
+            padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+            child: new Slider(
+                  value: _priceLevel,
+                  min: 1.0,
+                  max: 4.0,
+                  divisions: 3,
+                  label: _prices[_priceLevel.round() - 1],
+                  onChanged: (double value) {
+                    setState(() {
+                      _priceLevel = value;
+                    });
+                  },
+                ),
           ),
           new Container(
               child: new Row(
