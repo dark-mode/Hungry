@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                             ),
                           );
                           _location.initPlatformState();
-                        } else {
+                        } else if (_signIn.isSignedIn) {
                           showDialog(
                             context: context,
                             child: AlertDialog(
