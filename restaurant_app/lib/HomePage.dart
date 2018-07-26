@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: Text('First Screen'),
@@ -117,9 +118,11 @@ class _MyDialogContentState extends State<MyDialogContent> {
   Color _walkColor = Colors.white;
   Color _driveColor = Colors.white;
   double _priceLevel = 1.0;
+  String _transportation;
   var _prices = ['\$', '\$\$', '\$\$\$', '\$\$\$\$'];
 
   void _toggleColor(String indicator) {
+    _transportation = indicator;
     setState(() {
       if (indicator == 'Walk') {
         _walkColor = Colors.black;
@@ -219,7 +222,11 @@ class _MyDialogContentState extends State<MyDialogContent> {
                       style: new TextStyle(
                         color: Colors.white,
                       )),
-                  onPressed: () => Navigator.pop(context)),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    print(_transportation);
+                    print(_priceLevel);
+                  }),
             ],
           ))
         ]);
