@@ -1,5 +1,7 @@
 class Trie {
   _TrieNode head;
+  bool isCaseSensitive = false;
+
   Trie() {
     head = _TrieNode(null);
   }
@@ -25,7 +27,8 @@ class Trie {
       return;
     }
     for (_TrieNode child in node.children) {
-      if (child.char == word.substring(0, 1)) {
+      if ((child.char == word.substring(0, 1)) ||
+          (!isCaseSensitive && child.char.substring(0, child.char.length).toLowerCase() == word.substring(0, 1).toLowerCase())) {
         addWordNode(word.substring(1), child);
         return;
       }
@@ -64,7 +67,7 @@ class Trie {
     }
 
       for(_TrieNode child in node.children) {
-        if (child.char == prefix.substring(0, 1)) {
+        if ((child.char == prefix.substring(0, 1)) || (!isCaseSensitive && child.char.substring(0, child.char.length).toLowerCase() == prefix.substring(0, 1).toLowerCase())) {
           return getAllWordsWithPrefixHelper(prefix.substring(1), child, fullPrefix);
         }
       }
