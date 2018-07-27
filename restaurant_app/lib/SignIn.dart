@@ -14,10 +14,10 @@ class SignIn {
   void handleSignIn() async {
     try {
       await _googleSignIn.signIn();
+      isSignedIn = true;
     } catch (error) {
       print(error);
       isSignedIn = false;
     }
-    isSignedIn = true;
   }
 }

@@ -88,6 +88,6 @@ void main() {
   'Yamal',
   'Zanzibari']);
 
-  myTrie.getAllWordsWithPrefix("a");
+  myTrie.getAllWordsWithPrefix("ai");
   print('done!');
 }

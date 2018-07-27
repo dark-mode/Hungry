@@ -55,7 +55,6 @@ class Trie {
 
   List<String> getAllWordsWithPrefix(String prefix) {
     StringBuffer fullPrefix = StringBuffer();
-    fullPrefix.write(prefix);
     return getAllWordsWithPrefixHelper(prefix, head, fullPrefix);
   }
 
@@ -68,6 +67,7 @@ class Trie {
 
       for(_TrieNode child in node.children) {
         if ((child.char == prefix.substring(0, 1)) || (!isCaseSensitive && child.char.substring(0, child.char.length).toLowerCase() == prefix.substring(0, 1).toLowerCase())) {
+          fullPrefix.write(child.char);
           return getAllWordsWithPrefixHelper(prefix.substring(1), child, fullPrefix);
         }
       }
