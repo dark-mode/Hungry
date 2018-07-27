@@ -54,7 +54,7 @@ class _ResultsPageState extends State<ResultsPage> {
         1 / MediaQuery.of(context).devicePixelRatio; //change later
 
     if (restaurants != null && restaurants.length != 0) {
-      child = new RestaurantList(restaurants.toList());
+      child = RestaurantList(restaurants.toList());
     } else {
       child = new Center(
           child: new Text("Fetching data...",
