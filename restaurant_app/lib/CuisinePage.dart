@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/CuisineListItem.dart';
 import 'package:restaurant_app/CuisineList.dart';
 
 class CuisinePage extends StatefulWidget {
@@ -107,7 +106,13 @@ class _CuisinePageState extends State<CuisinePage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(title),
-        ),
+            actions: <Widget>[
+              new IconButton(
+                icon: new Icon(Icons.search),
+                tooltip: 'Search',
+                onPressed: () => Navigator.pushReplacementNamed(context, "/materialsearch")
+              ),]
+              ),
         body: Container(child: CuisineList(_cuisines))
       ),
     );

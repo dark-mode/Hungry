@@ -21,7 +21,6 @@ class CuisineListItem extends Card {
           title: new Text(cuisine,
               textAlign: TextAlign.left,
               style: new TextStyle(
-                color: Colors.black,
                 fontSize: 65.0 * scaleFactor,
               )),
         ),

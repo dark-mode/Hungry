@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/HomePage.dart';
 import 'package:restaurant_app/RestaurantCardViewer/ResultsPage.dart';
-import 'package:restaurant_app/BackupOldFiles/CuisinePage.dart';
+import 'package:restaurant_app/CuisinePage.dart';
+import 'package:restaurant_app/MaterialSearch.dart';
 
 void main() => runApp(new MyApp());
 
@@ -14,11 +15,12 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             brightness: Brightness.dark,
             primaryColor: Colors.pink,
-            accentColor: Colors.black),
+            accentColor: Colors.black12),
         home: homeP,
         routes: {
           "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
           "/cuisines": (_) => new CuisinePage(),
+          "/materialsearch": (_) => new MaterialSearch(),
         });
   }
 }
