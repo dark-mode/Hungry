@@ -19,6 +19,9 @@ class MaterialSearchResults extends StatelessWidget {
   /// Creates a list of cards to be viewed on the Results Page
   List<MaterialSearchResultsItem> _buildCuisineList(
       double scaleFactor, BuildContext context) {
+    if (_cuisines.length == 0) {
+      return [];
+    }
     return _cuisines
         .map((cuisine) =>
     MaterialSearchResultsItem(cuisine, scaleFactor, context)).toList();
