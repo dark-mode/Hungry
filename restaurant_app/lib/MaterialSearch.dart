@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/MaterialSearchResults.dart';
+import 'package:restaurant_app/Trie.dart';
 
 class MaterialSearch extends StatefulWidget {
   _MaterialSearchState hP = new _MaterialSearchState();
@@ -11,8 +12,13 @@ class _MaterialSearchState extends State<MaterialSearch> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _cuisines =  [
+     List<String> _cuisines =  [
       'Ainu',
       'Albanian',
       'Argentina',
@@ -100,6 +106,8 @@ class _MaterialSearchState extends State<MaterialSearch> {
       'Yamal',
       'Zanzibari'
     ];
+     
+     Trie _trie = Trie.list(_cuisines);
 
     return MaterialApp(
       title: "Basic List",
@@ -110,10 +118,10 @@ class _MaterialSearchState extends State<MaterialSearch> {
                 .of(context)
                 .primaryColor,
             title: TextField(
+              autofocus: true,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
-
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -123,6 +131,12 @@ class _MaterialSearchState extends State<MaterialSearch> {
                   fontSize: 16.0,
                 ),
               ),
+              onChanged: (text) {
+                setState(() {
+                  _cuisines = _trie.getAllWordsWithPrefix(text);
+                  print(_cuisines[0]);
+                });
+              },
             ),
             actions: <Widget>[
               new IconButton(
