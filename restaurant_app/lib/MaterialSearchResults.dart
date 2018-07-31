@@ -4,8 +4,9 @@ import 'package:restaurant_app/MaterialSearchResultsItem.dart';
 
 class MaterialSearchResults extends StatelessWidget {
   final List<String> _cuisines;
+  Set<String> _selectedCuisines;
 
-  MaterialSearchResults(this._cuisines);
+  MaterialSearchResults(this._cuisines, this._selectedCuisines);
 
   /// Displays list of restaurant cards
   @override
@@ -19,11 +20,8 @@ class MaterialSearchResults extends StatelessWidget {
   /// Creates a list of cards to be viewed on the Results Page
   List<MaterialSearchResultsItem> _buildCuisineList(
       double scaleFactor, BuildContext context) {
-    if (_cuisines.length == 0) {
-      return [];
-    }
     return _cuisines
         .map((cuisine) =>
-    MaterialSearchResultsItem(cuisine, scaleFactor, context)).toList();
+    MaterialSearchResultsItem(cuisine, scaleFactor, context, _selectedCuisines)).toList();
   }
 }

@@ -4,13 +4,20 @@ import 'package:restaurant_app/MaterialSearch.dart';
 import 'package:restaurant_app/MyCustomRoute.dart';
 
 class CuisinePage extends StatefulWidget {
-  _CuisinePageState hP = new _CuisinePageState();
+  _CuisinePageState hP;
   @override
   _CuisinePageState createState() => hP;
+
+  CuisinePage(lat, lon) {
+    hP = new _CuisinePageState(lat, lon);
+  }
 }
 
 class _CuisinePageState extends State<CuisinePage> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
+
+  double _lat, _lon;
+  _CuisinePageState(this._lat, this._lon);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class _CuisinePageState extends State<CuisinePage> {
                 icon: new Icon(Icons.search),
                 tooltip: 'Search',
                 onPressed: () => Navigator.push(context,
-                  new MyCustomRoute(builder: (context) => new MaterialSearch()),
+                  new MyCustomRoute(builder: (context) => new MaterialSearch(_lat, _lon)),
                 )
               ),]
               ),

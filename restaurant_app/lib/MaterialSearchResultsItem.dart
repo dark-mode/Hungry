@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 /// Creates one restaurant card
 class MaterialSearchResultsItem extends Column {
+  Set<String> _selectedCuisines;
   MaterialSearchResultsItem(
-      String cuisine, double scaleFactor, BuildContext context) :
+      String cuisine, double scaleFactor, BuildContext context, this._selectedCuisines) :
               super(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   ListTile(
                     dense: true,
-                    onLongPress: hi,
+                    onTap: () => _selectedCuisines.add(cuisine),
+                    onLongPress: () => print(cuisine),
                 contentPadding: EdgeInsets.symmetric(
                     vertical: 0.0 * scaleFactor,
                     horizontal: 40.0 * scaleFactor),
@@ -22,6 +24,4 @@ class MaterialSearchResultsItem extends Column {
                 ],
               );
 }
-hi() {
 
-}

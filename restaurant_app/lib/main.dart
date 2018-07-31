@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         home: homeP,
         routes: {
           "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
-          "/cuisines": (_) => new CuisinePage(),
-          "/materialsearch": (_) => new MaterialSearch(),
+          "/cuisines": (_) => new CuisinePage(homeP.hP.lat, homeP.hP.lon),
+          "/materialsearch": (_) => new MaterialSearch(homeP.hP.lat, homeP.hP.lon),
         });
   }
 }

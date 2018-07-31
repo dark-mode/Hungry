@@ -15,7 +15,13 @@ class ResultsPage extends StatefulWidget {
   ResultsPage(double lat, double lon) {
     _lat = lat;
     _lon = lon;
-    _hP = new _ResultsPageState(lat, lon);
+    _hP = new _ResultsPageState(lat, lon, Set());
+  }
+
+  ResultsPage.cuisines(double lat, double lon, Set<String> _selectedCuisines) {
+    _lat = lat;
+    _lon = lon;
+    _hP = new _ResultsPageState(lat, lon, _selectedCuisines);
   }
   double get lat => _lat;
   double get lon => _lon;
@@ -27,13 +33,11 @@ class _ResultsPageState extends State<ResultsPage> {
   //var url, request, response;
   //String value, error;
   double _lat, _lon;
+  Set<String> _selectedCuisines;
   Set<Restaurant> restaurants;
   Future<Set<Restaurant>> rFuture;
 
-  _ResultsPageState(double lat, double lon) {
-    _lat = lat;
-    _lon = lon;
-  }
+  _ResultsPageState(this._lat, this._lon, this._selectedCuisines);
 
   @override
   void initState() {
@@ -42,7 +46,7 @@ class _ResultsPageState extends State<ResultsPage> {
   }
 
   initPlatformState() async {
-    RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon);
+    RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon, _selectedCuisines);
     Set<Restaurant> rest = await rF.fetchRestaurants();
     setState(() => restaurants = rest);
   }

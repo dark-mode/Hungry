@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      child: MyDialogContent(),
+                      child: MyDialogContent(lat, lon),
                     );
                   }),
             ])));
@@ -109,12 +109,18 @@ class _HomePageState extends State<HomePage> {
 class MyDialogContent extends StatefulWidget {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
   @override
-  _MyDialogContentState createState() => new _MyDialogContentState();
+  _MyDialogContentState createState() => new _MyDialogContentState(_lat, _lon);
+
+  double _lat, _lon;
+  MyDialogContent(this._lat, this._lon);
 }
 
 class _MyDialogContentState extends State<MyDialogContent> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
+  double _lat, _lon;
+
+  _MyDialogContentState(this._lat, this._lon);
   Color _walkColor = Colors.white;
   Color _driveColor = Colors.white;
   double _priceLevel = 1.0;
@@ -214,7 +220,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CuisinePage()),
+                      MaterialPageRoute(builder: (context) => CuisinePage(_lat, _lon)),
                     );
                   }),
               new FlatButton(

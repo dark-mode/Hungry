@@ -7,11 +7,13 @@ import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 class RestaurantFetcher {
   /// Fetches the restaurants given the latitude and longitude.
   double _lat, _lon;
+  Set<String> _selectedCuisines;
   Set<Restaurant> _restaurants;
-  RestaurantFetcher(double _lat, double _lon) {
-    this._lat = _lat;
-    this._lon = _lon;
+  String _selectedCuisinesString;
+  RestaurantFetcher(this._lat, this. _lon, this._selectedCuisines) {
+    _selectedCuisinesString = buildCuisines();
   }
+
 
   Set<Restaurant> get restaurants => _restaurants;
 
@@ -19,7 +21,7 @@ class RestaurantFetcher {
     /// Gets each restaurant and places it into the Future<Set<Restaurant>>
     _restaurants = new Set<Restaurant>();
     var url =
-        "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+        "https://api.yelp.com/v3/businesses/search?term=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
     print(url);
     var response = await http.get(
         url,
@@ -33,5 +35,14 @@ class RestaurantFetcher {
       _restaurants.forEach((restaurant) => print(restaurant.name));
     }
     return _restaurants;
+  }
+
+  String buildCuisines() {
+    StringBuffer cuisines = StringBuffer();
+    for (String cuisine in _selectedCuisines) {
+      cuisines.write(cuisine + ',');
+    }
+
+    return cuisines.toString().substring(0, cuisines.toString().length - 1);
   }
 }

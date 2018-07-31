@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/MaterialSearchResults.dart';
 import 'package:restaurant_app/Trie.dart';
+import 'package:restaurant_app/RestaurantCardViewer/ResultsPage.dart';
 
 class MaterialSearch extends StatefulWidget {
-  _MaterialSearchState hP = new _MaterialSearchState();
+  _MaterialSearchState hP;
   @override
   _MaterialSearchState createState() => hP;
+
+  MaterialSearch(lat, lon) {
+    hP = new _MaterialSearchState(lat, lon);
+  }
 }
 
 class _MaterialSearchState extends State<MaterialSearch> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
+  double _lat, _lon;
+
+  Set<String> _selectedCuisines;
   List<String> _cuisines;
   Trie _trie;
-  _MaterialSearchState() {
+  _MaterialSearchState(this._lat, this._lon) {
+    _selectedCuisines = Set();
     _cuisines = [
       'Ainu',
       'Albanian',
@@ -138,6 +147,10 @@ class _MaterialSearchState extends State<MaterialSearch> {
                   fontSize: 16.0,
                 ),
               ),
+              onSubmitted: (text) {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines)),
+                );
+              },
               onChanged: (text) {
                 setState(() {
                   _cuisines = _trie.getAllWordsWithPrefix(text);
@@ -151,7 +164,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
               ),
             ]
         ),
-        body: Container(child: MaterialSearchResults(_cuisines))
+        body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines))
       ),
     );
   }
