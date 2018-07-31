@@ -1,6 +1,7 @@
 class Trie {
   _TrieNode head;
   bool isCaseSensitive = false;
+  List<String> _words;
 
   Trie() {
     head = _TrieNode(null);
@@ -10,9 +11,9 @@ class Trie {
     addWordNode(word, head);
   }
 
-  Trie.list(List<String> words) {
+  Trie.list(this._words) {
     head = _TrieNode(null);
-    for (String word in words) {
+    for (String word in _words) {
       addWord(word);
     }
   }

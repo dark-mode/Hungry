@@ -11,14 +11,10 @@ class MaterialSearch extends StatefulWidget {
 class _MaterialSearchState extends State<MaterialSearch> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-     List<String> _cuisines =  [
+  List<String> _cuisines;
+  Trie _trie;
+  _MaterialSearchState() {
+    _cuisines = [
       'Ainu',
       'Albanian',
       'Argentina',
@@ -106,8 +102,19 @@ class _MaterialSearchState extends State<MaterialSearch> {
       'Yamal',
       'Zanzibari'
     ];
-     
-     Trie _trie = Trie.list(_cuisines);
+
+    _trie = Trie.list(_cuisines);
+  }
+
+
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
 
     return MaterialApp(
       title: "Basic List",
@@ -133,9 +140,11 @@ class _MaterialSearchState extends State<MaterialSearch> {
               ),
               onChanged: (text) {
                 setState(() {
-                  _cuisines = _trie.getAllWordsWithPrefix(text);
+                  _cuisines = _trie.getAllWords();
                   print(_cuisines[0]);
+                  print("hi");
                 });
+                //print("hi");
               },
             ),
             actions: <Widget>[
