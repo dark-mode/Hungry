@@ -140,7 +140,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
               ),
               onChanged: (text) {
                 setState(() {
-                  _cuisines = _trie.getAllWords();
+                  _cuisines = _trie.getAllWordsWithPrefix(text);
                   print(_cuisines[0]);
                   print("hi");
                 });

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class Trie {
   _TrieNode head;
   bool isCaseSensitive = false;
@@ -63,7 +65,7 @@ class Trie {
     if (prefix.length == 0) {
       String pre = fullPrefix.toString();
       return collect(
-          StringBuffer(pre.substring(0, pre.length - 1)), node, []);
+          StringBuffer(pre.substring(0, max(pre.length - 1, 0))), node, []);
     }
 
       for(_TrieNode child in node.children) {
