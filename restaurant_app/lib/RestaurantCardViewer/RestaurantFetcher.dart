@@ -416,9 +416,15 @@ class RestaurantFetcher {
   Future<Set<Restaurant>> fetchRestaurants() async {
     /// Gets each restaurant and places it into the Future<Set<Restaurant>>
     _restaurants = new Set<Restaurant>();
-    var url =
-        "https://api.yelp.com/v3/businesses/search?categories=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
-    print(url);
+    var url;
+    if (_selectedCuisines.isNotEmpty) {
+      url =
+          "https://api.yelp.com/v3/businesses/search?categories=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+    } else {
+      url =
+      "https://api.yelp.com/v3/businesses/search?latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+    }
+      print(url);
     var response = await http.get(
         url,
         headers: {HttpHeaders.AUTHORIZATION: "Bearer c8eYj3EGPOlR3xcHsDrcdvSI17QkI4NXtUPLuux006pN-MLKggrzpFyG42T2Y40geFAJn8shKLtYEg5GcRmlO6nAHhZ-rLpV1UqQv87T53-NNDIerPM2bOPSiz9FW3Yx"},
@@ -434,13 +440,15 @@ class RestaurantFetcher {
   }
 
   String buildCuisines() {
+    if (_selectedCuisines.isEmpty) {
+      return;
+    }
     StringBuffer cuisines = StringBuffer();
     for (String cuisine in _selectedCuisines) {
       if (cuisine != null && categories[cuisine] != null) {
         cuisines.write(categories[cuisine] + ',');
       }
     }
-
     return cuisines.toString().substring(0, cuisines.toString().length - 1);
   }
 }

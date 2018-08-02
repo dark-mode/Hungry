@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:restaurant_app/RestaurantCardViewer//RestaurantFetcher.dart';
 import 'package:restaurant_app/RestaurantCardInfo/RestaurantList.dart';
+import 'package:restaurant_app/UserPreferences/User.dart';
 
 //Holds all of the Restaurant Card Info in a page.
 class ResultsPage extends StatefulWidget {
@@ -12,15 +13,24 @@ class ResultsPage extends StatefulWidget {
   _ResultsPageState createState() => _hP;
 
   double _lat, _lon;
+  User _user;
   ResultsPage(double lat, double lon) {
     _lat = lat;
     _lon = lon;
     _hP = new _ResultsPageState(lat, lon, Set());
   }
 
-  ResultsPage.cuisines(double lat, double lon, Set<String> _selectedCuisines) {
+  ResultsPage.withUser(double lat, double lon, User user) {
     _lat = lat;
     _lon = lon;
+    _user = user;
+    _hP = new _ResultsPageState(lat, lon, Set());
+  }
+
+  ResultsPage.cuisines(double lat, double lon, Set<String> _selectedCuisines, User user) {
+    _lat = lat;
+    _lon = lon;
+    _user = user;
     _hP = new _ResultsPageState(lat, lon, _selectedCuisines);
   }
   double get lat => _lat;

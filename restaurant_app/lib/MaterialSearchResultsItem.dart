@@ -18,6 +18,7 @@ class MaterialSearchResultsItem extends Column {
                 title: new Text(cuisine,
                     textAlign: TextAlign.left,
                     style: new TextStyle(
+                      color: Colors.white,
                       fontSize: 45.0 * scaleFactor,
                     )),
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/MaterialSearchResults.dart';
 import 'package:restaurant_app/Trie.dart';
 import 'package:restaurant_app/RestaurantCardViewer/ResultsPage.dart';
+import 'package:restaurant_app/UserPreferences/User.dart';
 
 class MaterialSearch extends StatefulWidget {
   _MaterialSearchState hP;
@@ -9,7 +10,11 @@ class MaterialSearch extends StatefulWidget {
   _MaterialSearchState createState() => hP;
 
   MaterialSearch(lat, lon) {
-    hP = new _MaterialSearchState(lat, lon);
+    hP = new _MaterialSearchState(lat, lon, null);
+  }
+
+  MaterialSearch.withUser(lat, lon, user) {
+    hP = new _MaterialSearchState(lat, lon, user);
   }
 }
 
@@ -21,7 +26,8 @@ class _MaterialSearchState extends State<MaterialSearch> {
   Set<String> _selectedCuisines;
   List<String> _cuisines;
   Trie _trie;
-  _MaterialSearchState(this._lat, this._lon) {
+  User _user;
+  _MaterialSearchState(this._lat, this._lon, this._user) {
     _selectedCuisines = Set();
     _cuisines = [
       'Abruzzese',
@@ -439,7 +445,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
     return MaterialApp(
       title: "Basic List",
       home: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).accentColor,
         appBar: AppBar(
             backgroundColor: Theme
                 .of(context)
@@ -472,7 +478,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
                       ),
                     ),
                     onSubmitted: (text) {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines)),
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
                       );
                     },
                     onChanged: (text) {
@@ -491,6 +497,17 @@ class _MaterialSearchState extends State<MaterialSearch> {
               ),
             ]
         ),
+        floatingActionButton: FloatingActionButton(
+          tooltip: "SEARCH",
+          child: new Icon(Icons.arrow_forward),
+          backgroundColor: Theme.of(context).primaryColor,
+          foregroundColor: Colors.white,
+          onPressed: () {
+            Navigator.pushReplacement(context, MaterialPageRoute(
+                builder: (context) =>
+                    ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
+            );
+          }),
         body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines))
       ),
     );
