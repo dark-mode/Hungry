@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             brightness: Brightness.dark,
             primaryColor: Colors.pink,
-            accentColor: Colors.black12),
+            accentColor: Colors.grey[900]),
         home: homeP,
         routes: {
           "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),

@@ -8,20 +8,25 @@ class MaterialSearchResultsItem extends Column {
               super(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  ListTile(
-                    dense: true,
-                    onTap: () => _selectedCuisines.add(cuisine),
-                    onLongPress: () => print(cuisine),
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 0.0 * scaleFactor,
-                    horizontal: 40.0 * scaleFactor),
-                title: new Text(cuisine,
-                    textAlign: TextAlign.left,
-                    style: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 45.0 * scaleFactor,
-                    )),
-                ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent
+                    ),
+                    child: ListTile(
+                        dense: true,
+                        onTap: () => _selectedCuisines.add(cuisine),
+                        onLongPress: () => print(cuisine),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 0.0 * scaleFactor,
+                        horizontal: 40.0 * scaleFactor),
+                    title: new Text(cuisine,
+                        textAlign: TextAlign.left,
+                        style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 45.0 * scaleFactor,
+                        )),
+                    )
+                  ),
                 ],
               );
 }
