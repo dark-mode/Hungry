@@ -109,15 +109,16 @@ class _HomePageState extends State<HomePage> {
                       }),
                 ])));
   }
+
 }
 
 class MyDialogContent extends StatefulWidget {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
-  @override
-  _MyDialogContentState createState() => new _MyDialogContentState(_lat, _lon);
-
   double _lat, _lon;
   MyDialogContent(this._lat, this._lon);
+
+  @override
+  _MyDialogContentState createState() => new _MyDialogContentState(_lat, _lon);
 }
 
 class _MyDialogContentState extends State<MyDialogContent> {

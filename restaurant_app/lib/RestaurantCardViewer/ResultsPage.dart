@@ -46,6 +46,7 @@ class _ResultsPageState extends State<ResultsPage> {
   Set<String> _selectedCuisines;
   Set<Restaurant> restaurants;
   Future<Set<Restaurant>> rFuture;
+  bool notFound = false;
 
   _ResultsPageState(this._lat, this._lon, this._selectedCuisines);
 
@@ -58,6 +59,7 @@ class _ResultsPageState extends State<ResultsPage> {
   initPlatformState() async {
     RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon, _selectedCuisines);
     Set<Restaurant> rest = await rF.fetchRestaurants();
+    if (rest == null) notFound = true;
     setState(() => restaurants = rest);
   }
 
@@ -67,18 +69,94 @@ class _ResultsPageState extends State<ResultsPage> {
     double scaleFactor =
         1 / MediaQuery.of(context).devicePixelRatio; //change later
 
-    if (restaurants != null && restaurants.length != 0) {
+    if (notFound)
+      child = Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget> [
+            Container(
+              padding: EdgeInsets.all(40.0 * scaleFactor),
+              child: Text(
+                  'No Results',
+                  style: TextStyle(
+                    fontSize: 40.0 * scaleFactor
+                  )
+              ),
+            ),
+            Container(
+                child: RaisedButton(
+                        child: Text(
+                            'Go Back',
+                            style: TextStyle(
+                              fontSize: 40.0 * scaleFactor
+                            )
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                      )
+            )
+          ],
+      );
+    else if (restaurants != null && restaurants.length != 0) {
       child = RestaurantList(restaurants.toList());
     } else {
-      child = new Center(
-          child: new Text("Fetching data...",
-              style: new TextStyle(fontSize: 70.0 * scaleFactor)));
+      child = Container(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              alignment: AlignmentDirectional.center,
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10.0 * scaleFactor)
+                ),
+                width: 600.0 * scaleFactor,
+                height: 400.0 * scaleFactor,
+                alignment: AlignmentDirectional.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: new SizedBox(
+                        height: 75.0 * scaleFactor,
+                        width: 75.0 * scaleFactor,
+                        child: new CircularProgressIndicator(
+                          value: null,
+                          strokeWidth: 15.0 * scaleFactor,
+                        ),
+                      ),
+                    ),
+                    new Container(
+                      margin: EdgeInsets.only(top: 25.0 * scaleFactor),
+                      child: Center(
+                        child: Text(
+                          "loading.. wait...",
+                          style: new TextStyle(
+                              color: Colors.white,
+                              fontSize: 40.0 * scaleFactor
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
     }
     return Scaffold(
       appBar: AppBar(
         title: Text('Restaurants'),
       ),
-      body: new Container(child: child),
+        body:Center(
+          child: child,
+        ),
+//      body: new Container(child: child),
     );
   }
 }
