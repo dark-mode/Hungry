@@ -34,7 +34,11 @@ class Restaurant {
     if (json['location']['display_address'] != null) {
 //      json['location']['display_address'].forEach((adr) =>
 //      address += adr + ' ');
-        address = json['location']['display_address'][0] + ', ' + json['location']['display_address'][1];
+        StringBuffer ad = StringBuffer();
+        for (String addressLine in json['location']['display_address']) {
+          ad.write(addressLine + ', ');
+        }
+        address = ad.toString().substring(0, ad.toString().length - 2);
     }
   }
 
