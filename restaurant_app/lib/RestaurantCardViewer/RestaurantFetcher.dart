@@ -371,7 +371,7 @@ class RestaurantFetcher {
       'Soup': 'soup',
       'Southern': 'southern',
       'Spanish': 'spanish',
-      '    Arroceria / Paella': 'arroceria_paella',
+      'Arroceria / Paella': 'arroceria_paella',
       'Sri Lankan': 'srilankan',
       'Steakhouses': 'steak',
       'Supper Clubs': 'supperclubs',

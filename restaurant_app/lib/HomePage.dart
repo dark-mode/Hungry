@@ -257,12 +257,28 @@ class _MyDialogContentState extends State<MyDialogContent> {
                             color: Colors.white,
                           )),
                       onPressed: () {
+    if (_transportation == null) {
+    showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+    return new Container(
+    child: new Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: new Text('Please pick a mode of transportation and price range.',
+    textAlign: TextAlign.center,
+    style: new TextStyle(
+    color: Colors.white,
+    fontSize: 15.0
+    )
+    )
+    )
+    );
+    });
+    } else {
                         Navigator.pop(context);
                         print(_transportation);
                         print(_priceLevel);
                         User _user = User(_priceLevel.toInt(), _transportation);
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.withUser(_lat, _lon, _user)));
-                      }),
+                      }}),
                 ],
               ))
         ]);

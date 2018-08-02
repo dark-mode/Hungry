@@ -84,6 +84,7 @@ class _ResultsPageState extends State<ResultsPage> {
             ),
             Container(
                 child: RaisedButton(
+                  color: Theme.of(context).primaryColor,
                         child: Text(
                             'Go Back',
                             style: TextStyle(
