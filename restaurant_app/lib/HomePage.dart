@@ -104,15 +104,16 @@ class _HomePageState extends State<HomePage> {
                   }),
             ])));
   }
+
 }
 
 class MyDialogContent extends StatefulWidget {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
-  @override
-  _MyDialogContentState createState() => new _MyDialogContentState(_lat, _lon);
-
   double _lat, _lon;
   MyDialogContent(this._lat, this._lon);
+
+  @override
+  _MyDialogContentState createState() => new _MyDialogContentState(_lat, _lon);
 }
 
 class _MyDialogContentState extends State<MyDialogContent> {
@@ -212,7 +213,10 @@ class _MyDialogContentState extends State<MyDialogContent> {
               child: new Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
-              new FlatButton(
+              Builder(
+                    builder: (context) =>
+              Center(
+              child: FlatButton(
                   child: new Text("OPTIONS",
                       style: new TextStyle(
                         color: Colors.white,
@@ -222,7 +226,9 @@ class _MyDialogContentState extends State<MyDialogContent> {
                       context,
                       MaterialPageRoute(builder: (context) => CuisinePage(_lat, _lon)),
                     );
-                  }),
+                  })
+                ),
+              ),
               new FlatButton(
                   child: new Text("SEARCH",
                       style: new TextStyle(
