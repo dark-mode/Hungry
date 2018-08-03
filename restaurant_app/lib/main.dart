@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         title: "Restaurant",
         theme: ThemeData(
             brightness: Brightness.dark,
-            primaryColor: Colors.pink,
+            primaryColor: Colors.teal[400],
             accentColor: Colors.grey[900]),
         home: homeP,
         routes: {

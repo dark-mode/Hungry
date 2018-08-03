@@ -508,7 +508,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
                     ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
             );
           }),
-        body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines))
+        body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines, this))
       ),
     );
   }
