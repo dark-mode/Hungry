@@ -2,26 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/MaterialSearchResultsItem.dart';
 //adapted from https://hackernoon.com/flutter-iii-lists-and-items-6bfa7348ab1b
 
-class MaterialSearchResults extends StatefulWidget {
-  _MaterialSearchResultsState _mP;
-  @override
-  _MaterialSearchResultsState createState() => _mP;
-
-
-  MaterialSearchResults(_cuisines, _selectedCuisines, _state) {
-    _mP = new _MaterialSearchResultsState(_cuisines, _selectedCuisines, _state);
-  }
-}
-
-class _MaterialSearchResultsState extends State<MaterialSearchResults> {
-
+class MaterialSearchResults extends StatelessWidget {
   List<String> _cuisines;
   Set<String> _selectedCuisines;
   State _state;
 
-  _MaterialSearchResultsState(this._cuisines, this._selectedCuisines, this._state);
-
-
+  MaterialSearchResults(this._cuisines, this._selectedCuisines, this._state);
 
   /// Displays list of restaurant cards
   @override
@@ -43,7 +29,7 @@ class _MaterialSearchResultsState extends State<MaterialSearchResults> {
         print(_cuisine + " was selected");
           _checkmark = new Icon(Icons.check, color: Colors.teal[400]);
       }
-      items.add(MaterialSearchResultsItem(_cuisine, scaleFactor, context, _selectedCuisines, _checkmark, this));
+      items.add(MaterialSearchResultsItem(_cuisine, scaleFactor, context, _selectedCuisines, _checkmark, _state));
     }
     return items;
   }
