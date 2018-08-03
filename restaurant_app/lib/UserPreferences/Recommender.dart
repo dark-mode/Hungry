@@ -41,11 +41,11 @@ class Recommender {
 
   List<double> createCoord2(Restaurant rest) {
     double distanceMultiplier;
-    distanceMultiplier = ((_user.price == "Walking") ? 700.0 : 16000.0) * 10.0;
+    distanceMultiplier = ((_user.price == "Walking") ? 700.0 : 16000.0) / 10.0;
     if (rest.price == null || rest.distance == null || rest.rating == null) {
       return [10.0, 10.0, 10.0];
     }
-    return [rest.price * 2.5, rest.distance * distanceMultiplier, rest.rating];
+    return [rest.price * 2.5, rest.distance / distanceMultiplier, min(rest.reviewCount/500.0, 5.0) + rest.rating];
   }
 
   double euclideanDistance(List<double> coord1, List<double> coord2) {
