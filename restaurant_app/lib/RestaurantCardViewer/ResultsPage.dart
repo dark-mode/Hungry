@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:restaurant_app/RestaurantCardViewer//RestaurantFetcher.dart';
 import 'package:restaurant_app/RestaurantCardInfo/RestaurantList.dart';
+import 'package:restaurant_app/UserPreferences/Recommender.dart';
 import 'package:restaurant_app/UserPreferences/User.dart';
 
 //Holds all of the Restaurant Card Info in a page.
@@ -17,21 +18,21 @@ class ResultsPage extends StatefulWidget {
   ResultsPage(double lat, double lon) {
     _lat = lat;
     _lon = lon;
-    _hP = new _ResultsPageState(lat, lon, Set());
+    _hP = new _ResultsPageState(lat, lon, Set(), null);
   }
 
   ResultsPage.withUser(double lat, double lon, User user) {
     _lat = lat;
     _lon = lon;
     _user = user;
-    _hP = new _ResultsPageState(lat, lon, Set());
+    _hP = new _ResultsPageState(lat, lon, Set(), _user);
   }
 
   ResultsPage.cuisines(double lat, double lon, Set<String> _selectedCuisines, User user) {
     _lat = lat;
     _lon = lon;
     _user = user;
-    _hP = new _ResultsPageState(lat, lon, _selectedCuisines);
+    _hP = new _ResultsPageState(lat, lon, _selectedCuisines, _user);
   }
   double get lat => _lat;
   double get lon => _lon;
@@ -47,8 +48,9 @@ class _ResultsPageState extends State<ResultsPage> {
   Set<Restaurant> restaurants;
   Future<Set<Restaurant>> rFuture;
   bool notFound = false;
+  User _user;
 
-  _ResultsPageState(this._lat, this._lon, this._selectedCuisines);
+  _ResultsPageState(this._lat, this._lon, this._selectedCuisines, this._user);
 
   @override
   void initState() {
@@ -59,6 +61,8 @@ class _ResultsPageState extends State<ResultsPage> {
   initPlatformState() async {
     RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon, _selectedCuisines);
     Set<Restaurant> rest = await rF.fetchRestaurants();
+    Recommender rec = Recommender(_user, rest);
+
     if (rest == null) notFound = true;
     setState(() => restaurants = rest);
   }
