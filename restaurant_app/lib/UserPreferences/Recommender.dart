@@ -12,18 +12,26 @@ class Recommender {
   Recommender(this._user, this._restaurants);
 
   List<Restaurant> runAlgorithm() {
-    Map<Restaurant, double> scoredRestaurants = Map();
+    Map<double, Restaurant> scoredRestaurants = Map();
     double score;
     List<double> coord1 = createCoord1();
     List<double> coord2;
-    List<Restaurant> r = _restaurants.toList();
+    List<double> keys;
+    List<Restaurant> restaurants = [];
 
     for (Restaurant rest in _restaurants) {
       coord2 = createCoord2(rest);
       score = euclideanDistance(coord1, coord2);
-      scoredRestaurants[rest] = score;
+      scoredRestaurants[score] = rest;
     }
 
+    keys = scoredRestaurants.keys.toList();
+    keys.sort();
+    for (double key in keys) {
+      restaurants.add(scoredRestaurants[key]);
+    }
+
+    return restaurants;
   }
 
   List<double> createCoord1() {
@@ -34,13 +42,15 @@ class Recommender {
   List<double> createCoord2(Restaurant rest) {
     double distanceMultiplier;
     distanceMultiplier = ((_user.price == "Walking") ? 700.0 : 16000.0) * 10.0;
-
+    if (rest.price == null || rest.distance == null || rest.rating == null) {
+      return [10.0, 10.0, 10.0];
+    }
     return [rest.price * 2.5, rest.distance * distanceMultiplier, rest.rating];
   }
 
   double euclideanDistance(List<double> coord1, List<double> coord2) {
     assert(coord1.length == coord2.length);
-    double result = 0;
+    double result = 0.0;
     for (int i = 0; i < coord1.length; i++) {
       result += pow(coord1[i] - coord2[i], 2);
     }

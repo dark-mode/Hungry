@@ -419,10 +419,10 @@ class RestaurantFetcher {
     var url;
     if (_selectedCuisines.isNotEmpty) {
       url =
-          "https://api.yelp.com/v3/businesses/search?categories=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+          "https://api.yelp.com/v3/businesses/search?term=restaurant&categories=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
     } else {
       url =
-      "https://api.yelp.com/v3/businesses/search?latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+      "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
     }
       print(url);
     var response = await http.get(

@@ -45,7 +45,7 @@ class _ResultsPageState extends State<ResultsPage> {
   //String value, error;
   double _lat, _lon;
   Set<String> _selectedCuisines;
-  Set<Restaurant> restaurants;
+  List<Restaurant> restaurants;
   Future<Set<Restaurant>> rFuture;
   bool notFound = false;
   User _user;
@@ -62,9 +62,10 @@ class _ResultsPageState extends State<ResultsPage> {
     RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon, _selectedCuisines);
     Set<Restaurant> rest = await rF.fetchRestaurants();
     Recommender rec = Recommender(_user, rest);
+    List<Restaurant> r = rec.runAlgorithm();
 
     if (rest == null) notFound = true;
-    setState(() => restaurants = rest);
+    setState(() => restaurants = r);
   }
 
   @override
