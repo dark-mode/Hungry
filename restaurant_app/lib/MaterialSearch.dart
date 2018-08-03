@@ -21,6 +21,16 @@ class MaterialSearch extends StatefulWidget {
 class _MaterialSearchState extends State<MaterialSearch> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
+  FocusNode myFocusNode;
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed
+    myFocusNode.dispose();
+
+    super.dispose();
+  }
+
   double _lat, _lon;
 
   Set<String> _selectedCuisines;
@@ -436,6 +446,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
 
   @override
   void initState() {
+    myFocusNode = FocusNode();
     super.initState();
   }
 
@@ -465,6 +476,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
                 Flexible(
                   child: TextField(
                     autofocus: true,
+                    focusNode: myFocusNode,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
@@ -494,6 +506,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
               new IconButton(
                 icon: new Icon(Icons.search),
                 tooltip: 'Search',
+                onPressed: () => FocusScope.of(context).reparentIfNeeded(myFocusNode),
               ),
             ]
         ),

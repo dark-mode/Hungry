@@ -36,7 +36,7 @@ class Recommender {
 
   List<double> createCoord1() {
     //Scaled to 10
-    return [_user.price * 2.5, 0.0, 5.0];
+    return [_user.price * 2.5, 0.0, 10.0];
   }
 
   List<double> createCoord2(Restaurant rest) {
@@ -45,7 +45,7 @@ class Recommender {
     if (rest.price == null || rest.distance == null || rest.rating == null) {
       return [10.0, 10.0, 10.0];
     }
-    return [rest.price * 2.5, rest.distance / distanceMultiplier, min(rest.reviewCount/500.0, 5.0) + rest.rating];
+    return [rest.price * 2.5, rest.distance / distanceMultiplier, min(rest.reviewCount/100.0, 5.0) + rest.rating];
   }
 
   double euclideanDistance(List<double> coord1, List<double> coord2) {
