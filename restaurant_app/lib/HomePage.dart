@@ -243,7 +243,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                           User _user = User(_priceLevel.toInt(), _transportation);
                           Navigator.push(context,
                             new MyCustomRoute(
-                                builder: (context) => MaterialSearch(_lat, _lon)),
+                                builder: (context) => MaterialSearch.withUser(_lat, _lon, _user)),
                           );
 //                    Navigator.push(
 //                      context,

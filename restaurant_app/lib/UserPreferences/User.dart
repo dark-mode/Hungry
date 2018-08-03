@@ -1,7 +1,6 @@
 /// Holds user information.
 class User {
-
-  User(int price, String transportation) {
-
-  }
+  int _price;
+  String _transportation;
+  User(this._price, this._transportation);
 }
