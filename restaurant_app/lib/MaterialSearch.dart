@@ -456,7 +456,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
     return MaterialApp(
       title: "Basic List",
       home: Scaffold(
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
             backgroundColor: Theme
                 .of(context)

@@ -110,11 +110,11 @@ class _ResultsPageState extends State<ResultsPage> {
             Container(
               alignment: AlignmentDirectional.center,
               decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).backgroundColor,
               ),
               child: Container(
                 decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).backgroundColor,
                     borderRadius: BorderRadius.circular(10.0 * scaleFactor)
                 ),
                 width: 600.0 * scaleFactor,
@@ -126,8 +126,8 @@ class _ResultsPageState extends State<ResultsPage> {
                   children: <Widget>[
                     Center(
                       child: new SizedBox(
-                        height: 75.0 * scaleFactor,
-                        width: 75.0 * scaleFactor,
+                        height: 175.0 * scaleFactor,
+                        width: 175.0 * scaleFactor,
                         child: new CircularProgressIndicator(
                           value: null,
                           strokeWidth: 15.0 * scaleFactor,

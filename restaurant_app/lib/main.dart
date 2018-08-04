@@ -14,8 +14,14 @@ class MyApp extends StatelessWidget {
         title: "Restaurant",
         theme: ThemeData(
             brightness: Brightness.dark,
+            fontFamily: 'RobotoCondensed',
             primaryColor: Colors.teal[400],
-            accentColor: Colors.grey[900]),
+            primaryColorLight: Colors.teal[300],
+            primaryColorDark: Colors.teal[700],
+            backgroundColor: Colors.grey[850],
+            accentColor: Colors.tealAccent,
+            textSelectionColor: Colors.white,
+            ),
         home: homeP,
         routes: {
           "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),

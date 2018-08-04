@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/DeviceLocation.dart';
 import 'package:restaurant_app/SignIn.dart';
-import 'package:restaurant_app/CuisinePage.dart';
 import 'package:restaurant_app/MaterialSearch.dart';
 import 'package:restaurant_app/MyCustomRoute.dart';
 import 'package:restaurant_app/UserPreferences/User.dart';
 import 'package:restaurant_app/RestaurantCardViewer//ResultsPage.dart';
-
 
 class HomePage extends StatefulWidget {
   _HomePageState hP = new _HomePageState();
@@ -35,81 +33,89 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text('First Screen'),
+          title: Text(
+            'First Screen',
+            style: TextStyle(fontFamily: 'RobotoCondensed'),
+          ),
         ),
         body: Center(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: RaisedButton(
-                          child: Text(
-                            "Sign In with Google",
-                            style: new TextStyle(color: Colors.white),
-                          ),
-                          color: Theme.of(context).primaryColor,
-                          onPressed: () {
-                            _signIn.handleSignIn();
-                            if (_location.lat == null || _location.lon == null) {
-                              showDialog(
-                                context: context,
-                                child: new AlertDialog(
-                                  title: new Text("Location Needed"),
-                                  content: new Text(
-                                      "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                                  actions: [
-                                    new FlatButton(
-                                        child: new Text("Ok",
-                                            style: new TextStyle(
-                                              color: Colors.white,
-                                            )),
-                                        onPressed: () => Navigator.pop(context)),
-                                  ],
-                                ),
-                              );
-                              _location.initPlatformState();
-                            } else if (_signIn.isSignedIn) {
-                              showDialog(
-                                context: context,
-                                child: AlertDialog(
-                                  title: new Text("Sign In Successful"),
-                                  content:
-                                  new Text("You have successfully signed in!"),
-                                  actions: [
-                                    new FlatButton(
-                                        child: new Text("Ok",
-                                            style: new TextStyle(
-                                              color: Colors.white,
-                                            )),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          Navigator.pushReplacementNamed(
-                                              context, "/results");
-                                        }),
-                                  ],
-                                ),
-                              );
-                            }
-                          })),
-                  RaisedButton(
+              Container(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: RaisedButton(
                       child: Text(
-                        "GO",
-                        style: new TextStyle(color: Colors.white),
+                        "Sign In with Google",
+                        style: new TextStyle(
+                            color: Theme.of(context).textSelectionColor),
                       ),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          child: MyDialogContent(lat, lon),
-                        );
-                      }),
-                ])));
+                        _signIn.handleSignIn();
+                        if (_location.lat == null || _location.lon == null) {
+                          showDialog(
+                            context: context,
+                            child: new AlertDialog(
+                              title: new Text("Location Needed"),
+                              content: new Text(
+                                  "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                              actions: [
+                                new FlatButton(
+                                    child: new Text("Ok",
+                                        style: new TextStyle(
+                                          color: Theme
+                                              .of(context)
+                                              .textSelectionColor,
+                                        )),
+                                    onPressed: () => Navigator.pop(context)),
+                              ],
+                            ),
+                          );
+                          _location.initPlatformState();
+                        } else if (_signIn.isSignedIn) {
+                          showDialog(
+                            context: context,
+                            child: AlertDialog(
+                              title: new Text("Sign In Successful"),
+                              content:
+                                  new Text("You have successfully signed in!"),
+                              actions: [
+                                new FlatButton(
+                                    child: new Text("Ok",
+                                        style: new TextStyle(
+                                          color: Theme
+                                              .of(context)
+                                              .textSelectionColor,
+                                        )),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      Navigator.pushReplacementNamed(
+                                          context, "/results");
+                                    }),
+                              ],
+                            ),
+                          );
+                        }
+                      })),
+              RaisedButton(
+                  child: Text(
+                    "GO",
+                    style: new TextStyle(
+                        color: Theme.of(context).textSelectionColor),
+                  ),
+                  color: Theme.of(context).primaryColor,
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      child: MyDialogContent(lat, lon),
+                    );
+                  }),
+            ])));
   }
-
 }
 
 class MyDialogContent extends StatefulWidget {
@@ -127,8 +133,8 @@ class _MyDialogContentState extends State<MyDialogContent> {
   double _lat, _lon;
 
   _MyDialogContentState(this._lat, this._lon);
-  Color _walkColor = Colors.white;
-  Color _driveColor = Colors.white;
+  Color _walkColor = Colors.teal[700];
+  Color _driveColor = Colors.teal[700];
   double _priceLevel = 1.0;
   String _transportation;
   var _prices = ['\$', '\$\$', '\$\$\$', '\$\$\$\$'];
@@ -137,11 +143,11 @@ class _MyDialogContentState extends State<MyDialogContent> {
     _transportation = indicator;
     setState(() {
       if (indicator == 'Walk') {
-        _walkColor = Colors.black;
-        _driveColor = Colors.white;
+        _walkColor = Theme.of(context).primaryColorLight;
+        _driveColor = Theme.of(context).primaryColorDark;
       } else if (indicator == 'Drive') {
-        _walkColor = Colors.white;
-        _driveColor = Colors.black;
+        _walkColor = Theme.of(context).primaryColorDark;
+        _driveColor = Theme.of(context).primaryColorLight;
       }
     });
   }
@@ -154,24 +160,24 @@ class _MyDialogContentState extends State<MyDialogContent> {
   _getContent() {
     return SimpleDialog(
         title: Padding(
-          padding: EdgeInsets.fromLTRB(70.0, 0.0, 70.0, 0.0),
-          child: Text('Search Settings',
+          padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0, 0.0),
+          child: Text(
+            'SEARCH SETTINGS',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 25.0,
-            ),
+                color: Colors.white,
+                fontSize: 22.0,
+                fontFamily: 'RobotoCondensed'),
           ),
         ),
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 10.0),
-            child: Text('What is your transportation?',
+            child: Text(
+              'transportation',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 20.0,
-              ),
+                  color: Colors.white, fontSize: 15.0, fontFamily: 'Eczar'),
             ),
           ),
           new Row(
@@ -192,12 +198,10 @@ class _MyDialogContentState extends State<MyDialogContent> {
           ),
           new Padding(
             padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-            child: Text('Price Range',
+            child: Text('price',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                )),
+                    color: Colors.white, fontSize: 15.0, fontFamily: 'Eczar')),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
@@ -216,71 +220,76 @@ class _MyDialogContentState extends State<MyDialogContent> {
           ),
           new Container(
               child: new Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  new FlatButton(
-                      child: new Text("OPTIONS",
-                          style: new TextStyle(
-                            color: Colors.white,
-                          )),
-                      onPressed: () {
-                        if (_transportation == null) {
-                          showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              new FlatButton(
+                  child: new Text("OPTIONS",
+                      style: new TextStyle(
+                        color: Colors.white,
+                      )),
+                  onPressed: () {
+                    if (_transportation == null) {
+                      showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
                             return new Container(
                                 child: new Padding(
                                     padding: const EdgeInsets.all(20.0),
-                                    child: new Text('Please pick a mode of transportation and price range.',
+                                    child: new Text(
+                                        'Please pick a mode of transportation and price range.',
                                         textAlign: TextAlign.center,
                                         style: new TextStyle(
                                             color: Colors.white,
-                                            fontSize: 15.0
-                                        )
-                                    )
-                                )
-                            );
+                                            fontSize: 15.0))));
                           });
-                        } else {
-                          User _user = User(_priceLevel.toInt(), _transportation);
-                          Navigator.push(context,
-                            new MyCustomRoute(
-                                builder: (context) => MaterialSearch.withUser(_lat, _lon, _user)),
-                          );
+                    } else {
+                      User _user = User(_priceLevel.toInt(), _transportation);
+                      Navigator.push(
+                        context,
+                        new MyCustomRoute(
+                            builder: (context) =>
+                                MaterialSearch.withUser(_lat, _lon, _user)),
+                      );
 //                    Navigator.push(
 //                      context,
 //                      MaterialPageRoute(builder: (context) => CuisinePage.withUser(_lat, _lon, _user)),
 //                    );
-                        }
-                      }),
-                  new FlatButton(
-                      child: new Text("SEARCH",
-                          style: new TextStyle(
-                            color: Colors.white,
-                          )),
-                      onPressed: () {
-    if (_transportation == null) {
-    showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
-    return new Container(
-    child: new Padding(
-    padding: const EdgeInsets.all(20.0),
-    child: new Text('Please pick a mode of transportation and price range.',
-    textAlign: TextAlign.center,
-    style: new TextStyle(
-    color: Colors.white,
-    fontSize: 15.0
-    )
-    )
-    )
-    );
-    });
-    } else {
-                        Navigator.pop(context);
-                        print(_transportation);
-                        print(_priceLevel);
-                        User _user = User(_priceLevel.toInt(), _transportation);
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.withUser(_lat, _lon, _user)));
-                      }}),
-                ],
-              ))
+                    }
+                  }),
+              new FlatButton(
+                  child: new Text("SEARCH",
+                      style: new TextStyle(
+                        color: Colors.white,
+                      )),
+                  onPressed: () {
+                    if (_transportation == null) {
+                      showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return new Container(
+                                child: new Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: new Text(
+                                        'Please pick a mode of transportation and price range.',
+                                        textAlign: TextAlign.center,
+                                        style: new TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15.0))));
+                          });
+                    } else {
+                      Navigator.pop(context);
+                      print(_transportation);
+                      print(_priceLevel);
+                      User _user = User(_priceLevel.toInt(), _transportation);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ResultsPage.withUser(_lat, _lon, _user)));
+                    }
+                  }),
+            ],
+          ))
         ]);
   }
 
