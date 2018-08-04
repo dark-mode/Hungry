@@ -29,7 +29,7 @@ class RestaurantListItem extends Column {
                 left: 25.0 * scaleFactor,
                 right: 25.0 * scaleFactor),
             child: ExpansionTile(
-                backgroundColor: Theme.of(context).primaryColor,
+                backgroundColor: Theme.of(context).primaryColorDark,
                 title: //<Widget> [
                     Column(
                   mainAxisSize: MainAxisSize.min,
@@ -43,18 +43,15 @@ class RestaurantListItem extends Column {
                                   new RestaurantPage(restaurant)),
                         );
                       },
-                      title: new Text(restaurant.name,
+                      title: Text(restaurant.name,
                           textAlign: TextAlign.left,
                           style: new TextStyle(
                             color: Colors.white,
-                            fontSize: 55.0 * scaleFactor,
+                            fontSize: 65.0 * scaleFactor,
                           )),
-                      subtitle: new Text(restaurant.address,
-                          textAlign: TextAlign.left,
-                          style: new TextStyle(
-                            color: Colors.white,
-                            fontSize: 35.0 * scaleFactor,
-                          )),
+                      subtitle: Row(
+                        children: _buildSubtitle(restaurant.rating, restaurant.reviewCount, scaleFactor),
+                      ),
                     ),
                   ],
                 ),
@@ -70,6 +67,43 @@ class RestaurantListItem extends Column {
                 ]),
           )
         ]);
+}
+
+List <Widget> _buildSubtitle(double rating, int reviewCount, double scaleFactor) {
+
+  List <Widget> subtitle = List();
+
+  int i = 0;
+  for(; i < rating; i++)
+    subtitle.add(Icon(
+      Icons.star,
+      size: 50.0 * scaleFactor,
+    ));
+
+  if (rating - rating.truncate() >= 0.5) {
+    subtitle.add(Icon(
+        Icons.star_half,
+        size: 50.0 * scaleFactor,
+    ));
+    i++;
+  }
+
+  for (; i < 5; i++)
+        subtitle.add(Icon(
+          Icons.star_border,
+          size: 50.0 * scaleFactor,
+        ));
+
+  subtitle.add(
+    Text('${rating} (${reviewCount})',
+        textAlign: TextAlign.left,
+        style: new TextStyle(
+          color: Colors.white,
+          fontSize: 40.0 * scaleFactor,
+        ))
+  );
+
+  return subtitle;
 }
 
 GestureDetector buildButtonColumn(Restaurant restaurant, double scaleFactor, IconData icon, String label, BuildContext context) {
@@ -135,7 +169,7 @@ GestureDetector buildButtonColumn(Restaurant restaurant, double scaleFactor, Ico
               child: Text(
                 label,
                 style: TextStyle(
-                  fontSize: 12.0 * scaleFactor,
+                  fontSize: 30.0 * scaleFactor,
                   fontWeight: FontWeight.w400,
                   color: color,
                 ),

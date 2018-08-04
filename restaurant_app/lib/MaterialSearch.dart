@@ -453,6 +453,9 @@ class _MaterialSearchState extends State<MaterialSearch> {
   @override
   Widget build(BuildContext context) {
 
+    double scaleFactor =
+        1 / MediaQuery.of(context).devicePixelRatio;
+
     return MaterialApp(
       title: "Basic List",
       home: Scaffold(
@@ -473,20 +476,27 @@ class _MaterialSearchState extends State<MaterialSearch> {
 //                    label: new Text('Aaron Burr'),
 //                  ),
 //                ),
+              IconButton(
+                padding: EdgeInsets.only(right: 50.0 * scaleFactor),
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.pop(context),
+              ),
                 Flexible(
                   child: TextField(
                     autofocus: true,
                     focusNode: myFocusNode,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16.0,
+                      fontSize: 60.0 * scaleFactor,
+                      fontFamily: 'Eczar'
                     ),
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Search',
                       hintStyle: TextStyle(
                         color: Colors.white,
-                        fontSize: 16.0,
+                        fontSize: 60.0 * scaleFactor,
+                        fontFamily: 'Eczar'
                       ),
                     ),
                     onSubmitted: (text) {
@@ -503,7 +513,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
               ],
             ),
             actions: <Widget>[
-              new IconButton(
+              IconButton(
                 icon: new Icon(Icons.search),
                 tooltip: 'Search',
                 onPressed: () => FocusScope.of(context).reparentIfNeeded(myFocusNode),
@@ -516,7 +526,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,
           onPressed: () {
-            Navigator.pushReplacement(context, MaterialPageRoute(
+            Navigator.push(context, MaterialPageRoute(
                 builder: (context) =>
                     ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
             );

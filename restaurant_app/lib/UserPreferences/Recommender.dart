@@ -9,7 +9,9 @@ class Recommender {
 
   //Price, Distance (walking/driving), Rating
 
-  Recommender(this._user, this._restaurants);
+  Recommender(this._user, Set<Restaurant> rest) {
+    _restaurants = (rest == null) ? Set() : rest;
+  }
 
   List<Restaurant> runAlgorithm() {
     Map<double, Restaurant> scoredRestaurants = Map();

@@ -157,7 +157,13 @@ class _ResultsPageState extends State<ResultsPage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text('Restaurants'),
+        title: Text(
+            'Your Top Picks',
+            style: TextStyle(
+              fontSize: 75.0 * scaleFactor,
+              fontFamily: 'Eczar'
+            )
+        ),
       ),
         body:Center(
           child: child,

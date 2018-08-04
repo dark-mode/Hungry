@@ -261,7 +261,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                     }
                   }),
               new FlatButton(
-                  child: new Text("SEARCH",
+                  child: Text("SEARCH",
                       style: new TextStyle(
                         color: Colors.white,
                       )),
@@ -285,7 +285,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                       print(_transportation);
                       print(_priceLevel);
                       User _user = User(_priceLevel.toInt(), _transportation);
-                      Navigator.pushReplacement(
+                      Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
