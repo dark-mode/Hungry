@@ -30,7 +30,11 @@ class _HomePageState extends State<HomePage> {
     _location.initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
-    _signIn.googleSignIn.signInSilently();
+    try {
+      _signIn.googleSignIn.signInSilently();
+    } catch (e) {
+      print('Sign In Error');
+    }
   }
 
   @override
