@@ -162,26 +162,29 @@ class _MyDialogContentState extends State<MyDialogContent> {
   }
 
   _getContent() {
+    double scaleFactor =
+        1 / MediaQuery.of(context).devicePixelRatio; //change later
+
     return SimpleDialog(
         title: Padding(
-          padding: EdgeInsets.fromLTRB(40.0, 0.0, 40.0, 0.0),
+          padding: EdgeInsets.fromLTRB(40.0 * scaleFactor, 0.0, 40.0 * scaleFactor, 0.0),
           child: Text(
             'SEARCH SETTINGS',
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.white,
-                fontSize: 22.0,
+                fontSize: 80.0 * scaleFactor,
                 fontFamily: 'RobotoCondensed'),
           ),
         ),
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 10.0),
+            padding: EdgeInsets.fromLTRB(40.0 * scaleFactor, 20.0 * scaleFactor, 40.0 * scaleFactor, 10.0 * scaleFactor),
             child: Text(
               'transportation',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.white, fontSize: 15.0, fontFamily: 'Eczar'),
+                  color: Colors.white, fontSize: 55.0 * scaleFactor, fontFamily: 'Eczar'),
             ),
           ),
           new Row(
@@ -201,14 +204,14 @@ class _MyDialogContentState extends State<MyDialogContent> {
             ],
           ),
           new Padding(
-            padding: EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+            padding: EdgeInsets.fromLTRB(0.0 * scaleFactor, 20.0 * scaleFactor, 0.0, 10.0 * scaleFactor),
             child: Text('price',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Colors.white, fontSize: 15.0, fontFamily: 'Eczar')),
+                    color: Colors.white, fontSize: 55.0 * scaleFactor, fontFamily: 'Eczar')),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(30.0, 0.0, 30.0, 0.0),
+            padding: EdgeInsets.fromLTRB(30.0 * scaleFactor, 0.0, 30.0 * scaleFactor, 0.0),
             child: new Slider(
               value: _priceLevel,
               min: 1.0,
@@ -238,13 +241,13 @@ class _MyDialogContentState extends State<MyDialogContent> {
                           builder: (BuildContext context) {
                             return new Container(
                                 child: new Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0 * scaleFactor),
                                     child: new Text(
                                         'Please pick a mode of transportation and price range.',
                                         textAlign: TextAlign.center,
                                         style: new TextStyle(
                                             color: Colors.white,
-                                            fontSize: 15.0))));
+                                            fontSize: 15.0 * scaleFactor))));
                           });
                     } else {
                       User _user = User(_priceLevel.toInt(), _transportation);
@@ -272,13 +275,13 @@ class _MyDialogContentState extends State<MyDialogContent> {
                           builder: (BuildContext context) {
                             return new Container(
                                 child: new Padding(
-                                    padding: const EdgeInsets.all(20.0),
+                                    padding: EdgeInsets.all(20.0 * scaleFactor),
                                     child: new Text(
                                         'Please pick a mode of transportation and price range.',
                                         textAlign: TextAlign.center,
                                         style: new TextStyle(
                                             color: Colors.white,
-                                            fontSize: 15.0))));
+                                            fontSize: 15.0 * scaleFactor))));
                           });
                     } else {
                       Navigator.pop(context);
