@@ -138,10 +138,10 @@ class _ResultsPageState extends State<ResultsPage> {
                       margin: EdgeInsets.only(top: 25.0 * scaleFactor),
                       child: Center(
                         child: Text(
-                          "loading.. wait...",
+                          "loading...",
                           style: new TextStyle(
                               color: Colors.white,
-                              fontSize: 40.0 * scaleFactor
+                              fontSize: 50.0 * scaleFactor
                           ),
                         ),
                       ),

@@ -190,13 +190,13 @@ class _MyDialogContentState extends State<MyDialogContent> {
                   child: new IconButton(
                       color: _walkColor,
                       icon: new Icon(Icons.directions_walk),
-                      tooltip: 'Walking',
+                      tooltip: 'walking',
                       onPressed: () => _toggleColor('Walk'))),
               new Expanded(
                   child: new IconButton(
                       color: _driveColor,
                       icon: new Icon(Icons.directions_car),
-                      tooltip: 'Driving',
+                      tooltip: 'driving',
                       onPressed: () => _toggleColor('Drive')))
             ],
           ),
