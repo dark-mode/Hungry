@@ -21,12 +21,12 @@ class MaterialSearch extends StatefulWidget {
 class _MaterialSearchState extends State<MaterialSearch> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
-  FocusNode myFocusNode;
+  FocusNode _myFocusNode;
 
   @override
   void dispose() {
     // Clean up the focus node when the Form is disposed
-    myFocusNode.dispose();
+    _myFocusNode.dispose();
 
     super.dispose();
   }
@@ -38,6 +38,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
   Trie _trie;
   User _user;
   _MaterialSearchState(this._lat, this._lon, this._user) {
+    _myFocusNode = FocusNode();
     _selectedCuisines = Set();
     _cuisines = [
       'Abruzzese',
@@ -446,7 +447,6 @@ class _MaterialSearchState extends State<MaterialSearch> {
 
   @override
   void initState() {
-    myFocusNode = FocusNode();
     super.initState();
   }
 
@@ -484,7 +484,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
                 Flexible(
                   child: TextField(
                     autofocus: true,
-                    focusNode: myFocusNode,
+                    focusNode: _myFocusNode,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 60.0 * scaleFactor,
@@ -516,7 +516,11 @@ class _MaterialSearchState extends State<MaterialSearch> {
               IconButton(
                 icon: new Icon(Icons.search),
                 tooltip: 'Search',
-                onPressed: () => FocusScope.of(context).reparentIfNeeded(myFocusNode),
+                onPressed: () {
+                  if (MediaQuery.of(context).viewInsets.bottom == 0) {
+                    FocusScope.of(context).reparentIfNeeded(_myFocusNode);
+                  }
+                },
               ),
             ]
         ),
