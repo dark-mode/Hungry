@@ -37,9 +37,11 @@ class _MaterialSearchState extends State<MaterialSearch> {
   List<String> _cuisines;
   Trie _trie;
   User _user;
+  Icon _rightIcon;
   _MaterialSearchState(this._lat, this._lon, this._user) {
     _myFocusNode = FocusNode();
     _selectedCuisines = Set();
+    _rightIcon = new Icon(Icons.search);
     _cuisines = [
       'Abruzzese',
       'Acai Bowls',
@@ -449,12 +451,25 @@ class _MaterialSearchState extends State<MaterialSearch> {
   void initState() {
     super.initState();
   }
+  TextEditingController _controller = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
 
     double scaleFactor =
         1 / MediaQuery.of(context).devicePixelRatio;
+
+    Icon _rightIcon;
+
+
+
+    if (_cuisines.length < 396) { //! oiriginal length!!!
+      _rightIcon = new Icon(Icons.clear);
+      print("change " + _cuisines.length.toString());
+    } else {
+      _rightIcon = new Icon(Icons.search);
+    }
+
 
     return MaterialApp(
       title: "Basic List",
@@ -483,6 +498,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
               ),
                 Flexible(
                   child: TextField(
+                    controller: _controller,
                     autofocus: true,
                     focusNode: _myFocusNode,
                     style: TextStyle(
@@ -514,11 +530,16 @@ class _MaterialSearchState extends State<MaterialSearch> {
             ),
             actions: <Widget>[
               IconButton(
-                icon: new Icon(Icons.search),
-                tooltip: 'Search',
+                icon: _rightIcon,
                 onPressed: () {
-                  if (MediaQuery.of(context).viewInsets.bottom == 0) {
+                  if (_rightIcon.icon.codePoint != 57676 && MediaQuery.of(context).viewInsets.bottom == 0) {
+                    //doesnt come back up :(
                     FocusScope.of(context).reparentIfNeeded(_myFocusNode);
+                  } else {
+                    _controller.clear();
+                    setState(() {
+                      _cuisines = _trie.getAllWords();
+                    });
                   }
                 },
               ),
