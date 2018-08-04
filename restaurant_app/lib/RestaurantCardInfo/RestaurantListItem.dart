@@ -10,7 +10,7 @@ class RestaurantListItem extends Column {
       Restaurant restaurant, double scaleFactor, BuildContext context)
       : super(children: <Widget>[
           Container(
-            width: MediaQuery.of(context).size.width - 23.0,
+            width: MediaQuery.of(context).size.width - (53.0 * scaleFactor),
             height: (MediaQuery.of(context).size.height / 4),
             decoration: new BoxDecoration(
               //borderRadius: new BorderRadius.circular(20.0),
@@ -62,9 +62,9 @@ class RestaurantListItem extends Column {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      buildButtonColumn(Icons.call, 'CALL', context),
-                      buildButtonColumn(Icons.near_me, 'ROUTE', context),
-                      buildButtonColumn(Icons.language, 'YELP', context),
+                      buildButtonColumn(restaurant, scaleFactor, Icons.call, 'CALL', context),
+                      buildButtonColumn(restaurant, scaleFactor, Icons.near_me, 'ROUTE', context),
+                      buildButtonColumn(restaurant, scaleFactor, Icons.language, 'YELP', context),
                     ],
                   ),
                 ]),
@@ -72,8 +72,7 @@ class RestaurantListItem extends Column {
         ]);
 }
 
-GestureDetector buildButtonColumn(
-    IconData icon, String label, BuildContext context) {
+GestureDetector buildButtonColumn(Restaurant restaurant, double scaleFactor, IconData icon, String label, BuildContext context) {
   Color color = Colors.white;
 
   return GestureDetector(
@@ -128,15 +127,15 @@ GestureDetector buildButtonColumn(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: const EdgeInsets.only(bottom: 10.0),
+            margin: EdgeInsets.only(bottom: 10.0 * scaleFactor),
             child: Icon(icon, color: color),
           ),
           Container(
-              padding: EdgeInsets.only(bottom: 20.0),
+              padding: EdgeInsets.only(bottom: 20.0 * scaleFactor),
               child: Text(
                 label,
                 style: TextStyle(
-                  fontSize: 12.0,
+                  fontSize: 12.0 * scaleFactor,
                   fontWeight: FontWeight.w400,
                   color: color,
                 ),
