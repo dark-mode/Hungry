@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:restaurant_app/RestaurantCardViewer//RestaurantFetcher.dart';
+import 'package:restaurant_app/RestaurantCardViewer//ReviewFetcher.dart';
 import 'package:restaurant_app/RestaurantCardInfo/RestaurantList.dart';
 import 'package:restaurant_app/UserPreferences/Recommender.dart';
 import 'package:restaurant_app/UserPreferences/User.dart';
@@ -61,6 +62,8 @@ class _ResultsPageState extends State<ResultsPage> {
   initPlatformState() async {
     RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon, _selectedCuisines);
     Set<Restaurant> rest = await rF.fetchRestaurants();
+    ReviewFetcher revF = ReviewFetcher();
+    await revF.fetchReviews(rest);
     Recommender rec = Recommender(_user, rest);
     List<Restaurant> r = rec.runAlgorithm();
 
@@ -126,19 +129,19 @@ class _ResultsPageState extends State<ResultsPage> {
                   children: <Widget>[
                     Center(
                       child: new SizedBox(
-                        height: 175.0 * scaleFactor,
-                        width: 175.0 * scaleFactor,
+                        height: 125.0 * scaleFactor,
+                        width: 125.0 * scaleFactor,
                         child: new CircularProgressIndicator(
                           value: null,
                           strokeWidth: 15.0 * scaleFactor,
                         ),
                       ),
                     ),
-                    new Container(
+                    Container(
                       margin: EdgeInsets.only(top: 25.0 * scaleFactor),
                       child: Center(
                         child: Text(
-                          "loading...",
+                          "Loading...",
                           style: new TextStyle(
                               color: Colors.white,
                               fontSize: 50.0 * scaleFactor
