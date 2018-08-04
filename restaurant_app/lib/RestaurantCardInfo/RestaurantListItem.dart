@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/MyCustomRoute.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
-import 'package:restaurant_app/RestaurantCardInfo/RestaurantPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Creates one restaurant card
@@ -35,14 +33,14 @@ class RestaurantListItem extends Column {
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          new MyCustomRoute(
-                              builder: (BuildContext context) =>
-                                  new RestaurantPage(restaurant)),
-                        );
-                      },
+//                      onTap: () {
+//                        Navigator.push(
+//                          context,
+//                          new MyCustomRoute(
+//                              builder: (BuildContext context) =>
+//                                  new RestaurantPage(restaurant)),
+//                        );
+//                      },
                       title: Text(restaurant.name,
                           textAlign: TextAlign.left,
                           style: new TextStyle(
@@ -50,7 +48,7 @@ class RestaurantListItem extends Column {
                             fontSize: 65.0 * scaleFactor,
                           )),
                       subtitle: Row(
-                        children: _buildSubtitle(restaurant.rating, restaurant.reviewCount, scaleFactor),
+                        children: _buildSubtitle(restaurant, scaleFactor),
                       ),
                     ),
                   ],
@@ -64,23 +62,36 @@ class RestaurantListItem extends Column {
                       buildButtonColumn(restaurant, scaleFactor, Icons.language, 'YELP', context),
                     ],
                   ),
+                  Column(
+                    children: [
+                      buildReviews(restaurant)
+                    ]
+                  )
                 ]),
           )
         ]);
 }
 
-List <Widget> _buildSubtitle(double rating, int reviewCount, double scaleFactor) {
+Text buildReviews(Restaurant rest) {
+  Text textField = Text('');
+  for (Map m in rest.reviews) {
+    textField = Text(m['text'].toString());
+  }
+  return textField;
+}
+
+List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
 
   List <Widget> subtitle = List();
 
   int i = 0;
-  for(; i < rating; i++)
+  for(; i < restaurant.rating; i++)
     subtitle.add(Icon(
       Icons.star,
       size: 50.0 * scaleFactor,
     ));
 
-  if (rating - rating.truncate() >= 0.5) {
+  if (restaurant.rating - restaurant.rating.truncate() >= 0.5) {
     subtitle.add(Icon(
         Icons.star_half,
         size: 50.0 * scaleFactor,
@@ -95,8 +106,8 @@ List <Widget> _buildSubtitle(double rating, int reviewCount, double scaleFactor)
         ));
 
   subtitle.add(
-    Text('${rating} (${reviewCount})',
-        textAlign: TextAlign.left,
+      Text('       ${restaurant.rating} (${restaurant.reviewCount})       ${(restaurant.distance * 00.0062137).round()/10.0} mi. away',
+        textAlign: TextAlign.center,
         style: new TextStyle(
           color: Colors.white,
           fontSize: 40.0 * scaleFactor,

@@ -1,6 +1,7 @@
 /// Holds each restaurant and stores its information.
 class Restaurant {
   double distance, rating;
+  List<Map> reviews;
   String id,
       name,
       imageUrl,
@@ -15,6 +16,7 @@ class Restaurant {
   List<dynamic> transactions;
 
   Restaurant.fromJson(Map<String, dynamic> json) {
+    this.reviews = List();
     this.name = json['name'];
     this.distance = json['distance'];
     this.id = json['id'];
