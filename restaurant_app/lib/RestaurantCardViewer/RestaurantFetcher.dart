@@ -419,10 +419,10 @@ class RestaurantFetcher {
     var url;
     if (_selectedCuisines.isNotEmpty) {
       url =
-          "https://api.yelp.com/v3/businesses/search?term=restaurant&categories=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+          "https://api.yelp.com/v3/businesses/search?term=restaurant&categories=${_selectedCuisinesString}&latitude=${_lat}&longitude=${_lon}";
     } else {
       url =
-      "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}&sort_by=distance";
+      "https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${_lat}&longitude=${_lon}";
     }
       print(url);
     var response = await http.get(
@@ -443,7 +443,7 @@ class RestaurantFetcher {
 
   String buildCuisines() {
     if (_selectedCuisines.isEmpty) {
-      return;
+      return '';
     }
     StringBuffer cuisines = StringBuffer();
     for (String cuisine in _selectedCuisines) {

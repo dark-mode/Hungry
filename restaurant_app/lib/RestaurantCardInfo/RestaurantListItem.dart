@@ -85,7 +85,7 @@ List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
   List <Widget> subtitle = List();
 
   int i = 0;
-  for(; i < restaurant.rating; i++)
+  for(; i < restaurant.rating - 1; i++)
     subtitle.add(Icon(
       Icons.star,
       size: 50.0 * scaleFactor,
