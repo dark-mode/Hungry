@@ -61,14 +61,18 @@ class _ResultsPageState extends State<ResultsPage> {
 
   initPlatformState() async {
     RestaurantFetcher rF = new RestaurantFetcher(_lat, _lon, _selectedCuisines);
-    Set<Restaurant> rest = await rF.fetchRestaurants();
-    ReviewFetcher revF = ReviewFetcher();
-    await revF.fetchReviews(rest);
-    Recommender rec = Recommender(_user, rest);
+    Set<Restaurant> rests = await rF.fetchRestaurants();
+    Recommender rec = Recommender(_user, rests);
     List<Restaurant> r = rec.runAlgorithm();
-
-    if (rest == null) notFound = true;
     setState(() => restaurants = r);
+
+    ReviewFetcher revF = ReviewFetcher();
+    for (Restaurant rest in restaurants) {
+      await revF.fetchReview(rest);
+      setState(() => restaurants = r);
+    }
+
+    if (rests == null) notFound = true;
   }
 
   @override
