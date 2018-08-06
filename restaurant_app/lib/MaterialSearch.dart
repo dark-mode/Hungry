@@ -38,7 +38,9 @@ class _MaterialSearchState extends State<MaterialSearch> {
   Trie _trie;
   User _user;
   Icon _rightIcon;
+  TextEditingController _controller;
   _MaterialSearchState(this._lat, this._lon, this._user) {
+    _controller = new TextEditingController();
     _myFocusNode = FocusNode();
     _selectedCuisines = Set();
     _rightIcon = new Icon(Icons.search);
@@ -451,7 +453,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
   void initState() {
     super.initState();
   }
-  TextEditingController _controller = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -461,14 +463,14 @@ class _MaterialSearchState extends State<MaterialSearch> {
 
     Icon _rightIcon;
 
-
-
     if (_cuisines.length < 396) { //! oiriginal length!!!
       _rightIcon = new Icon(Icons.clear);
       print("change " + _cuisines.length.toString());
     } else {
       _rightIcon = new Icon(Icons.search);
     }
+
+
 
 
     return MaterialApp(
@@ -528,22 +530,26 @@ class _MaterialSearchState extends State<MaterialSearch> {
                 )
               ],
             ),
-            actions: <Widget>[
-              IconButton(
-                icon: _rightIcon,
-                onPressed: () {
-                  if (_rightIcon.icon.codePoint != 57676 && MediaQuery.of(context).viewInsets.bottom == 0) {
-                    //doesnt come back up :(
-                    FocusScope.of(context).reparentIfNeeded(_myFocusNode);
-                  } else {
-                    _controller.clear();
+            actions: _controller.text.length == 0 ? [
+              new IconButton(
+                  icon: new Icon(Icons.search),
+                  onPressed: () {
                     setState(() {
-                      _cuisines = _trie.getAllWords();
+                      FocusScope.of(context).reparentIfNeeded(_myFocusNode);
                     });
                   }
-                },
-              ),
-            ]
+              )
+            ] : [
+            new IconButton(
+            icon: new Icon(Icons.clear),
+          onPressed: () {
+            setState(() {
+              _controller.clear();
+              _cuisines = _trie.getAllWords();
+            });
+          }
+      ),
+      ],
         ),
         floatingActionButton: FloatingActionButton(
           tooltip: "SEARCH",
