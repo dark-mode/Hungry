@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     HomePage homeP = new HomePage();
     return new MaterialApp(
-        title: "Restaurant",
+        title: "Hungry",
         theme: ThemeData(
           brightness: Brightness.dark,
           fontFamily: 'RobotoCondensed',
