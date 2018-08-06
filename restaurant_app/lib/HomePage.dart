@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
           title: Text(
-            'First Screen',
+            'Hungry',
             style: TextStyle(fontFamily: 'RobotoCondensed'),
           ),
         ),

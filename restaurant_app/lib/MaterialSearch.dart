@@ -498,45 +498,47 @@ class _MaterialSearchState extends State<MaterialSearch> {
                   icon: Icon(Icons.arrow_back),
                   onPressed: () => Navigator.pop(context),
               ),
-                Flexible(
-                  child: TextField(
-                    controller: _controller,
-                    autofocus: true,
-                    focusNode: _myFocusNode,
-                    style: TextStyle(
+              Flexible(
+                child: TextField(
+                  controller: _controller,
+                  autofocus: true,
+                  focusNode: _myFocusNode,
+                  style: TextStyle(
                       color: Colors.white,
                       fontSize: 60.0 * scaleFactor,
                       fontFamily: 'Eczar'
-                    ),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Search',
-                      hintStyle: TextStyle(
+                  ),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Search on Hungry',
+                    hintStyle: TextStyle(
                         color: Colors.white,
                         fontSize: 60.0 * scaleFactor,
                         fontFamily: 'Eczar'
-                      ),
                     ),
-                    onSubmitted: (text) {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
-                      );
-                    },
-                    onChanged: (text) {
-                      setState(() {
-                        _cuisines = _trie.getAllWordsWithPrefix(text);
-                      });
-                    },
                   ),
-                )
+                  onSubmitted: (text) {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
+                    );
+                  },
+                  onChanged: (text) {
+                    setState(() {
+                      _cuisines = _trie.getAllWordsWithPrefix(text);
+                    });
+                  },
+                ),
+              )
               ],
             ),
             actions: _controller.text.length == 0 ? [
               new IconButton(
                   icon: new Icon(Icons.search),
                   onPressed: () {
-                    setState(() {
-                      FocusScope.of(context).reparentIfNeeded(_myFocusNode);
-                    });
+                    if (MediaQuery.of(context).viewInsets.bottom == 0) {//keyboard is not already up
+                      setState(() {
+                        FocusScope.of(context).reparentIfNeeded(_myFocusNode);
+                      });
+                    }
                   }
               )
             ] : [

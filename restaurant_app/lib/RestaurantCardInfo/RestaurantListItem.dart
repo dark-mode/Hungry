@@ -85,11 +85,12 @@ List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
   List <Widget> subtitle = List();
 
   int i = 0;
-  for(; i < restaurant.rating - 1; i++)
+  for(; i < restaurant.rating - 0.5; i++) {
     subtitle.add(Icon(
       Icons.star,
       size: 50.0 * scaleFactor,
     ));
+  }
 
   if (restaurant.rating - restaurant.rating.truncate() >= 0.5) {
     subtitle.add(Icon(
@@ -99,11 +100,12 @@ List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
     i++;
   }
 
-  for (; i < 5; i++)
-        subtitle.add(Icon(
-          Icons.star_border,
-          size: 50.0 * scaleFactor,
-        ));
+  for (; i < 5; i++) {
+    subtitle.add(Icon(
+      Icons.star_border,
+      size: 50.0 * scaleFactor,
+    ));
+  }
 
   subtitle.add(
       Text('       ${restaurant.rating} (${restaurant.reviewCount})       ${(restaurant.distance * 00.0062137).round()/10.0} mi. away',
