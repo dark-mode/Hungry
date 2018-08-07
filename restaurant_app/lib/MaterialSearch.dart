@@ -551,17 +551,40 @@ class _MaterialSearchState extends State<MaterialSearch> {
       ),
       ],
         ),
-        floatingActionButton: FloatingActionButton(
-          tooltip: "SEARCH",
-          child: new Icon(Icons.arrow_forward),
-          backgroundColor: Theme.of(context).primaryColor,
-          foregroundColor: Colors.white,
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-                builder: (context) =>
-                    ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
-            );
-          }),
+        floatingActionButton: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(bottom: 20.0 * scaleFactor, right: 22.0 * scaleFactor),
+              child: FloatingActionButton(
+                backgroundColor: Colors.red,
+                mini: true,
+                heroTag: null,
+                child: Icon(Icons.clear,color: Colors.white,),
+                onPressed: (){
+                  setState(() {
+                    _controller.clear();
+                    _cuisines = _trie.getAllWords();
+                    _selectedCuisines = Set<String>();
+                  });
+                },
+              ),
+            ),
+            FloatingActionButton(
+                heroTag: null,
+                tooltip: "Search",
+                child: new Icon(Icons.arrow_forward),
+                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Colors.white,
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context) =>
+                          ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
+                  );
+                }),
+          ],
+        ),
         body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines, this))
       ),
     );
