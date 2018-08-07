@@ -558,6 +558,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
             Container(
               padding: EdgeInsets.only(bottom: 20.0 * scaleFactor, right: 22.0 * scaleFactor),
               child: FloatingActionButton(
+                tooltip: "Clear All",
                 backgroundColor: Colors.red,
                 mini: true,
                 heroTag: null,
