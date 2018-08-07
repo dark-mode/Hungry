@@ -103,7 +103,7 @@ class RestaurantFetcher {
       'African': 'african',
       'Senegalese': 'senegalese',
       'South African': 'southafrican',
-      'American': 'newamerican',
+      'American (New)': 'newamerican',
       'Traditional American': 'tradamerican',
       'Andalusian': 'andalusian',
       'Arabian': 'arabian',

@@ -3,6 +3,7 @@ import 'package:restaurant_app/HomePage.dart';
 import 'package:restaurant_app/RestaurantCardViewer/ResultsPage.dart';
 import 'package:restaurant_app/CuisinePage.dart';
 import 'package:restaurant_app/MaterialSearch.dart';
+import 'package:restaurant_app/SplashScreen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -22,8 +23,9 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.tealAccent,
           textSelectionColor: Colors.white,
         ),
-        home: homeP,
+        home: new SplashScreen(),
         routes: {
+          "/home": (_) => homeP,
           "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
           "/cuisines": (_) => new CuisinePage(homeP.hP.lat, homeP.hP.lon),
           "/materialsearch": (_) => new MaterialSearch(homeP.hP.lat, homeP.hP.lon),

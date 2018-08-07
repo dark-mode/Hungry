@@ -5,8 +5,9 @@ import 'package:restaurant_app/RestaurantCardInfo/RestaurantListItem.dart';
 
 class RestaurantList extends StatelessWidget {
   final List<Restaurant> _restaurants;
+  Set<String> _selectedCuisines;
 
-  RestaurantList(this._restaurants);
+  RestaurantList(this._restaurants, this._selectedCuisines);
 
   /// Displays list of restaurant cards
   @override
@@ -22,7 +23,7 @@ class RestaurantList extends StatelessWidget {
       double scaleFactor, BuildContext context) {
     return _restaurants
         .map((restaurant) =>
-            new RestaurantListItem(restaurant, scaleFactor, context))
+            new RestaurantListItem(restaurant, scaleFactor, _selectedCuisines, context))
         .toList();
   }
 }

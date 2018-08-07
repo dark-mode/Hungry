@@ -109,7 +109,7 @@ class _ResultsPageState extends State<ResultsPage> {
           ],
       );
     else if (restaurants != null && restaurants.length != 0) {
-      child = RestaurantList(restaurants.toList());
+      child = RestaurantList(restaurants.toList(), _selectedCuisines);
     } else {
       child = Container(
         child: Stack(

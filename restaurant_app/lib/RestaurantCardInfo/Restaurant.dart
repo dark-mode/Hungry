@@ -2,13 +2,7 @@
 class Restaurant {
   double distance, rating;
   List<Map> reviews;
-  String id,
-      name,
-      imageUrl,
-      yelpUrl,
-      address,
-      phone,
-      displayPhone;
+  String id, name, imageUrl, yelpUrl, address, phone, displayPhone;
   int reviewCount, price;
   bool isOpen;
   Map<String, double> preferences;
@@ -36,15 +30,14 @@ class Restaurant {
     if (json['location']['display_address'] != null) {
 //      json['location']['display_address'].forEach((adr) =>
 //      address += adr + ' ');
-        StringBuffer ad = StringBuffer();
-        for (String addressLine in json['location']['display_address']) {
-          ad.write(addressLine + ', ');
-        }
-        address = ad.toString().substring(0, ad.toString().length - 2);
+      StringBuffer ad = StringBuffer();
+      for (String addressLine in json['location']['display_address']) {
+        ad.write(addressLine + ', ');
+      }
+      address = ad.toString().substring(0, ad.toString().length - 2);
     }
   }
 
   setPlaceDetails(
-      List<dynamic> openingHours, String phoneNumber, String website) {
-  }
+      List<dynamic> openingHours, String phoneNumber, String website) {}
 }

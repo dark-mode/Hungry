@@ -53,7 +53,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
       'Algarve',
       'Alsatian',
       'Altoatesine',
-      'American',
+      'American (New)',
       'Andalusian',
       'Apulian',
       'Arab Pizza',

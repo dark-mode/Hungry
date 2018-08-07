@@ -4,8 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// Creates one restaurant card
 class RestaurantListItem extends Column {
+  Set<String> _selectedCuisines;
   RestaurantListItem(
-      Restaurant restaurant, double scaleFactor, BuildContext context)
+      Restaurant restaurant, double scaleFactor, this._selectedCuisines, BuildContext context)
       : super(children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width - (53.0 * scaleFactor),
@@ -47,26 +48,40 @@ class RestaurantListItem extends Column {
                             color: Colors.white,
                             fontSize: 65.0 * scaleFactor,
                           )),
-                      subtitle: Row(
-                        children: _buildSubtitle(restaurant, scaleFactor),
-                      ),
+                      subtitle: Column(children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 12.0 * scaleFactor),
+                          child: Row(
+                            children: _buildSubtitle(restaurant, scaleFactor),
+                          ),
+                        ),
+                        Row(
+                          children: _buildTaggedChips(restaurant, _selectedCuisines, scaleFactor),
+                        )
+                      ]),
                     ),
                   ],
                 ),
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      buildButtonColumn(restaurant, scaleFactor, Icons.call, 'CALL', context),
-                      buildButtonColumn(restaurant, scaleFactor, Icons.near_me, 'ROUTE', context),
-                      buildButtonColumn(restaurant, scaleFactor, Icons.language, 'YELP', context),
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                          padding: EdgeInsets.only(left: 60.0 * scaleFactor, right: 60.0 * scaleFactor, bottom: 25.0 * scaleFactor),
+                          child: Divider(height: 20 * scaleFactor, color: Colors.white,)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          buildButtonColumn(
+                              restaurant, scaleFactor, Icons.call, 'CALL', context),
+                          buildButtonColumn(restaurant, scaleFactor, Icons.near_me,
+                              'ROUTE', context),
+                          buildButtonColumn(restaurant, scaleFactor, Icons.language,
+                              'YELP', context),
+                        ],
+                      )
                     ],
                   ),
-                  Column(
-                    children: [
-                      buildReviews(restaurant)
-                    ]
-                  )
+                  Column(children: [buildReviews(restaurant)])
                 ]),
           )
         ]);
@@ -80,12 +95,28 @@ Text buildReviews(Restaurant rest) {
   return textField;
 }
 
-List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
+List<Widget> _buildTaggedChips(Restaurant restaurant, Set<String> _selectedCuisines, double scaleFactor) {
+  //print(_selectedCuisines.length);
+  List<Chip> chips = List();
+  if (_selectedCuisines.length > 0) {
+    for (dynamic c in restaurant.categories) {
+      String category = c['title'];
+      if (_selectedCuisines.contains(category)) {
+        //print("added chip " + category + " for restaurant " + restaurant.name);
+        chips.add(new Chip(
+          label: new Text(category),
+        ));
+      }
+    }
+  }
+  return chips;
+}
 
-  List <Widget> subtitle = List();
+List<Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
+  List<Widget> subtitle = List();
 
   int i = 0;
-  for(; i < restaurant.rating - 0.5; i++) {
+  for (; i < restaurant.rating - 0.5; i++) {
     subtitle.add(Icon(
       Icons.star,
       size: 50.0 * scaleFactor,
@@ -94,8 +125,8 @@ List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
 
   if (restaurant.rating - restaurant.rating.truncate() >= 0.5) {
     subtitle.add(Icon(
-        Icons.star_half,
-        size: 50.0 * scaleFactor,
+      Icons.star_half,
+      size: 50.0 * scaleFactor,
     ));
     i++;
   }
@@ -107,19 +138,19 @@ List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
     ));
   }
 
-  subtitle.add(
-      Text('       ${restaurant.rating} (${restaurant.reviewCount})       ${(restaurant.distance * 00.0062137).round()/10.0} mi. away',
-        textAlign: TextAlign.center,
-        style: new TextStyle(
-          color: Colors.white,
-          fontSize: 40.0 * scaleFactor,
-        ))
-  );
+  subtitle.add(Text(
+      '       ${restaurant.rating} (${restaurant.reviewCount})       ${(restaurant.distance * 00.0062137).round()/10.0} mi. away',
+      textAlign: TextAlign.center,
+      style: new TextStyle(
+        color: Colors.white,
+        fontSize: 40.0 * scaleFactor,
+      )));
 
   return subtitle;
 }
 
-GestureDetector buildButtonColumn(Restaurant restaurant, double scaleFactor, IconData icon, String label, BuildContext context) {
+GestureDetector buildButtonColumn(Restaurant restaurant, double scaleFactor,
+    IconData icon, String label, BuildContext context) {
   Color color = Colors.white;
 
   return GestureDetector(
