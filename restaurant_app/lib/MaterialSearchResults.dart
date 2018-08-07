@@ -12,7 +12,7 @@ class MaterialSearchResults extends StatelessWidget {
   /// Displays list of restaurant cards
   @override
   Widget build(BuildContext context) {
-    double scaleFactor = 1 / MediaQuery.of(context).devicePixelRatio;
+    double scaleFactor = MediaQuery.of(context).textScaleFactor / 2.5;
     return new ListView(
         padding: new EdgeInsets.symmetric(vertical: 20.0 * scaleFactor),
         children: _buildCuisineList(scaleFactor, context));

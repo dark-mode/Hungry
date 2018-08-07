@@ -163,7 +163,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
 
   _getContent() {
     double scaleFactor =
-        1 / MediaQuery.of(context).devicePixelRatio; //change later
+         MediaQuery.of(context).textScaleFactor / 2.5; //change later
 
     return SimpleDialog(
         title: Padding(

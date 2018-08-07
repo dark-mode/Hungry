@@ -94,7 +94,7 @@ class RestaurantListItem extends Column {
 }
 
 Column buildReviews(Restaurant rest, int i, double scaleFactor) {
-  if (rest.reviews.length == 0) return Column();
+  if (rest.reviews == null || rest.reviews.length == 0) return Column();
 
   String text = '';
   text = rest.reviews[i]['text'].toString();
@@ -103,12 +103,12 @@ Column buildReviews(Restaurant rest, int i, double scaleFactor) {
       Container(
           margin: EdgeInsets.fromLTRB(60.0 * scaleFactor, 20.0 * scaleFactor, 20.0 * scaleFactor, 20.0 * scaleFactor),
           child: CircleAvatar(
-              backgroundImage: rest.reviews[i]['user']['image_url'].length == 0 ? Icon(Icons.person_pin_circle)
-                  : NetworkImage(rest.reviews[i]['user']['image_url'])
+              backgroundImage: rest.reviews[i]['user']['image_url'] == null ? NetworkImage('https://i.stack.imgur.com/dr5qp.jpg')
+                              : NetworkImage(rest.reviews[i]['user']['image_url'])
           )
       ),
       Container(
-        width: 130.0 * scaleFactor,
+        width: 150.0 * scaleFactor,
         child: Text(rest.reviews[i]['user']['name'].toString())
       )
   ];
