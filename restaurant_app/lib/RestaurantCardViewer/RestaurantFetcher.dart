@@ -19,6 +19,7 @@ class RestaurantFetcher {
       'Beer, Wine & Spirits': 'beer_and_wine',
       'Bento': 'bento',
       'Beverage Store': 'beverage_stores',
+      'Boba': 'bubbletea',
       'Breweries': 'breweries',
       'Brewpubs': 'brewpubs',
       'Bubble Tea': 'bubbletea',
