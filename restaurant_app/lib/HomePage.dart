@@ -247,7 +247,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                                         textAlign: TextAlign.center,
                                         style: new TextStyle(
                                             color: Colors.white,
-                                            fontSize: 15.0 * scaleFactor))));
+                                            fontSize: 55.0 * scaleFactor))));
                           });
                     } else {
                       User _user = User(_priceLevel.toInt(), _transportation);

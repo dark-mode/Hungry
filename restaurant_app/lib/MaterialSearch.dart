@@ -470,9 +470,6 @@ class _MaterialSearchState extends State<MaterialSearch> {
       _rightIcon = new Icon(Icons.search);
     }
 
-
-
-
     return MaterialApp(
       title: "Hungry",
       home: Scaffold(
