@@ -101,14 +101,16 @@ Column buildReviews(Restaurant rest, int i, double scaleFactor) {
 
   List<Widget> c = [
       Container(
-          alignment: Alignment.centerLeft,
           margin: EdgeInsets.fromLTRB(60.0 * scaleFactor, 20.0 * scaleFactor, 20.0 * scaleFactor, 20.0 * scaleFactor),
           child: CircleAvatar(
               backgroundImage: rest.reviews[i]['user']['image_url'].length == 0 ? Icon(Icons.person_pin_circle)
                   : NetworkImage(rest.reviews[i]['user']['image_url'])
           )
       ),
-      Text(rest.reviews[i]['user']['name'].toString())
+      Container(
+        width: 130.0 * scaleFactor,
+        child: Text(rest.reviews[i]['user']['name'].toString())
+      )
   ];
 
   List<Widget> r = List();
@@ -144,14 +146,14 @@ Column buildReviews(Restaurant rest, int i, double scaleFactor) {
           children: <Widget>[
             Row(children: c),
             Container(
-              margin: EdgeInsets.only(left: 60.0 * scaleFactor),
+              margin: EdgeInsets.fromLTRB(60.0 * scaleFactor, 0.0, 25.0 * scaleFactor, 0.0),
               child: Row(children: r),
             )
           ]
         ),
           Expanded(
               child: Container(
-               margin: EdgeInsets.fromLTRB(60.0 * scaleFactor, 60.0 * scaleFactor, 0.0, 20.0 * scaleFactor),
+                margin: EdgeInsets.fromLTRB(40.0 * scaleFactor, 60.0 * scaleFactor, 40.0 * scaleFactor, 20.0 * scaleFactor),
                 child: Text(text))
           ),
         ])
