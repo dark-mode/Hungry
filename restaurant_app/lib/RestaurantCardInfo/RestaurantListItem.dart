@@ -165,16 +165,27 @@ List<Widget> _buildTaggedChips(Restaurant restaurant, Set<String> _selectedCuisi
   if (_selectedCuisines.length > 0) {
     for (dynamic c in restaurant.categories) {
       String category = c['title'];
-      if (_selectedCuisines.contains(category)) {
+      if (_selectedCuisines.contains(category) || (category == 'Bubble Tea' && _selectedCuisines.contains("Boba"))) {
         //print("added chip " + category + " for restaurant " + restaurant.name);
-        chips.add(
-          Container(
-            padding: EdgeInsets.only(right: 10.0 * scaleFactor),
-            child: new Chip(
-              label: new Text(category),
-            ),
-          )
-        );
+        if (_selectedCuisines.contains("Boba")) {
+          chips.add(
+              Container(
+                padding: EdgeInsets.only(right: 10.0 * scaleFactor),
+                child: new Chip(
+                  label: new Text("Boba"),
+                ),
+              )
+          );
+        } else {
+          chips.add(
+              Container(
+                padding: EdgeInsets.only(right: 10.0 * scaleFactor),
+                child: new Chip(
+                  label: new Text(category),
+                ),
+              )
+          );
+        }
       }
     }
   }

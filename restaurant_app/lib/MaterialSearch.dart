@@ -88,6 +88,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
       'Bistros',
       'Black Sea',
       'Blowfish',
+      'Boba',
       'Bourguignon',
       'Brasseries',
       'Brazilian Empanadas',
