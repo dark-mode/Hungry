@@ -64,7 +64,9 @@ class RestaurantListItem extends Column {
                   ),
                   Column(
                     children: [
-                      buildReviews(restaurant)
+                      buildReviews(restaurant, 0, scaleFactor),
+                      buildReviews(restaurant, 1, scaleFactor),
+                      buildReviews(restaurant, 2, scaleFactor)
                     ]
                   )
                 ]),
@@ -72,12 +74,70 @@ class RestaurantListItem extends Column {
         ]);
 }
 
-Text buildReviews(Restaurant rest) {
-  Text textField = Text('');
-  for (Map m in rest.reviews) {
-    textField = Text(m['text'].toString());
+Column buildReviews(Restaurant rest, int i, double scaleFactor) {
+  if (rest.reviews.length == 0) return Column();
+
+  String text = '';
+  text = rest.reviews[i]['text'].toString();
+
+  List<Widget> c = [
+      Container(
+          alignment: Alignment.centerLeft,
+          margin: EdgeInsets.fromLTRB(60.0 * scaleFactor, 20.0 * scaleFactor, 20.0 * scaleFactor, 20.0 * scaleFactor),
+          child: CircleAvatar(
+              backgroundImage: rest.reviews[i]['user']['image_url'].length == 0 ? Icon(Icons.person_pin_circle)
+                  : NetworkImage(rest.reviews[i]['user']['image_url'])
+          )
+      ),
+      Text(rest.reviews[i]['user']['name'].toString())
+  ];
+
+  List<Widget> r = List();
+
+  int j = 0;
+  for(; j < rest.reviews[i]['rating'] - 0.5; j++) {
+    r.add(Icon(
+      Icons.star,
+      size: 40.0 * scaleFactor,
+    ));
   }
-  return textField;
+
+  if (rest.reviews[i]['rating'] - rest.reviews[i]['rating'].truncate() >= 0.5) {
+    r.add(Icon(
+      Icons.star_half,
+      size: 40.0 * scaleFactor,
+    ));
+    j++;
+  }
+
+  for (; j < 5; j++) {
+    r.add(Icon(
+      Icons.star_border,
+      size: 40.0 * scaleFactor,
+    ));
+  }
+
+  return Column(
+      children: <Widget>[
+        Row(
+        children: <Widget> [
+          Column(
+          children: <Widget>[
+            Row(children: c),
+            Container(
+              margin: EdgeInsets.only(left: 60.0 * scaleFactor),
+              child: Row(children: r),
+            )
+          ]
+        ),
+          Expanded(
+              child: Container(
+               margin: EdgeInsets.fromLTRB(60.0 * scaleFactor, 60.0 * scaleFactor, 0.0, 20.0 * scaleFactor),
+                child: Text(text))
+          ),
+        ])
+      ]
+  );
 }
 
 List <Widget> _buildSubtitle(Restaurant restaurant, double scaleFactor) {
