@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
   DeviceLocation _location = DeviceLocation();
-  SignIn _signIn = SignIn();
+//  SignIn _signIn = SignIn();
 
   double get lat => _location.lat;
   double get lon => _location.lon;
@@ -28,11 +28,11 @@ class _HomePageState extends State<HomePage> {
     _location.initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
-    try {
-      _signIn.googleSignIn.signInSilently();
-    } catch (e) {
-      print('Sign In Error');
-    }
+//    try {
+//      _signIn.googleSignIn.signInSilently();
+//    } catch (e) {
+//      print('Sign In Error');
+//    }
   }
 
   @override
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        _signIn.handleSignIn();
+                        //_signIn.handleSignIn();
                         if (_location.lat == null || _location.lon == null) {
                           showDialog(
                             context: context,
@@ -75,12 +75,15 @@ class _HomePageState extends State<HomePage> {
                                               .of(context)
                                               .textSelectionColor,
                                         )),
-                                    onPressed: () => Navigator.pop(context)),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      _location.initPlatformState();
+                                    })
                               ],
                             ),
                           );
-                          _location.initPlatformState();
-                        } else if (_signIn.isSignedIn) {
+                        } //else if (_signIn.isSignedIn) {
+                          else {
                           showDialog(
                             context: context,
                             child: AlertDialog(
@@ -113,10 +116,32 @@ class _HomePageState extends State<HomePage> {
                   ),
                   color: Theme.of(context).primaryColor,
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      child: MyDialogContent(lat, lon),
-                    );
+                    if (_location.lat == null || _location.lon == null) {
+                      showDialog(
+                        context: context,
+                        child: new AlertDialog(
+                          title: new Text("Location Needed"),
+                          content: new Text(
+                              "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                          actions: [
+                            new FlatButton(
+                                child: new Text("Ok",
+                                    style: new TextStyle(
+                                      color: Theme
+                                          .of(context)
+                                          .textSelectionColor,
+                                    )),
+                                onPressed: () => Navigator.pop(context)),
+                          ],
+                        ),
+                      );
+                      _location.initPlatformState();
+                    } else {
+                      showDialog(
+                        context: context,
+                        child: MyDialogContent(lat, lon),
+                      );
+                    }
                   }),
             ])));
   }

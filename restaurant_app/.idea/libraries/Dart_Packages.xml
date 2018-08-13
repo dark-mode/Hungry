@@ -93,6 +93,13 @@
             </list>
           </value>
         </entry>
+        <entry key="geolocation">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/geolocation-0.2.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="glob">
           <value>
             <list>
@@ -422,6 +429,7 @@
       <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/csslib-0.14.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/front_end-0.1.0-alpha.12/lib" />
+      <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/geolocation-0.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/glob-1.1.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-3.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../flutter_windows_v0.5.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/html-0.13.3/lib" />
