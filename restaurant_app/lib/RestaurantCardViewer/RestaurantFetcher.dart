@@ -11,6 +11,7 @@ class RestaurantFetcher {
   Set<Restaurant> _restaurants;
   String _selectedCuisinesString;
   Map<String, String> categories;
+  int _statusCode;
   RestaurantFetcher(this._lat, this. _lon, this._selectedCuisines) {
     categories = {'Acai Bowls': 'acaibowls',
       'Backshop': 'backshop',
@@ -409,6 +410,7 @@ class RestaurantFetcher {
       'Wraps': 'wraps',
       'Yugoslav': 'yugoslav',};
     _selectedCuisinesString = buildCuisines();
+    _statusCode = 0;
   }
 
 
@@ -416,6 +418,9 @@ class RestaurantFetcher {
 
   Future<Set<Restaurant>> fetchRestaurants() async {
     /// Gets each restaurant and places it into the Future<Set<Restaurant>>
+    if (_statusCode == 429) {
+      print("too many requests. try again later.");
+    }
     _restaurants = new Set<Restaurant>();
     var url;
     if (_selectedCuisines.isNotEmpty) {
@@ -431,9 +436,10 @@ class RestaurantFetcher {
         headers: {HttpHeaders.AUTHORIZATION: "Bearer c8eYj3EGPOlR3xcHsDrcdvSI17QkI4NXtUPLuux006pN-MLKggrzpFyG42T2Y40geFAJn8shKLtYEg5GcRmlO6nAHhZ-rLpV1UqQv87T53-NNDIerPM2bOPSiz9FW3Yx"},
         );
     print(response.statusCode);
+    _statusCode = response.statusCode;
 
     Map<String, dynamic> result = json.decode(response.body.toString());
-    if (result['total'] == 0) return null;
+    if (result['total'] == 0 || result['businesses'] == null) return null;
     result['businesses']
         .forEach((rest) => _restaurants.add(new Restaurant.fromJson(rest)));
     if (_restaurants.isNotEmpty) {

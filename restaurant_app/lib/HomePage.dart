@@ -146,42 +146,41 @@ class _HomePageState extends State<HomePage> {
               'Places Near You',
               style: TextStyle(fontFamily: 'RobotoCondensed'),
             ),
-            RaisedButton(
-                child: Text(
-                  "GO",
-                  style: new TextStyle(
-                      color: Theme.of(context).textSelectionColor),
-                ),
-                color: Theme.of(context).primaryColor,
-                onPressed: () {
-                  if (_location.lat == null || _location.lon == null) {
-                    showDialog(
-                      context: context,
-                      child: new AlertDialog(
-                        title: new Text("Location Needed"),
-                        content: new Text(
-                            "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                        actions: [
-                          new FlatButton(
-                              child: new Text("Ok",
-                                  style: new TextStyle(
-                                    color: Theme.of(context).textSelectionColor,
-                                  )),
-                              onPressed: () {
-                                Navigator.pop(context);
-                                initPlatformState();
-                              })
-                        ],
-                      ),
-                    );
-                  } else {
-                    showDialog(
-                      context: context,
-                      child: MyDialogContent(lat, lon),
-                    );
-                  }
-                }),
           ]),
+        ),
+        floatingActionButton: FloatingActionButton(
+          tooltip: "GO",
+          backgroundColor: Theme.of(context).primaryColor,
+          mini: false,
+          child: Icon(Icons.arrow_forward ,color: Colors.white,),
+          onPressed: () {
+            if (_location.lat == null || _location.lon == null) {
+              showDialog(
+                context: context,
+                child: new AlertDialog(
+                  title: new Text("Location Needed"),
+                  content: new Text(
+                      "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                  actions: [
+                    new FlatButton(
+                        child: new Text("Ok",
+                            style: new TextStyle(
+                              color: Theme.of(context).textSelectionColor,
+                            )),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          initPlatformState();
+                        })
+                  ],
+                ),
+              );
+            } else {
+              showDialog(
+                context: context,
+                child: MyDialogContent(lat, lon),
+              );
+            }
+          },
         ),
         body: Center(child: child
 //              child: Column(
