@@ -37,12 +37,13 @@ class Recommender {
 
   List<double> createCoord1() {
     //Scaled to 10
+    if (_user == null) return [5.0, 0.0, 10.0];
     return [_user.price * 2.5, 0.0, 10.0];
   }
 
   List<double> createCoord2(Restaurant rest) {
     double distanceMultiplier;
-    distanceMultiplier = ((_user.price == "Walking") ? 700.0 : 32186.9) / 10.0;
+    distanceMultiplier = ((_user == null || _user.price == "Driving") ? 32186.9 : 700.0) / 10.0;
     if (rest.price == null || rest.distance == null || rest.rating == null) {
       return [10.0, 10.0, 10.0];
     }

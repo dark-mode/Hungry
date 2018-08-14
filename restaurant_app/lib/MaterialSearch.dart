@@ -474,8 +474,8 @@ class _MaterialSearchState extends State<MaterialSearch> {
     return MaterialApp(
       title: "Hungry",
       home: Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        appBar: AppBar(
+          backgroundColor: Theme.of(context).backgroundColor,
+          appBar: AppBar(
             backgroundColor: Theme
                 .of(context)
                 .primaryColor,
@@ -491,41 +491,41 @@ class _MaterialSearchState extends State<MaterialSearch> {
 //                    label: new Text('Aaron Burr'),
 //                  ),
 //                ),
-              IconButton(
-                padding: EdgeInsets.only(right: 50.0 * scaleFactor),
+                IconButton(
+                  padding: EdgeInsets.only(right: 50.0 * scaleFactor),
                   icon: Icon(Icons.arrow_back),
                   onPressed: () => Navigator.pop(context),
-              ),
-              Flexible(
-                child: TextField(
-                  controller: _controller,
-                  autofocus: true,
-                  focusNode: _myFocusNode,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 60.0 * scaleFactor,
-                      fontFamily: 'Eczar'
-                  ),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Search on Hungry',
-                    hintStyle: TextStyle(
+                ),
+                Flexible(
+                  child: TextField(
+                    controller: _controller,
+                    autofocus: true,
+                    focusNode: _myFocusNode,
+                    style: TextStyle(
                         color: Colors.white,
                         fontSize: 60.0 * scaleFactor,
                         fontFamily: 'Eczar'
                     ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Search on Hungry',
+                      hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 60.0 * scaleFactor,
+                          fontFamily: 'Eczar'
+                      ),
+                    ),
+                    onSubmitted: (text) {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
+                      );
+                    },
+                    onChanged: (text) {
+                      setState(() {
+                        _cuisines = _trie.getAllWordsWithPrefix(text);
+                      });
+                    },
                   ),
-                  onSubmitted: (text) {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
-                    );
-                  },
-                  onChanged: (text) {
-                    setState(() {
-                      _cuisines = _trie.getAllWordsWithPrefix(text);
-                    });
-                  },
-                ),
-              )
+                )
               ],
             ),
             actions: _controller.text.length == 0 ? [
@@ -540,53 +540,53 @@ class _MaterialSearchState extends State<MaterialSearch> {
                   }
               )
             ] : [
-            new IconButton(
-            icon: new Icon(Icons.clear),
-          onPressed: () {
-            setState(() {
-              _controller.clear();
-              _cuisines = _trie.getAllWords();
-            });
-          }
-      ),
-      ],
-        ),
-        floatingActionButton: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(bottom: 20.0 * scaleFactor, right: 22.0 * scaleFactor),
-              child: FloatingActionButton(
-                tooltip: "Clear All",
-                backgroundColor: Colors.red,
-                mini: true,
-                heroTag: null,
-                child: Icon(Icons.clear,color: Colors.white,),
-                onPressed: (){
-                  setState(() {
-                    _controller.clear();
-                    _cuisines = _trie.getAllWords();
-                    _selectedCuisines = Set<String>();
-                  });
-                },
+              new IconButton(
+                  icon: new Icon(Icons.clear),
+                  onPressed: () {
+                    setState(() {
+                      _controller.clear();
+                      _cuisines = _trie.getAllWords();
+                    });
+                  }
               ),
-            ),
-            FloatingActionButton(
-                heroTag: null,
-                tooltip: "Search",
-                child: new Icon(Icons.arrow_forward),
-                backgroundColor: Theme.of(context).primaryColor,
-                foregroundColor: Colors.white,
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context) =>
-                          ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
-                  );
-                }),
-          ],
-        ),
-        body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines, this))
+            ],
+          ),
+          floatingActionButton: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(bottom: 20.0 * scaleFactor, right: 22.0 * scaleFactor),
+                child: FloatingActionButton(
+                  tooltip: "Clear All",
+                  backgroundColor: Colors.red,
+                  mini: true,
+                  heroTag: null,
+                  child: Icon(Icons.clear,color: Colors.white,),
+                  onPressed: (){
+                    setState(() {
+                      _controller.clear();
+                      _cuisines = _trie.getAllWords();
+                      _selectedCuisines = Set<String>();
+                    });
+                  },
+                ),
+              ),
+              FloatingActionButton(
+                  heroTag: null,
+                  tooltip: "Search",
+                  child: new Icon(Icons.arrow_forward),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: Colors.white,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) =>
+                            ResultsPage.cuisines(_lat, _lon, _selectedCuisines, _user)),
+                    );
+                  }),
+            ],
+          ),
+          body: Container(child: MaterialSearchResults(_cuisines, _selectedCuisines, this))
       ),
     );
   }

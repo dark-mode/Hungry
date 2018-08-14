@@ -5,6 +5,11 @@ import 'package:restaurant_app/MaterialSearch.dart';
 import 'package:restaurant_app/MyCustomRoute.dart';
 import 'package:restaurant_app/UserPreferences/User.dart';
 import 'package:restaurant_app/RestaurantCardViewer//ResultsPage.dart';
+import 'package:restaurant_app/RestaurantCardViewer//RestaurantFetcher.dart';
+import 'package:restaurant_app/RestaurantCardInfo/RestaurantList.dart';
+import 'package:restaurant_app/RestaurantCardViewer//ReviewFetcher.dart';
+import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
+import 'package:restaurant_app/UserPreferences/Recommender.dart';
 
 class HomePage extends StatefulWidget {
   _HomePageState hP = new _HomePageState();
@@ -20,12 +25,15 @@ class _HomePageState extends State<HomePage> {
 
   double get lat => _location.lat;
   double get lon => _location.lon;
+  List<Restaurant> restaurants;
+  User _user;
+  bool notFound = false;
 
   @override
   void initState() {
     super.initState();
 
-    _location.initPlatformState();
+    initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
 //    try {
@@ -35,115 +43,256 @@ class _HomePageState extends State<HomePage> {
 //    }
   }
 
+  initPlatformState() async {
+    await _location.initPlatformState();
+    if (lat != null && lon != null) {
+      RestaurantFetcher rF = new RestaurantFetcher(lat, lon, Set<String>());
+      Set<Restaurant> rests = await rF.fetchRestaurants();
+      Recommender rec = Recommender(_user, rests);
+      List<Restaurant> r = rec.runAlgorithm();
+      setState(() => restaurants = r);
+
+      ReviewFetcher revF = ReviewFetcher();
+      for (Restaurant rest in restaurants) {
+        await revF.fetchReview(rest);
+        setState(() => restaurants = r);
+      }
+      if (rests == null) notFound = true;
+    }
+    initPlatformState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (restaurants == null) initPlatformState();
+    var child;
+    double scaleFactor =
+        MediaQuery.of(context).textScaleFactor / 2.5; //change later
+
+    if (notFound)
+      child = Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.all(40.0 * scaleFactor),
+            child: Text('No Results',
+                style: TextStyle(fontSize: 40.0 * scaleFactor)),
+          ),
+          Container(
+              child: RaisedButton(
+            color: Theme.of(context).primaryColor,
+            child:
+                Text('Go Back', style: TextStyle(fontSize: 40.0 * scaleFactor)),
+            onPressed: () => Navigator.pop(context),
+          ))
+        ],
+      );
+    else if (restaurants != null && restaurants.length != 0) {
+      child = RestaurantList(restaurants.toList(), Set<String>());
+    } else {
+      child = Container(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              alignment: AlignmentDirectional.center,
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).backgroundColor,
+                    borderRadius: BorderRadius.circular(10.0 * scaleFactor)),
+                width: 600.0 * scaleFactor,
+                height: 400.0 * scaleFactor,
+                alignment: AlignmentDirectional.center,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: new SizedBox(
+                        height: 125.0 * scaleFactor,
+                        width: 125.0 * scaleFactor,
+                        child: new CircularProgressIndicator(
+                          value: null,
+                          strokeWidth: 15.0 * scaleFactor,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 25.0 * scaleFactor),
+                      child: Center(
+                        child: Text(
+                          "Loading...",
+                          style: new TextStyle(
+                              color: Colors.white,
+                              fontSize: 50.0 * scaleFactor),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text(
-            'Hungry',
-            style: TextStyle(fontFamily: 'RobotoCondensed'),
-          ),
-        ),
-        body: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              Container(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: RaisedButton(
-                      child: Text(
-                        "Sign In with Google",
-                        style: new TextStyle(
-                            color: Theme.of(context).textSelectionColor),
+          title: Row(children: <Widget>[
+            Text(
+              'Places Near You',
+              style: TextStyle(fontFamily: 'RobotoCondensed'),
+            ),
+            RaisedButton(
+                child: Text(
+                  "GO",
+                  style: new TextStyle(
+                      color: Theme.of(context).textSelectionColor),
+                ),
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  if (_location.lat == null || _location.lon == null) {
+                    showDialog(
+                      context: context,
+                      child: new AlertDialog(
+                        title: new Text("Location Needed"),
+                        content: new Text(
+                            "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+                        actions: [
+                          new FlatButton(
+                              child: new Text("Ok",
+                                  style: new TextStyle(
+                                    color: Theme.of(context).textSelectionColor,
+                                  )),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                initPlatformState();
+                              })
+                        ],
                       ),
-                      color: Theme.of(context).primaryColor,
-                      onPressed: () {
-                        //_signIn.handleSignIn();
-                        if (_location.lat == null || _location.lon == null) {
-                          showDialog(
-                            context: context,
-                            child: new AlertDialog(
-                              title: new Text("Location Needed"),
-                              content: new Text(
-                                  "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                              actions: [
-                                new FlatButton(
-                                    child: new Text("Ok",
-                                        style: new TextStyle(
-                                          color: Theme
-                                              .of(context)
-                                              .textSelectionColor,
-                                        )),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      _location.initPlatformState();
-                                    })
-                              ],
-                            ),
-                          );
-                        } //else if (_signIn.isSignedIn) {
-                          else {
-                          showDialog(
-                            context: context,
-                            child: AlertDialog(
-                              title: new Text("Sign In Successful"),
-                              content:
-                                  new Text("You have successfully signed in!"),
-                              actions: [
-                                new FlatButton(
-                                    child: new Text("Ok",
-                                        style: new TextStyle(
-                                          color: Theme
-                                              .of(context)
-                                              .textSelectionColor,
-                                        )),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.pushReplacementNamed(
-                                          context, "/results");
-                                    }),
-                              ],
-                            ),
-                          );
-                        }
-                      })),
-              RaisedButton(
-                  child: Text(
-                    "GO",
-                    style: new TextStyle(
-                        color: Theme.of(context).textSelectionColor),
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () {
-                    if (_location.lat == null || _location.lon == null) {
-                      showDialog(
-                        context: context,
-                        child: new AlertDialog(
-                          title: new Text("Location Needed"),
-                          content: new Text(
-                              "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                          actions: [
-                            new FlatButton(
-                                child: new Text("Ok",
-                                    style: new TextStyle(
-                                      color: Theme
-                                          .of(context)
-                                          .textSelectionColor,
-                                    )),
-                                onPressed: () => Navigator.pop(context)),
-                          ],
-                        ),
-                      );
-                      _location.initPlatformState();
-                    } else {
-                      showDialog(
-                        context: context,
-                        child: MyDialogContent(lat, lon),
-                      );
-                    }
-                  }),
-            ])));
+                    );
+                  } else {
+                    showDialog(
+                      context: context,
+                      child: MyDialogContent(lat, lon),
+                    );
+                  }
+                }),
+          ]),
+        ),
+        body: Center(child: child
+//              child: Column(
+//                  mainAxisAlignment: MainAxisAlignment.center,
+//                  children: <Widget>[
+//                    Container(
+//                        padding: const EdgeInsets.only(bottom: 8.0),
+//                        child: RaisedButton(
+//                            child: Text(
+//                              "Sign In with Google",
+//                              style: new TextStyle(
+//                                  color: Theme
+//                                      .of(context)
+//                                      .textSelectionColor),
+//                            ),
+//                            color: Theme
+//                                .of(context)
+//                                .primaryColor,
+//                            onPressed: () {
+//                              //_signIn.handleSignIn();
+//                              if (_location.lat == null ||
+//                                  _location.lon == null) {
+//                                showDialog(
+//                                  context: context,
+//                                  child: new AlertDialog(
+//                                    title: new Text("Location Needed"),
+//                                    content: new Text(
+//                                        "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+//                                    actions: [
+//                                      new FlatButton(
+//                                          child: new Text("Ok",
+//                                              style: new TextStyle(
+//                                                color: Theme
+//                                                    .of(context)
+//                                                    .textSelectionColor,
+//                                              )),
+//                                          onPressed: () {
+//                                            Navigator.pop(context);
+//                                            _location.initPlatformState();
+//                                          })
+//                                    ],
+//                                  ),
+//                                );
+//                              } //else if (_signIn.isSignedIn) {
+//                              else {
+//                                showDialog(
+//                                  context: context,
+//                                  child: AlertDialog(
+//                                    title: new Text("Sign In Successful"),
+//                                    content:
+//                                    new Text(
+//                                        "You have successfully signed in!"),
+//                                    actions: [
+//                                      new FlatButton(
+//                                          child: new Text("Ok",
+//                                              style: new TextStyle(
+//                                                color: Theme
+//                                                    .of(context)
+//                                                    .textSelectionColor,
+//                                              )),
+//                                          onPressed: () {
+//                                            Navigator.pop(context);
+//                                            Navigator.pushReplacementNamed(
+//                                                context, "/results");
+//                                          }),
+//                                    ],
+//                                  ),
+//                                );
+//                              }
+//                            })),
+//                    RaisedButton(
+//                        child: Text(
+//                          "GO",
+//                          style: new TextStyle(
+//                              color: Theme
+//                                  .of(context)
+//                                  .textSelectionColor),
+//                        ),
+//                        color: Theme
+//                            .of(context)
+//                            .primaryColor,
+//                        onPressed: () {
+//                          if (_location.lat == null || _location.lon == null) {
+//                            showDialog(
+//                              context: context,
+//                              child: new AlertDialog(
+//                                title: new Text("Location Needed"),
+//                                content: new Text(
+//                                    "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+//                                actions: [
+//                                  new FlatButton(
+//                                      child: new Text("Ok",
+//                                          style: new TextStyle(
+//                                            color: Theme
+//                                                .of(context)
+//                                                .textSelectionColor,
+//                                          )),
+//                                      onPressed: () => Navigator.pop(context)),
+//                                ],
+//                              ),
+//                            );
+//                            initPlatformState();
+//                          } else {
+//                            showDialog(
+//                              context: context,
+//                              child: MyDialogContent(lat, lon),
+//                            );
+//                          }
+//                        }),
+//                  ]))
+            ));
   }
 }
 
@@ -188,11 +337,12 @@ class _MyDialogContentState extends State<MyDialogContent> {
 
   _getContent() {
     double scaleFactor =
-         MediaQuery.of(context).textScaleFactor / 2.5; //change later
+        MediaQuery.of(context).textScaleFactor / 2.5; //change later
 
     return SimpleDialog(
         title: Padding(
-          padding: EdgeInsets.fromLTRB(40.0 * scaleFactor, 0.0, 40.0 * scaleFactor, 0.0),
+          padding: EdgeInsets.fromLTRB(
+              40.0 * scaleFactor, 0.0, 40.0 * scaleFactor, 0.0),
           child: Text(
             'SEARCH SETTINGS',
             textAlign: TextAlign.center,
@@ -204,12 +354,15 @@ class _MyDialogContentState extends State<MyDialogContent> {
         ),
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.fromLTRB(40.0 * scaleFactor, 20.0 * scaleFactor, 40.0 * scaleFactor, 10.0 * scaleFactor),
+            padding: EdgeInsets.fromLTRB(40.0 * scaleFactor, 20.0 * scaleFactor,
+                40.0 * scaleFactor, 10.0 * scaleFactor),
             child: Text(
               'transportation',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.white, fontSize: 55.0 * scaleFactor, fontFamily: 'Eczar'),
+                  color: Colors.white,
+                  fontSize: 55.0 * scaleFactor,
+                  fontFamily: 'Eczar'),
             ),
           ),
           new Row(
@@ -229,14 +382,18 @@ class _MyDialogContentState extends State<MyDialogContent> {
             ],
           ),
           new Padding(
-            padding: EdgeInsets.fromLTRB(0.0 * scaleFactor, 20.0 * scaleFactor, 0.0, 10.0 * scaleFactor),
+            padding: EdgeInsets.fromLTRB(
+                0.0 * scaleFactor, 20.0 * scaleFactor, 0.0, 10.0 * scaleFactor),
             child: Text('price',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Colors.white, fontSize: 55.0 * scaleFactor, fontFamily: 'Eczar')),
+                    color: Colors.white,
+                    fontSize: 55.0 * scaleFactor,
+                    fontFamily: 'Eczar')),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(30.0 * scaleFactor, 0.0, 30.0 * scaleFactor, 0.0),
+            padding: EdgeInsets.fromLTRB(
+                30.0 * scaleFactor, 0.0, 30.0 * scaleFactor, 0.0),
             child: new Slider(
               value: _priceLevel,
               min: 1.0,
