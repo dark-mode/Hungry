@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -12,7 +12,7 @@ class RestaurantList extends StatelessWidget {
   /// Displays list of restaurant cards
   @override
   Widget build(BuildContext context) {
-    double scaleFactor = MediaQuery.of(context).textScaleFactor / 2.5;
+    double scaleFactor = MediaQuery.of(context).textScaleFactor / 2.8;
     return new ListView(
         padding: new EdgeInsets.symmetric(vertical: 20.0 * scaleFactor),
         children: _buildRestaurantList(scaleFactor, context));
