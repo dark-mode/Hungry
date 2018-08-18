@@ -79,7 +79,7 @@ class _ResultsPageState extends State<ResultsPage> {
   Widget build(BuildContext context) {
     var child;
     double scaleFactor =
-        MediaQuery.of(context).textScaleFactor / 2.5; //change later
+        MediaQuery.of(context).textScaleFactor / 2.8; //change later
 
     if (notFound)
       child = Column(

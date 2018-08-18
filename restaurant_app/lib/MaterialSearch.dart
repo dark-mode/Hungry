@@ -460,7 +460,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
   Widget build(BuildContext context) {
 
     double scaleFactor =
-        MediaQuery.of(context).textScaleFactor / 2.5;
+        MediaQuery.of(context).textScaleFactor / 2.8;
 
     Icon _rightIcon;
 

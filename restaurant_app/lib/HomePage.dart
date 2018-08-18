@@ -45,8 +45,29 @@ class _HomePageState extends State<HomePage> {
 
   initPlatformState() async {
     await _location.initPlatformState();
-    if (lat != null && lon != null) {
-      RestaurantFetcher rF = new RestaurantFetcher(lat, lon, Set<String>());
+    if (lat == null || lon == null) {
+      showDialog(
+        context: context,
+        child: new AlertDialog(
+          title: new Text("Location Needed"),
+          content: new Text(
+              "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
+          actions: [
+            new FlatButton(
+                child: new Text("Ok",
+                    style: new TextStyle(
+                      color: Theme.of(context).textSelectionColor,
+                    )),
+                onPressed: () {
+                  Navigator.pop(context);
+                  initPlatformState();
+                })
+          ],
+        ),
+      );
+    }
+    else {
+      RestaurantFetcher rF = RestaurantFetcher(lat, lon, Set<String>());
       Set<Restaurant> rests = await rF.fetchRestaurants();
       Recommender rec = Recommender(_user, rests);
       List<Restaurant> r = rec.runAlgorithm();
@@ -59,7 +80,6 @@ class _HomePageState extends State<HomePage> {
       }
       if (rests == null) notFound = true;
     }
-    initPlatformState();
   }
 
   @override
@@ -67,26 +87,20 @@ class _HomePageState extends State<HomePage> {
     if (restaurants == null) initPlatformState();
     var child;
     double scaleFactor =
-        MediaQuery.of(context).textScaleFactor / 2.5; //change later
+        MediaQuery.of(context).textScaleFactor / 2.8; //change later
 
-    if (notFound)
+    if (notFound) {
       child = Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
             padding: EdgeInsets.all(40.0 * scaleFactor),
-            child: Text('No Results',
+            child: Text('Uh oh... There was a problem receiving nearby restaurants.',
                 style: TextStyle(fontSize: 40.0 * scaleFactor)),
           ),
-          Container(
-              child: RaisedButton(
-            color: Theme.of(context).primaryColor,
-            child:
-                Text('Go Back', style: TextStyle(fontSize: 40.0 * scaleFactor)),
-            onPressed: () => Navigator.pop(context),
-          ))
         ],
       );
+    }
     else if (restaurants != null && restaurants.length != 0) {
       child = RestaurantList(restaurants.toList(), Set<String>());
     } else {
@@ -123,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                       margin: EdgeInsets.only(top: 25.0 * scaleFactor),
                       child: Center(
                         child: Text(
-                          "Loading...",
+                          "Finding the best restaurants near you...",
                           style: new TextStyle(
                               color: Colors.white,
                               fontSize: 50.0 * scaleFactor),
@@ -148,6 +162,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ]),
         ),
+<<<<<<< HEAD
         floatingActionButton: FloatingActionButton(
           tooltip: "GO",
           backgroundColor: Theme.of(context).primaryColor,
@@ -183,6 +198,31 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         body: Center(child: child
+=======
+        body: Stack(
+            children: <Widget> [
+              Center(
+                  child: child
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+              padding: EdgeInsets.only(bottom: 40.0 * scaleFactor),
+              child: FloatingActionButton(
+                  heroTag: Text('hixddaf;jd'),
+                  tooltip: "Search",
+                  child: new Icon(Icons.search),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  foregroundColor: Colors.white,
+                  onPressed: () {
+                    showDialog(
+                       context: context,
+                       child: MyDialogContent(lat, lon),
+                    );
+                  })),
+            ]
+          )
+    );
+>>>>>>> f2e8e16d3165e89fa0c6d4ccef1e4f5cb5ffeeb5
 //              child: Column(
 //                  mainAxisAlignment: MainAxisAlignment.center,
 //                  children: <Widget>[
@@ -291,7 +331,6 @@ class _HomePageState extends State<HomePage> {
 //                          }
 //                        }),
 //                  ]))
-            ));
   }
 }
 
@@ -410,8 +449,40 @@ class _MyDialogContentState extends State<MyDialogContent> {
               child: new Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              FlatButton(
+                  child: Text("ALL",
+                      style: new TextStyle(
+                        color: Colors.white,
+                      )),
+                  onPressed: () {
+                    if (_transportation == null) {
+                      showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return new Container(
+                                child: new Padding(
+                                    padding: EdgeInsets.all(20.0 * scaleFactor),
+                                    child: new Text(
+                                        'Please pick a mode of transportation and price range.',
+                                        textAlign: TextAlign.center,
+                                        style: new TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 15.0 * scaleFactor))));
+                          });
+                    } else {
+                      Navigator.pop(context);
+                      print(_transportation);
+                      print(_priceLevel);
+                      User _user = User(_priceLevel.toInt(), _transportation);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ResultsPage.withUser(_lat, _lon, _user)));
+                    }
+                  }),
               new FlatButton(
-                  child: new Text("OPTIONS",
+                  child: new Text("CUISINES",
                       style: new TextStyle(
                         color: Colors.white,
                       )),
@@ -444,38 +515,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
 //                    );
                     }
                   }),
-              new FlatButton(
-                  child: Text("SEARCH",
-                      style: new TextStyle(
-                        color: Colors.white,
-                      )),
-                  onPressed: () {
-                    if (_transportation == null) {
-                      showModalBottomSheet<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return new Container(
-                                child: new Padding(
-                                    padding: EdgeInsets.all(20.0 * scaleFactor),
-                                    child: new Text(
-                                        'Please pick a mode of transportation and price range.',
-                                        textAlign: TextAlign.center,
-                                        style: new TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0 * scaleFactor))));
-                          });
-                    } else {
-                      Navigator.pop(context);
-                      print(_transportation);
-                      print(_priceLevel);
-                      User _user = User(_priceLevel.toInt(), _transportation);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ResultsPage.withUser(_lat, _lon, _user)));
-                    }
-                  }),
+
             ],
           ))
         ]);
