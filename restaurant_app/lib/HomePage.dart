@@ -11,6 +11,8 @@ import 'package:restaurant_app/RestaurantCardViewer//ReviewFetcher.dart';
 import 'package:restaurant_app/RestaurantCardInfo/Restaurant.dart';
 import 'package:restaurant_app/UserPreferences/Recommender.dart';
 
+import 'dart:async';
+
 class HomePage extends StatefulWidget {
   _HomePageState hP = new _HomePageState();
   @override
@@ -32,7 +34,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
     initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
     await _location.initPlatformState();
     if (lat == null || lon == null) {
       showDialog(
+        barrierDismissible: false,
         context: context,
         child: new AlertDialog(
           title: new Text("Location Needed"),
