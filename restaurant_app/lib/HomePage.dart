@@ -162,67 +162,29 @@ class _HomePageState extends State<HomePage> {
             ),
           ]),
         ),
-<<<<<<< HEAD
-        floatingActionButton: FloatingActionButton(
-          tooltip: "GO",
-          backgroundColor: Theme.of(context).primaryColor,
-          mini: false,
-          child: Icon(Icons.arrow_forward ,color: Colors.white,),
-          onPressed: () {
-            if (_location.lat == null || _location.lon == null) {
-              showDialog(
-                context: context,
-                child: new AlertDialog(
-                  title: new Text("Location Needed"),
-                  content: new Text(
-                      "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
-                  actions: [
-                    new FlatButton(
-                        child: new Text("Ok",
-                            style: new TextStyle(
-                              color: Theme.of(context).textSelectionColor,
-                            )),
-                        onPressed: () {
-                          Navigator.pop(context);
-                          initPlatformState();
-                        })
-                  ],
-                ),
-              );
-            } else {
-              showDialog(
-                context: context,
-                child: MyDialogContent(lat, lon),
-              );
-            }
-          },
-        ),
-        body: Center(child: child
-=======
         body: Stack(
             children: <Widget> [
               Center(
                   child: child
               ),
               Container(
-                alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.only(bottom: 40.0 * scaleFactor),
-              child: FloatingActionButton(
-                  heroTag: Text('hixddaf;jd'),
-                  tooltip: "Search",
-                  child: new Icon(Icons.search),
-                  backgroundColor: Theme.of(context).primaryColor,
-                  foregroundColor: Colors.white,
-                  onPressed: () {
-                    showDialog(
-                       context: context,
-                       child: MyDialogContent(lat, lon),
-                    );
-                  })),
+                  alignment: Alignment.bottomCenter,
+                  padding: EdgeInsets.only(bottom: 40.0 * scaleFactor),
+                  child: FloatingActionButton(
+                      heroTag: Text('hixddaf;jd'),
+                      tooltip: "Search",
+                      child: new Icon(Icons.search),
+                      backgroundColor: Theme.of(context).primaryColor,
+                      foregroundColor: Colors.white,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          child: MyDialogContent(lat, lon),
+                        );
+                      })),
             ]
-          )
+        )
     );
->>>>>>> f2e8e16d3165e89fa0c6d4ccef1e4f5cb5ffeeb5
 //              child: Column(
 //                  mainAxisAlignment: MainAxisAlignment.center,
 //                  children: <Widget>[
@@ -447,77 +409,77 @@ class _MyDialogContentState extends State<MyDialogContent> {
           ),
           new Container(
               child: new Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              FlatButton(
-                  child: Text("ALL",
-                      style: new TextStyle(
-                        color: Colors.white,
-                      )),
-                  onPressed: () {
-                    if (_transportation == null) {
-                      showModalBottomSheet<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return new Container(
-                                child: new Padding(
-                                    padding: EdgeInsets.all(20.0 * scaleFactor),
-                                    child: new Text(
-                                        'Please pick a mode of transportation and price range.',
-                                        textAlign: TextAlign.center,
-                                        style: new TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0 * scaleFactor))));
-                          });
-                    } else {
-                      Navigator.pop(context);
-                      print(_transportation);
-                      print(_priceLevel);
-                      User _user = User(_priceLevel.toInt(), _transportation);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ResultsPage.withUser(_lat, _lon, _user)));
-                    }
-                  }),
-              new FlatButton(
-                  child: new Text("CUISINES",
-                      style: new TextStyle(
-                        color: Colors.white,
-                      )),
-                  onPressed: () {
-                    if (_transportation == null) {
-                      showModalBottomSheet<void>(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return new Container(
-                                child: new Padding(
-                                    padding: EdgeInsets.all(20.0 * scaleFactor),
-                                    child: new Text(
-                                        'Please pick a mode of transportation and price range.',
-                                        textAlign: TextAlign.center,
-                                        style: new TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 55.0 * scaleFactor))));
-                          });
-                    } else {
-                      User _user = User(_priceLevel.toInt(), _transportation);
-                      Navigator.push(
-                        context,
-                        new MyCustomRoute(
-                            builder: (context) =>
-                                MaterialSearch.withUser(_lat, _lon, _user)),
-                      );
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  FlatButton(
+                      child: Text("ALL",
+                          style: new TextStyle(
+                            color: Colors.white,
+                          )),
+                      onPressed: () {
+                        if (_transportation == null) {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return new Container(
+                                    child: new Padding(
+                                        padding: EdgeInsets.all(20.0 * scaleFactor),
+                                        child: new Text(
+                                            'Please pick a mode of transportation and price range.',
+                                            textAlign: TextAlign.center,
+                                            style: new TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 15.0 * scaleFactor))));
+                              });
+                        } else {
+                          Navigator.pop(context);
+                          print(_transportation);
+                          print(_priceLevel);
+                          User _user = User(_priceLevel.toInt(), _transportation);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ResultsPage.withUser(_lat, _lon, _user)));
+                        }
+                      }),
+                  new FlatButton(
+                      child: new Text("CUISINES",
+                          style: new TextStyle(
+                            color: Colors.white,
+                          )),
+                      onPressed: () {
+                        if (_transportation == null) {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return new Container(
+                                    child: new Padding(
+                                        padding: EdgeInsets.all(20.0 * scaleFactor),
+                                        child: new Text(
+                                            'Please pick a mode of transportation and price range.',
+                                            textAlign: TextAlign.center,
+                                            style: new TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 55.0 * scaleFactor))));
+                              });
+                        } else {
+                          User _user = User(_priceLevel.toInt(), _transportation);
+                          Navigator.push(
+                            context,
+                            new MyCustomRoute(
+                                builder: (context) =>
+                                    MaterialSearch.withUser(_lat, _lon, _user)),
+                          );
 //                    Navigator.push(
 //                      context,
 //                      MaterialPageRoute(builder: (context) => CuisinePage.withUser(_lat, _lon, _user)),
 //                    );
-                    }
-                  }),
+                        }
+                      }),
 
-            ],
-          ))
+                ],
+              ))
         ]);
   }
 
