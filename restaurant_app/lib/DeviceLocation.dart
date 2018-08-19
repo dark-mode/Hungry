@@ -22,6 +22,7 @@ class DeviceLocation {
       android: LocationPermissionAndroid.fine,
       ios: LocationPermissionIOS.always,
     ));
+
     StreamSubscription<LocationResult> subscription = Geolocation.currentLocation(accuracy: LocationAccuracy.best).listen((result) {
       if(result.isSuccessful) {
         _lat = result.location.latitude;

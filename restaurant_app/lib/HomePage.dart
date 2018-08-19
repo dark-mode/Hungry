@@ -65,6 +65,8 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
+//      Navigator.pop(context);
+//      await initPlatformState();
     }
     else {
       RestaurantFetcher rF = RestaurantFetcher(lat, lon, Set<String>());
@@ -84,7 +86,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (restaurants == null) initPlatformState();
     var child;
     double scaleFactor =
         MediaQuery.of(context).textScaleFactor / 2.8; //change later
@@ -292,7 +293,7 @@ class _HomePageState extends State<HomePage> {
 //                            );
 //                          }
 //                        }),
-//                  ]))
+//                  ]))]));
   }
 }
 
