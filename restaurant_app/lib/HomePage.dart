@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
 
   initPlatformState() async {
     await _location.initPlatformState();
-    if (lat == null || lon == null) {
+    while (lat == null || lon == null) {
       showDialog(
         barrierDismissible: false,
         context: context,
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
 //      Navigator.pop(context);
 //      await initPlatformState();
     }
-    else {
+    //else {
       RestaurantFetcher rF = RestaurantFetcher(lat, lon, Set<String>());
       Set<Restaurant> rests = await rF.fetchRestaurants();
       Recommender rec = Recommender(_user, rests);
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
         setState(() => restaurants = r);
       }
       if (rests == null) notFound = true;
-    }
+    //}
   }
 
   @override
