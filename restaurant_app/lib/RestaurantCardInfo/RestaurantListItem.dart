@@ -95,7 +95,7 @@ class RestaurantListItem extends Column {
 }
 
 Column buildReviews(Restaurant rest, int i, double scaleFactor) {
-  if (rest.reviews == null || rest.reviews.length == 0 || rest.reviews.length < i) return Column();
+  if (rest.reviews == null || rest.reviews.length == 0 || rest.reviews.length < i + 1) return Column();
 
   String text = '';
   text = rest.reviews[i]['text'].toString();
