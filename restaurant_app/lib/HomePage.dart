@@ -23,6 +23,8 @@ class _HomePageState extends State<HomePage> {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
   DeviceLocation _location = DeviceLocation();
+
+  //
 //  SignIn _signIn = SignIn();
 
   double get lat => _location.lat;
