@@ -32,6 +32,8 @@ class _HomePageState extends State<HomePage> {
   List<Restaurant> restaurants;
   User _user;
   bool notFound = false;
+  Opacity fAB;
+  var child;
 
   @override
   void initState() {
@@ -77,7 +79,10 @@ class _HomePageState extends State<HomePage> {
       Set<Restaurant> rests = await rF.fetchRestaurants();
       Recommender rec = Recommender(_user, rests);
       List<Restaurant> r = rec.runAlgorithm();
-      setState(() => restaurants = r);
+      setState((){
+        restaurants = r;
+      }
+      );
 
       ReviewFetcher revF = ReviewFetcher();
       for (Restaurant rest in restaurants) {
@@ -90,7 +95,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var child;
+
     double scaleFactor =
         MediaQuery.of(context).textScaleFactor / 2.8; //change later
 
@@ -157,6 +162,7 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
+
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
@@ -186,10 +192,12 @@ class _HomePageState extends State<HomePage> {
                           context: context,
                           child: MyDialogContent(lat, lon),
                         );
-                      })),
+                      })
+              ),
             ]
         )
     );
+    }
 //              child: Column(
 //                  mainAxisAlignment: MainAxisAlignment.center,
 //                  children: <Widget>[
@@ -299,7 +307,7 @@ class _HomePageState extends State<HomePage> {
 //                        }),
 //                  ]))]));
   }
-}
+
 
 class MyDialogContent extends StatefulWidget {
   noSuchMethod(Invocation i) => super.noSuchMethod(i);
