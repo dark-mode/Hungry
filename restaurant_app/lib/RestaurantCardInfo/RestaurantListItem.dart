@@ -6,8 +6,9 @@ import 'package:url_launcher/url_launcher.dart';
 /// Creates one restaurant card
 class RestaurantListItem extends Column {
   Set<String> _selectedCuisines;
+  bool _allTags;
   RestaurantListItem(
-      Restaurant restaurant, double scaleFactor, this._selectedCuisines, BuildContext context)
+      Restaurant restaurant, double scaleFactor, this._selectedCuisines, this._allTags, BuildContext context)
       : super(children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width - (53.0 * scaleFactor),
@@ -57,7 +58,7 @@ class RestaurantListItem extends Column {
                           ),
                         ),
                         Row(
-                          children: _buildTaggedChips(restaurant, _selectedCuisines, scaleFactor),
+                          children: _buildTaggedChips(restaurant, _selectedCuisines, scaleFactor, _allTags),
                         )
                       ]),
                     ),
@@ -162,10 +163,10 @@ Column buildReviews(Restaurant rest, int i, double scaleFactor) {
   );
 }
 
-List<Widget> _buildTaggedChips(Restaurant restaurant, Set<String> _selectedCuisines, double scaleFactor) {
+List<Widget> _buildTaggedChips(Restaurant restaurant, Set<String> _selectedCuisines, double scaleFactor, bool allTags) {
   //print(_selectedCuisines.length);
   List<Widget> chips = List();
-  if (_selectedCuisines.length > 0) {
+  if (!allTags && _selectedCuisines.length > 0) {
     for (dynamic c in restaurant.categories) {
       String category = c['title'];
       if (_selectedCuisines.contains(category) || (category == 'Bubble Tea' && _selectedCuisines.contains("Boba"))) {
@@ -191,7 +192,23 @@ List<Widget> _buildTaggedChips(Restaurant restaurant, Set<String> _selectedCuisi
         }
       }
     }
-  }
+  } else {
+    for (dynamic c in restaurant.categories) {
+      chips.add(
+          Container(
+            padding: EdgeInsets.only(right: 10.0 * scaleFactor),
+            child: new Chip(
+              label: new Text(c['title']),
+            ),
+          )
+      );
+      if (chips.length > 1) {//limit to only top 2 categories
+        break;
+      }
+
+    }
+    }
+
   return chips;
 }
 

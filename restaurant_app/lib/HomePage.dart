@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   initPlatformState() async {
     await _location.initPlatformState();
-    while (lat == null || lon == null) {
+    if (lat == null || lon == null) {
       showDialog(
         barrierDismissible: false,
         context: context,
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
 //      Navigator.pop(context);
 //      await initPlatformState();
     }
-    //else {
+    else {
       RestaurantFetcher rF = RestaurantFetcher(lat, lon, Set<String>());
       Set<Restaurant> rests = await rF.fetchRestaurants();
       Recommender rec = Recommender(_user, rests);
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
         setState(() => restaurants = r);
       }
       if (rests == null) notFound = true;
-    //}
+    }
   }
 
   @override
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
     else if (restaurants != null && restaurants.length != 0) {
-      child = RestaurantList(restaurants.toList(), Set<String>());
+      child = RestaurantList(restaurants.toList(), Set<String>(), true);
     } else {
       child = Container(
         child: Stack(
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       );
-    }//
+    }
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
@@ -434,7 +434,7 @@ class _MyDialogContentState extends State<MyDialogContent> {
                                             textAlign: TextAlign.center,
                                             style: new TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 15.0 * scaleFactor))));
+                                                fontSize: 40.0 * scaleFactor))));
                               });
                         } else {
                           Navigator.pop(context);

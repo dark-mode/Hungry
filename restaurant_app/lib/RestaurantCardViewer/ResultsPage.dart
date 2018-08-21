@@ -16,24 +16,25 @@ class ResultsPage extends StatefulWidget {
 
   double _lat, _lon;
   User _user;
+  bool _allTags;
   ResultsPage(double lat, double lon) {
     _lat = lat;
     _lon = lon;
-    _hP = new _ResultsPageState(lat, lon, Set(), null);
+    _hP = new _ResultsPageState(lat, lon, Set(), null, true);
   }
 
   ResultsPage.withUser(double lat, double lon, User user) {
     _lat = lat;
     _lon = lon;
     _user = user;
-    _hP = new _ResultsPageState(lat, lon, Set(), _user);
+    _hP = new _ResultsPageState(lat, lon, Set(), _user, true);
   }
 
   ResultsPage.cuisines(double lat, double lon, Set<String> _selectedCuisines, User user) {
     _lat = lat;
     _lon = lon;
     _user = user;
-    _hP = new _ResultsPageState(lat, lon, _selectedCuisines, _user);
+    _hP = new _ResultsPageState(lat, lon, _selectedCuisines, _user, false);
   }
   double get lat => _lat;
   double get lon => _lon;
@@ -50,8 +51,9 @@ class _ResultsPageState extends State<ResultsPage> {
   Future<Set<Restaurant>> rFuture;
   bool notFound = false;
   User _user;
+  bool _allTags;
 
-  _ResultsPageState(this._lat, this._lon, this._selectedCuisines, this._user);
+  _ResultsPageState(this._lat, this._lon, this._selectedCuisines, this._user, this._allTags);
 
   @override
   void initState() {
@@ -109,7 +111,7 @@ class _ResultsPageState extends State<ResultsPage> {
           ],
       );
     else if (restaurants != null && restaurants.length != 0) {
-      child = RestaurantList(restaurants.toList(), _selectedCuisines);
+      child = RestaurantList(restaurants.toList(), _selectedCuisines, _allTags);
     } else {
       child = Container(
         child: Stack(
