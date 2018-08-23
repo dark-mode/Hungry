@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();\
+    super.initState();
     initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
@@ -65,14 +65,14 @@ class _HomePageState extends State<HomePage> {
           content: new Text(
               "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
           actions: [
-            new FlatButton(
+            FlatButton(
                 child: new Text("Ok",
                     style: new TextStyle(
                       color: Theme.of(context).textSelectionColor,
                     )),
                 onPressed: () {
                   Navigator.pop(context);
-                  initState();
+                  initPlatformState();
                 })
           ],
         ),
