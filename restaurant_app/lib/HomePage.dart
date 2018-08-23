@@ -14,7 +14,8 @@ import 'package:restaurant_app/UserPreferences/Recommender.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
-  _HomePageState hP = new _HomePageState();
+  _HomePageState hP = _HomePageState();
+
   @override
   _HomePageState createState() => hP;
 }
@@ -35,13 +36,14 @@ class _HomePageState extends State<HomePage> {
   Opacity fAB;
   var child;
 
+  _HomePageState() {
+    _location.initPlatformState();
+  }
+
   @override
   void initState() {
-    super.initState();
-    _location.initPlatformState();
-    Timer(const Duration(milliseconds: 400), () {
-      initPlatformState();
-    });
+    super.initState();\
+    initPlatformState();
 
     /// Tries to sign in before even clicking the Sign in button
 //    try {
@@ -52,6 +54,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   initPlatformState() async {
+    await _location.initPlatformState();
+
     if (lat == null || lon == null) {
       showDialog(
         barrierDismissible: false,

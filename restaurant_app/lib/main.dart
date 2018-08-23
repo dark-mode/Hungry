@@ -10,7 +10,7 @@ void main() => runApp(new MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    HomePage homeP = new HomePage();
+    HomePage homeP = HomePage();
     return new MaterialApp(
         title: "Hungry",
         theme: ThemeData(
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.tealAccent,
           textSelectionColor: Colors.white,
         ),
-        home: new SplashScreen(),
+        home: SplashScreen(),
         routes: {
           "/home": (_) => homeP,
           "/results": (_) => new ResultsPage(homeP.hP.lat, homeP.hP.lon),
