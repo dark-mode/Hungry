@@ -38,7 +38,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    _location.initPlatformState();
+    Timer(const Duration(milliseconds: 400), () {
+      initPlatformState();
+    });
 
     /// Tries to sign in before even clicking the Sign in button
 //    try {
@@ -49,7 +52,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   initPlatformState() async {
-    await _location.initPlatformState();
     if (lat == null || lon == null) {
       showDialog(
         barrierDismissible: false,
@@ -66,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                     )),
                 onPressed: () {
                   Navigator.pop(context);
-                  initPlatformState();
+                  initState();
                 })
           ],
         ),
