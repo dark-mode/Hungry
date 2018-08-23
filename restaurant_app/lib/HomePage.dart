@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
       Recommender rec = Recommender(_user, rests);
       List<Restaurant> r = rec.runAlgorithm();
       setState((){
-        restaurants = r;
+        restaurants = [r[0], r[1], r[2], r[3], r[4]];
       }
       );
 
