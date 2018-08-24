@@ -23,7 +23,7 @@ class RestaurantList extends StatelessWidget {
       double scaleFactor, BuildContext context) {
     return _restaurants
         .map((restaurant) =>
-            new RestaurantListItem(restaurant, scaleFactor, _selectedCuisines, context))
+            new RestaurantListItem(restaurant, scaleFactor, _selectedCuisines, false, context))
         .toList();
   }
 }

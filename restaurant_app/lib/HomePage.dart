@@ -14,7 +14,8 @@ import 'package:restaurant_app/UserPreferences/Recommender.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
-  _HomePageState hP = new _HomePageState();
+  _HomePageState hP = _HomePageState();
+
   @override
   _HomePageState createState() => hP;
 }
@@ -35,6 +36,10 @@ class _HomePageState extends State<HomePage> {
   Opacity fAB;
   var child;
 
+  _HomePageState() {
+    _location.initPlatformState();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +55,7 @@ class _HomePageState extends State<HomePage> {
 
   initPlatformState() async {
     await _location.initPlatformState();
+
     if (lat == null || lon == null) {
       showDialog(
         barrierDismissible: false,
@@ -59,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           content: new Text(
               "Location is disabled on this device. Please enable it and try again. If you have already enabled location, try restarting the app."),
           actions: [
-            new FlatButton(
+            FlatButton(
                 child: new Text("Ok",
                     style: new TextStyle(
                       color: Theme.of(context).textSelectionColor,
@@ -80,7 +86,7 @@ class _HomePageState extends State<HomePage> {
       Recommender rec = Recommender(_user, rests);
       List<Restaurant> r = rec.runAlgorithm();
       setState((){
-        restaurants = r;
+        restaurants = [r[0], r[1], r[2], r[3], r[4]];
       }
       );
 

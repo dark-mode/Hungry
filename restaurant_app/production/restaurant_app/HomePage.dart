@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
       );
     }
     else if (restaurants != null && restaurants.length != 0) {
-      child = RestaurantList(restaurants.toList(), Set<String>());
+      child = RestaurantList(restaurants.toList(), Set<String>(), true);
     } else {
       child = Container(
         child: Stack(
