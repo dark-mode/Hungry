@@ -40,21 +40,21 @@ class _RestaurantListState extends State<RestaurantList> {
     super.initState();
     initPlatformState();
 
-    _isVisible = true;
-    _hideButtonController = new ScrollController();
-    _hideButtonController.addListener((){
-      if(_hideButtonController.position.userScrollDirection == ScrollDirection.reverse) {
-        setState(() {
-          _isVisible = true;
-        });
-      }
-
-      if(_hideButtonController.position.userScrollDirection == ScrollDirection.forward){
-        setState((){
-          _isVisible = false;
-        });
-      }
-    });
+//    _isVisible = true;
+//    _hideButtonController = new ScrollController();
+//    _hideButtonController.addListener((){
+//      if(_hideButtonController.position.userScrollDirection == ScrollDirection.reverse) {
+//        setState(() {
+//          _isVisible = true;
+//        });
+//      }
+//
+//      if(_hideButtonController.position.userScrollDirection == ScrollDirection.forward){
+//        setState((){
+//          _isVisible = false;
+//        });
+//      }
+//    });
   }
 
   initPlatformState() async {
@@ -78,7 +78,7 @@ class _RestaurantListState extends State<RestaurantList> {
         .of(context)
         .textScaleFactor / 2.8;
     return new ListView(
-        controller: _hideButtonController,
+        //controller: _hideButtonController,
         padding: new EdgeInsets.symmetric(vertical: 20.0 * scaleFactor),
         children: _buildRestaurantList(scaleFactor, context));
   }
