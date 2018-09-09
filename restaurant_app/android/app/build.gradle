@@ -1,5 +1,6 @@
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
+
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
@@ -8,11 +9,15 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+//def keystorePropertiesFile = rootProject.file("key.properties")
+//def keystoreProperties = Properties()
+//keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 27
@@ -31,10 +36,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+//    signingConfigs {
+//        release {
+//            keyAlias 'key'
+//            keyPassword 'dragonatekushcrow'
+//            storeFile 'C:\\Ankush\\FlutterProjects'
+//            storePassword 'dragonatekushcrow'
+//        }
+//    }
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
     }
