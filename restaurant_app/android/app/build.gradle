@@ -36,14 +36,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-//    signingConfigs {
-//        release {
-//            keyAlias 'key'
-//            keyPassword 'dragonatekushcrow'
-//            storeFile 'C:\\Ankush\\FlutterProjects'
-//            storePassword 'dragonatekushcrow'
-//        }
-//    }
+
     buildTypes {
         release {
             signingConfig signingConfigs.debug
