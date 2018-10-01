@@ -8,7 +8,12 @@ Made by Christopher Gong and Ankush Vangari.
 Hungry's algorithm works by mapping users to a point in n dimentional space, where n is the search criterion. It then maps the nearby restaurants on the same scale, and returns the restaurant with the closest euclidian restaurant to the user as the highest reccomendation. 
 
 ## Install
-Currently in private beta. Contact us for more information.
+Currently in public beta! 
+<div>
+<a href="https://play.google.com/store/apps/details?id=com.restaurant.android">Android</a>
+  </div>
+
+iOS is still under development.
 
 ## Screenshots
 
